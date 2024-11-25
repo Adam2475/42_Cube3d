@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 11:47:41 by adapassa         ###   ########.fr       */
+/*   Created: 2024/01/03 20:31:05 by adapassa          #+#    #+#             */
+/*   Updated: 2024/01/03 20:31:06 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+#include "libft.h"
 
-
-// TODO : map map parsing
-
-int	main(int ac, char **av)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	(void)ac;
-	if (ac != 2) // If the number of arguments is not 2 quit immediatly
-		return (printf("Bad number of arguments!\n"));
-	map_initialization(av);
-	//t_data *data;
-	printf("compiled successfully!\n");
-	//data = init_argument(); // init the data structure
-	//start_the_game(data); // start the game
-	return (0);
+	size_t	i;
+	size_t	j;
+	char	*s;
+
+	s = 0;
+	if (s1 && set)
+	{
+		i = 0;
+		j = ft_strlen(s1);
+		while (s1[i] && ft_strchr(set, s1[i]))
+			i++;
+		while (s1[j - 1] && ft_strchr(set, s1[j - 1]) && j > i)
+			j--;
+		s = (char *)malloc(sizeof(char) * (j - i + 1));
+		if (s)
+			ft_strlcpy(s, &s1[i], j - i + 1);
+	}
+	return (s);
 }

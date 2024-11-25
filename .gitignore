@@ -1,1 +1,3 @@
-/minilibx_linux
+/mlx_linux
+*.o
+*.a

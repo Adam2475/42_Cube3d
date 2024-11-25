@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 11:47:41 by adapassa         ###   ########.fr       */
+/*   Created: 2024/01/03 20:31:27 by adapassa          #+#    #+#             */
+/*   Updated: 2024/01/03 20:31:27 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+#include "libft.h"
 
-
-// TODO : map map parsing
-
-int	main(int ac, char **av)
+void	ft_putnbr_fd(int n, int fd)
 {
-	(void)ac;
-	if (ac != 2) // If the number of arguments is not 2 quit immediatly
-		return (printf("Bad number of arguments!\n"));
-	map_initialization(av);
-	//t_data *data;
-	printf("compiled successfully!\n");
-	//data = init_argument(); // init the data structure
-	//start_the_game(data); // start the game
-	return (0);
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+	}
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+		ft_putnbr_fd(n, fd);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + 48, fd);
 }

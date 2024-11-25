@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include "minilibx_linux/mlx.h"
+#include "../mlx_linux/mlx.h"
 
 #define S_W 1900 // screen width
 #define S_H 1000 // screen height
@@ -37,3 +37,8 @@ typedef struct s_data
 	int w_map; // map width
 	int h_map; // map height
 }	t_data;
+
+/////////////////////////////////////////
+// Prototypes
+// Initialization :
+int	map_initialization(char **av);

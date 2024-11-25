@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 11:47:41 by adapassa         ###   ########.fr       */
+/*   Created: 2023/12/19 20:55:25 by adapassa          #+#    #+#             */
+/*   Updated: 2024/01/08 15:19:46 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+#include "libft.h"
 
-
-// TODO : map map parsing
-
-int	main(int ac, char **av)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	(void)ac;
-	if (ac != 2) // If the number of arguments is not 2 quit immediatly
-		return (printf("Bad number of arguments!\n"));
-	map_initialization(av);
-	//t_data *data;
-	printf("compiled successfully!\n");
-	//data = init_argument(); // init the data structure
-	//start_the_game(data); // start the game
-	return (0);
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = ft_strlen(dest);
+	if (size <= j)
+		return (size + ft_strlen(src));
+	while ((src[i] != '\0') && ((j + 1) < size))
+		dest[j++] = src[i++];
+	dest[j] = '\0';
+	return (ft_strlen(dest) + ft_strlen(&src[i]));
 }

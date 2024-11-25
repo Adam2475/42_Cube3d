@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 11:47:41 by adapassa         ###   ########.fr       */
+/*   Created: 2023/12/18 10:35:04 by adapassa          #+#    #+#             */
+/*   Updated: 2024/01/03 21:06:11 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+/*
+	DESCRIPTION
+	The memset() function fills the first n bytes of the memory area pointed 
+	to by s with the constant byte c.
+	
+	RETURN VALUE
+	The memset() function returns a pointer to the memory area s.
+*/
 
+#include "libft.h"
 
-// TODO : map map parsing
-
-int	main(int ac, char **av)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	(void)ac;
-	if (ac != 2) // If the number of arguments is not 2 quit immediatly
-		return (printf("Bad number of arguments!\n"));
-	map_initialization(av);
-	//t_data *data;
-	printf("compiled successfully!\n");
-	//data = init_argument(); // init the data structure
-	//start_the_game(data); // start the game
-	return (0);
+	char	*ptr;
+	size_t	i;
+
+	i = 0;
+	ptr = str;
+	while (i < n)
+		ptr[i++] = c;
+	return ((void *)ptr);
 }
