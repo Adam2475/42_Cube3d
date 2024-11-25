@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "../mlx_linux/mlx.h"
+#include "../libft/libft.h"
 
 #define S_W 1900 // screen width
 #define S_H 1000 // screen height
@@ -41,4 +42,6 @@ typedef struct s_data
 /////////////////////////////////////////
 // Prototypes
 // Initialization :
-int	map_initialization(char **av);
+int		game_init(char **av);
+// Parsing
+int		map_parsing(char **av);

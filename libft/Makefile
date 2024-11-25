@@ -6,7 +6,7 @@
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 17:27:14 by adapassa          #+#    #+#              #
-#    Updated: 2024/11/25 11:59:00 by adapassa         ###   ########.fr        #
+#    Updated: 2024/11/25 12:45:32 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,21 +24,20 @@ SRCS = ft_bzero ft_isalnum \
 		ft_strlen ft_memcpy ft_memmove \
 		ft_strlcpy ft_strlcat ft_toupper \
 		ft_tolower ft_strchr ft_strrchr \
-		ft_strncmp ft_memchr ft_strnstr \
+		string/ft_strncmp string/ft_strcmp \
+		string/ft_strnstr \
+		ft_memchr \
 		ft_atoi ft_calloc ft_strdup \
 		ft_substr ft_strjoin ft_strtrim \
 		ft_split ft_itoa ft_strmapi \
 		ft_striteri ft_putchar_fd ft_putstr_fd \
 		ft_putendl_fd ft_putnbr_fd ft_memcmp \
-
-SRCS_BONUS =	ft_lstnew ft_lstadd_back ft_lstadd_front \
-				ft_lstsize ft_lstdelone ft_lstlast \
-				ft_lstclear ft_lstiter ft_lstmap \
+		ft_lstnew ft_lstadd_back ft_lstadd_front \
+		ft_lstsize ft_lstdelone ft_lstlast \
+		ft_lstclear ft_lstiter ft_lstmap \
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS)))
-SRC_BONUS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS_BONUS)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS)))
-OBJ_BONUS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS_BONUS)))
 
 # Special target for creating obj directory
 OBJF = .cache_exists
@@ -65,9 +64,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 
 $(OBJF):
 		@mkdir -p $(OBJ_DIR)
+		@mkdir -p $(OBJ_DIR)string
 
 clean:
-		@rm -f $(OBJ) $(OBJ_BONUS)
+		@rm -f $(OBJ)
 		@rm -rf $(OBJ_DIR)
 		@echo "$(CIANO)directory OBJ rimossa...$(DEFAULT)"
 		@echo "$(CIANO)file oggetto di $(NAME) rimossi con successo❗️ 🪦$(DEFAULT)"
@@ -77,8 +77,5 @@ fclean: clean
 		@echo "$(RED)$(NAME) rimossa con successo❗️ ❌$(DEFAULT)"
 
 re: fclean all
-
-bonus: $(OBJ) $(OBJ_BONUS)
-		@$(LIB) $(NAME) $(OBJ) $(OBJ_BONUS)
 
 .PHONY: all clean fclean bonus

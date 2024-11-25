@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 18:54:18 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 11:59:09 by adapassa         ###   ########.fr       */
+/*   Created: 2024/11/25 12:18:10 by adapassa          #+#    #+#             */
+/*   Updated: 2024/11/25 12:43:00 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-// int	ft_strcmp()
-// {
-	
-// }
+/* the function strcmp compares s1 & s2 returning the difference
+	if it finds a different character, it returns 0 if the strings
+	are identical */
 
-int	ft_strncmp(char *s1, char *s2, size_t n)
+int	ft_strcmp(char *s1, char *s2)
 {
-	size_t	i;
+	int i;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while ((s1[i] || s2[i]) && (i < n - 1))
-	{
-		if (s1[i] != s2[i] || i >= n)
-			break ;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (s1[i] - s2[i]);
 }

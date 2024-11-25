@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 13:20:51 by adapassa         ###   ########.fr       */
+/*   Created: 2023/12/20 18:54:18 by adapassa          #+#    #+#             */
+/*   Updated: 2024/11/25 12:38:30 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+#include "../libft.h"
 
-int	game_init(char **av)
+/* the strncmp function compares the first n bytes of
+	s1 with those of s2 and returns the difference if any */
+
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	(void)av;
-	printf("Initializing the game window!\n");
-	return (0);
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while ((s1[i] || s2[i]) && (i < n - 1))
+	{
+		if (s1[i] != s2[i] || i >= n)
+			break ;
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
