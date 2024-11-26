@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/26 16:16:21 by girindi          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:35:03 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 int map_parsing(char **av)
 {
 	char	*tmp;
-	char	**tmp_map; // struct full-MAP
+	char	**tmp_map = NULL; // struct full-MAP
 	char	*path;
-
+	t_map	*map = NULL;
+	
 	// printf("initializing the map!\n");
 	tmp = ft_strnstr(av[1], ".cub", ft_strlen(av[1]));
 	if (!tmp || ft_strcmp(tmp, ".cub") != 0) // checking the extension of the map
 		return (1);
 	path = ft_strjoin("./", av[1]);
-	tmp_map = read_map(path);
-	if (!tmp_map)
+	map->full_map = read_map(path);
+	if (!map->full_map)
 		return (1);
 	if (check_characters(tmp_map))
 	{

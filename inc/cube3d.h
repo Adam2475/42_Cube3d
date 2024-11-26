@@ -40,6 +40,12 @@ typedef struct s_data
 	int h_map; // map height
 }	t_data;
 
+typedef	struct s_map
+{
+	char	**full_map;
+	char	**clean_map;
+}	t_map;
+
 /////////////////////////////////////////
 // Prototypes
 // Initialization :
