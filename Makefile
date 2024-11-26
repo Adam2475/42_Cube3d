@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
+#    By: giulio <giulio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2024/11/25 13:24:02 by adapassa         ###   ########.fr        #
+#    Updated: 2024/11/25 20:28:06 by giulio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-NAME = cube3d
+NAME = cub3d
 FLAGS =  -Wall -Wextra -Werror -g
-SRC = src/main.c src/init.c src/utils.c src/parsing.c \
+SRC = src/main.c src/init.c src/utils.c src/parsing.c src/g_n_l.c\
 
 OBJ = $(SRC:.c=.o)
 LIB = mlx_linux/libmlx_Linux.a -lXext -lm

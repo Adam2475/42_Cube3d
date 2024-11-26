@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <fcntl.h>
 #include "../mlx_linux/mlx.h"
 #include "../libft/libft.h"
 
@@ -45,3 +46,13 @@ typedef struct s_data
 int		game_init(char **av);
 // Parsing
 int		map_parsing(char **av);
+char	**read_map(char *path);
+int		count_line(int fd);
+int		check_characters(char **map);
+// GNL 
+char	*get_next_line(int fd);
+char	*read_line(int fd, char *backup, char *buffer);
+char	*divide_line(char **backup);
+// utils
+char	*strjoin_free(char *s1, char *s2);
+void	free_matrix(char **matrix);

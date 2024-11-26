@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 13:33:58 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:35:56 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	(void)ac;
 	if (ac != 2) // If the number of arguments is not 2 quit immediatly
 		return (printf("Bad number of arguments!\n"));
-	if (map_parsing(av) > 0)
+	if (map_parsing(av))
 		return (printf("Invalid map passed!\n"));
 	if (game_init(av))
 		return (printf("Error while initializing the game\n"));
