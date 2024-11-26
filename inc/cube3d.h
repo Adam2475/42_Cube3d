@@ -46,7 +46,8 @@ typedef struct s_data
 int		game_init(char **av);
 // Parsing
 int		map_parsing(char **av);
-char	**read_map(char *av);
+char	**read_map(char *path);
+int		count_line(int fd);
 int		check_characters(char **map);
 // GNL 
 char	*get_next_line(int fd);
