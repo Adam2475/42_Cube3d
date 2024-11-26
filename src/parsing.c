@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/26 16:35:03 by girindi          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:19:12 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,84 @@
 int map_parsing(char **av)
 {
 	char	*tmp;
-	char	**tmp_map = NULL; // struct full-MAP
+	char	**tmp_map = NULL; 
 	char	*path;
-	t_map	*map = NULL;
-	
-	// printf("initializing the map!\n");
+	t_map	map;
+
 	tmp = ft_strnstr(av[1], ".cub", ft_strlen(av[1]));
-	if (!tmp || ft_strcmp(tmp, ".cub") != 0) // checking the extension of the map
+	if (!tmp || ft_strcmp(tmp, ".cub") != 0)
 		return (1);
 	path = ft_strjoin("./", av[1]);
-	map->full_map = read_map(path);
-	if (!map->full_map)
+	tmp_map = read_map(path, &map); // read full mappa
+	if (!tmp_map)
 		return (1);
-	if (check_characters(tmp_map))
-	{
+	if (!get_map(tmp_map, &map))
 		free_matrix(tmp_map);
+	// get_textures(&map); TO DO
+	if (check_characters(&map)) // TO MOD;
+	{
+		free_matrix(map.clean_map);
+		// free_matrix(map.full_map); da aggiungere dopo il get textures
 		return (1);
 	}
-	free_matrix(tmp_map);
 	printf("The passed map is valid!\n");
 	return (0);
 }
 
-char **read_map(char *path)
+char	**read_map(char *path, t_map *map)
 {
 	int		fd;
 	char	**temp_map;
 	char	*temp_line;
 	int		i;
-	// int		count;
+	int		count;
 
 	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	// count = count_line(fd);
-	temp_map = ft_calloc(50, sizeof(char *)); // trova modo meglio dh
+	count = count_line(fd);
+	close(fd);
+	fd = open(path, O_RDONLY);
+	temp_map = ft_calloc(count, sizeof(char *));
 	while (1)
 	{
 		temp_line = get_next_line(fd);
-		printf("%s", temp_line);
 		if (temp_line == NULL)
 			break ;
-		// else if (!in_map(temp_line))
-		// {
-		// 	temp_map[i] = ft_strdup(temp_line);
-		// 	free(temp_line);
-		// }
-		//TO DO				check per effettivo read della mappa e non altri elementi presenti nel file
+		temp_map[i] = ft_strdup(temp_line);
+		free(temp_line);
 		i++;
-		printf("%d\n", i);
 	}
+	map->total_lines = i;
 	temp_map[i] = NULL;
 	close(fd);
 	return (temp_map);
+}
+
+int	get_map(char **tmp_map, t_map *map)
+{
+	int	i;
+	int	j;
+	int	size;
+	
+	j = 0;
+	i = 0;
+	while (tmp_map[i] && in_map(tmp_map[i]))
+			i++;
+	size = map->total_lines - i;
+	map->texture_lines = i;
+	map->clean_map = ft_calloc(size + 1, sizeof(char **));
+	if (!map->clean_map)
+		return (1);
+	while (tmp_map[i])
+	{
+		map->clean_map[j] = ft_strdup(tmp_map[i]);
+		j++;
+		i++;
+	}
+	map->clean_map[j] = NULL;
+	return (0);
 }
 
 int	in_map(char *line)
@@ -86,43 +110,37 @@ int	in_map(char *line)
 }
 int	count_line(int fd)
 {
-	int		r_check;
 	int		i;
-	char	buffer[50];
 
 	i = 0;
-	r_check = 1;
-	while (r_check > 0)
+	while (1)
 	{
-		r_check = read(fd, buffer, 50);
-		if (r_check == -1)
-			return (0);
-		else if (r_check == 0)
+		if (get_next_line(fd) == NULL)
 			break ;
-		buffer[r_check] = '\0';
-		while (ft_strchr(buffer, '\n') != NULL)
-			i++;
+		i++;
 	}
 	return (i);
 }
-int	check_characters(char **map)
+int	check_characters(t_map *map)
 {
 	int	i;
 	int	j;
 	int	len;
+	char **mtx;
 
+	mtx = map->clean_map;
 	i = 0;
 	len = 0;
-	while(map[i])
+	while(mtx[i])
 	{
 		j = 0;
-		len = ft_strlen(map[i]);
-		while(map[i][j])
+		len = ft_strlen(mtx[i]);
+		while(mtx[i][j])
 		{
-			if (j == 0 || j == len - 2)
-				if (map[i][j] != '1')
+			if (j == 0 || j == len - 2) // to mod
+				if (mtx[i][j] != '1')
 					return (1);
-			if (!ft_strchr("10NSEW ", map[i][j]) && map[i][j] != '\n')
+			if (!ft_strchr("10NSEW ", mtx[i][j]) && mtx[i][j] != '\n')
 				return(1);
 			j++;
 		}

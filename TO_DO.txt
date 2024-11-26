@@ -1,0 +1,2 @@
+aggiungere get textures --> prende solo le textures della mappa e le mette nella strcut;
+modificare get_characters --> controlla solo primo e ultimo muro 
