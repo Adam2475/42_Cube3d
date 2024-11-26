@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/26 16:16:21 by girindi          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:33:42 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,21 @@ char **read_map(char *path)
 	char	**temp_map;
 	char	*temp_line;
 	int		i;
-	// int		count;
+	int		count;
 
 	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	// count = count_line(fd);
-	temp_map = ft_calloc(50, sizeof(char *)); // trova modo meglio dh
+	count = count_line(fd);
+	printf("%d\n", count);
+	close(fd);
+	fd = open(path, O_RDONLY);
+	temp_map = ft_calloc(count, sizeof(char *)); // trova modo meglio dh
 	while (1)
 	{
 		temp_line = get_next_line(fd);
-		printf("%s", temp_line);
+		printf("%s\n", temp_line);
 		if (temp_line == NULL)
 			break ;
 		// else if (!in_map(temp_line))
@@ -85,22 +88,14 @@ int	in_map(char *line)
 }
 int	count_line(int fd)
 {
-	int		r_check;
 	int		i;
-	char	buffer[50];
 
 	i = 0;
-	r_check = 1;
-	while (r_check > 0)
+	while (1)
 	{
-		r_check = read(fd, buffer, 50);
-		if (r_check == -1)
-			return (0);
-		else if (r_check == 0)
+		if (get_next_line(fd) == NULL)
 			break ;
-		buffer[r_check] = '\0';
-		while (ft_strchr(buffer, '\n') != NULL)
-			i++;
+		i++;
 	}
 	return (i);
 }
