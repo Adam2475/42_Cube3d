@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/26 18:19:12 by girindi          ###   ########.fr       */
+/*   Updated: 2024/11/26 21:25:21 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ int map_parsing(char **av)
 	tmp_map = read_map(path, &map); // read full mappa
 	if (!tmp_map)
 		return (1);
-	if (!get_map(tmp_map, &map))
+	if (!get_map(tmp_map, &map) && !get_textures(tmp_map, &map))	//aggiunge alla struct la matrix mappa e texture
 		free_matrix(tmp_map);
-	// get_textures(&map); TO DO
 	if (check_characters(&map)) // TO MOD;
 	{
-		free_matrix(map.clean_map);
+		free_matrix(map.map);
 		// free_matrix(map.full_map); da aggiungere dopo il get textures
 		return (1);
 	}
@@ -50,21 +49,20 @@ char	**read_map(char *path, t_map *map)
 	int		count;
 
 	i = 0;
-	fd = open(path, O_RDONLY);
+	(void)path;
+	// fd = open(path, O_RDONLY);
+	fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	count = count_line(fd);
 	close(fd);
-	fd = open(path, O_RDONLY);
+	// fd = open(path, O_RDONLY);
+	fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
 	temp_map = ft_calloc(count, sizeof(char *));
-	while (1)
+	while ((temp_line = get_next_line(fd)) != NULL)
 	{
-		temp_line = get_next_line(fd);
-		if (temp_line == NULL)
-			break ;
-		temp_map[i] = ft_strdup(temp_line);
+		temp_map[i++] = ft_strdup(temp_line);
 		free(temp_line);
-		i++;
 	}
 	map->total_lines = i;
 	temp_map[i] = NULL;
@@ -84,64 +82,81 @@ int	get_map(char **tmp_map, t_map *map)
 			i++;
 	size = map->total_lines - i;
 	map->texture_lines = i;
-	map->clean_map = ft_calloc(size + 1, sizeof(char **));
-	if (!map->clean_map)
+	map->map = ft_calloc(size + 1, sizeof(char **));
+	if (!map->map)
 		return (1);
 	while (tmp_map[i])
 	{
-		map->clean_map[j] = ft_strdup(tmp_map[i]);
+		map->map[j] = ft_strdup(tmp_map[i]);
 		j++;
 		i++;
 	}
-	map->clean_map[j] = NULL;
+	map->map[j] = NULL;
 	return (0);
 }
 
-int	in_map(char *line)
+int	get_textures(char **tmp, t_map *map)
 {
-	int i;
+	int	i;
+	int	j;
+	int counter;
 
+	counter = 0;
 	i = 0;
-	while (line[i] && line[i] == ' ')
-		i++;
-	if (line[i] == '1')
-		return (0);
-	return (1);
-}
-int	count_line(int fd)
-{
-	int		i;
-
-	i = 0;
-	while (1)
+	j = 0;
+	while (i != map->texture_lines)
 	{
-		if (get_next_line(fd) == NULL)
-			break ;
+		if (!trim_textures(tmp[i]))
+			counter++;
 		i++;
 	}
-	return (i);
+	map->texture = calloc(counter + 1, sizeof(char **));
+	if (!map->texture)
+		return (1);
+	i = 0;
+	while (tmp[i] && j != counter)
+	{
+		if (!trim_textures(tmp[i]))
+			map->texture[j++] = ft_strdup(tmp[i]);
+		i++;
+	}
+	map->texture[counter] = NULL;
+	return (0);
 }
+
 int	check_characters(t_map *map)
 {
 	int	i;
 	int	j;
-	int	len;
 	char **mtx;
-
-	mtx = map->clean_map;
+	int	lines;
+	int start;
+	int end;
+	
+	lines = map->total_lines - map->texture_lines - 1;
+	mtx = map->map;
 	i = 0;
-	len = 0;
 	while(mtx[i])
 	{
-		j = 0;
-		len = ft_strlen(mtx[i]);
-		while(mtx[i][j])
+		start = skip_spaces(mtx[i]);
+		end = trim_spaces(mtx[i]);
+		j = start;							 // TO DO: togliere spazi eventuali dopo il muro
+		while (mtx[i][j])
 		{
-			if (j == 0 || j == len - 2) // to mod
+			if (i == 0 || i == lines)
+			{
 				if (mtx[i][j] != '1')
 					return (1);
-			if (!ft_strchr("10NSEW ", mtx[i][j]) && mtx[i][j] != '\n')
+			}
+			else if (j == start || j == end - 1)
+			{
+				if (mtx[i][j] != '1')
+				return (1);
+			}	
+			else if (!ft_strchr("10NSEW ", mtx[i][j]) && mtx[i][j] != '\n')
 				return(1);
+			if (j == end - 1)
+				break;
 			j++;
 		}
 		i++;

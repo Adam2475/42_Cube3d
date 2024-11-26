@@ -43,7 +43,7 @@ typedef struct s_data
 typedef	struct s_map
 {
 	char	**texture;
-	char	**clean_map;
+	char	**map;
 	int		texture_lines;
 	int		total_lines;
 }	t_map;
@@ -56,9 +56,12 @@ int		game_init(char **av);
 int		map_parsing(char **av);
 char	**read_map(char *path, t_map *map);
 int		get_map(char **tmp_map, t_map *map);
+int		get_textures(char **tmp, t_map *map);
+int		check_characters(t_map *map);
+//parsing utils
+int		trim_textures(char *str);
 int		in_map(char *line);
 int		count_line(int fd);
-int		check_characters(t_map *map);
 // GNL 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *backup, char *buffer);
@@ -66,3 +69,5 @@ char	*divide_line(char **backup);
 // utils
 char	*strjoin_free(char *s1, char *s2);
 void	free_matrix(char **matrix);
+int		skip_spaces(char *str);
+int		trim_spaces(char *str);
