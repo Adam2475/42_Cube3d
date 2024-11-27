@@ -51,9 +51,9 @@ typedef	struct s_map
 /////////////////////////////////////////
 // Prototypes
 // Initialization :
-int		game_init(char **av);
+int		game_init(char **av, t_map *map);
 // Parsing
-int		map_parsing(char **av);
+int		map_parsing(char **av, t_map *map);
 char	**read_map(char *path, t_map *map);
 int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
@@ -71,3 +71,5 @@ char	*strjoin_free(char *s1, char *s2);
 void	free_matrix(char **matrix);
 int		skip_spaces(char *str);
 int		trim_spaces(char *str);
+// debug
+void	print_map(char **map);

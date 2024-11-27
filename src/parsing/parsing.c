@@ -3,40 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/26 21:25:21 by giulio           ###   ########.fr       */
+/*   Updated: 2024/11/27 12:43:36 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+#include "../../inc/cube3d.h"
 
 // TODO : perform a check on the symbols in the map
 
-int map_parsing(char **av)
+		if (ft_strncmp(map->texture[i], "SO", 2))
+			return (1);
+		if (ft_strncmp(map->texture[i], "WE", 2))
+			return (1);
+		if (ft_strncmp(map->texture[i], "EA", 2))
+			return (1);
+static	int	check_textures(t_map *map, int i)
+{
+	if (i == 0)
+	{
+		if (ft_strncmp(map->texture[i], "NO", 2))
+			return (1);
+	}
+	if (i == 0)
+	{
+		if (ft_strncmp(map->texture[i], "NO", 2))
+			return (1);
+	}
+	if (i == 0)
+	{
+		if (ft_strncmp(map->texture[i], "NO", 2))
+			return (1);
+	}
+	if (i == 0)
+	{
+		if (ft_strncmp(map->texture[i], "NO", 2))
+			return (1);
+	}
+}
+
+static	int	check_configuration(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (map)
+	{
+		printf("Hello form the configuration check!\n\n");
+		print_map(map->texture);
+	}
+	while (i <= 3)
+	{
+		if (check_textures(map, i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	map_parsing(char **av, t_map *map)
 {
 	char	*tmp;
-	char	**tmp_map = NULL; 
+	char	**tmp_map; 
 	char	*path;
-	t_map	map;
 
 	tmp = ft_strnstr(av[1], ".cub", ft_strlen(av[1]));
 	if (!tmp || ft_strcmp(tmp, ".cub") != 0)
 		return (1);
 	path = ft_strjoin("./", av[1]);
-	tmp_map = read_map(path, &map); // read full mappa
+	tmp_map = NULL;
+	tmp_map = read_map(path, map); // read full mappa
 	if (!tmp_map)
 		return (1);
-	if (!get_map(tmp_map, &map) && !get_textures(tmp_map, &map))	//aggiunge alla struct la matrix mappa e texture
+	if (!get_map(tmp_map, map) && !get_textures(tmp_map, map))	//aggiunge alla struct la matrix mappa e texture
 		free_matrix(tmp_map);
-	if (check_characters(&map)) // TO MOD;
+	if (check_characters(map)) // TO MOD;
 	{
-		free_matrix(map.map);
+		free_matrix(map->map);
 		// free_matrix(map.full_map); da aggiungere dopo il get textures
 		return (1);
 	}
-	printf("The passed map is valid!\n");
+	if (check_configuration(map))
+		return(1);
+	printf("----------------------------\n");
+	printf("The passed map is valid!\n\n");
 	return (0);
 }
 
@@ -49,17 +101,16 @@ char	**read_map(char *path, t_map *map)
 	int		count;
 
 	i = 0;
-	(void)path;
-	// fd = open(path, O_RDONLY);
-	fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY);
+	fd = open(path, O_RDONLY);
+	//fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	count = count_line(fd);
 	close(fd);
-	// fd = open(path, O_RDONLY);
-	fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
+	fd = open(path, O_RDONLY); // diocane
+	//fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
 	temp_map = ft_calloc(count, sizeof(char *));
-	while ((temp_line = get_next_line(fd)) != NULL)
+	while ((temp_line = get_next_line(fd)) != NULL) // assigning in control line is forbidden
 	{
 		temp_map[i++] = ft_strdup(temp_line);
 		free(temp_line);
@@ -140,7 +191,7 @@ int	check_characters(t_map *map)
 	{
 		start = skip_spaces(mtx[i]);
 		end = trim_spaces(mtx[i]);
-		j = start;							 // TO DO: togliere spazi eventuali dopo il muro
+		j = start;						// TO DO: togliere spazi eventuali dopo il muro
 		while (mtx[i][j])
 		{
 			if (i == 0 || i == lines)

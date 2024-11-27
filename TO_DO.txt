@@ -1,1 +1,8 @@
+TODO : add map parsing | OK
+TODO : add a working gnl to the library | OK
+TODO : initialize the window in game_init
 
+TODO : fix norme in the check_characters
+TODO : assigning in control line is forbidden by norme
+TODO : split configuration from the map
+TODO : perform the parsing on the configuration if any

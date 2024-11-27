@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:35:29 by giulio            #+#    #+#             */
-/*   Updated: 2024/11/26 20:36:11 by giulio           ###   ########.fr       */
+/*   Updated: 2024/11/27 09:42:53 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+#include "../../inc/cube3d.h"
 
 int	trim_textures(char *str)
 {
