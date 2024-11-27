@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:42:10 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/25 22:08:34 by giulio           ###   ########.fr       */
+/*   Updated: 2024/11/26 21:14:54 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,35 @@ void	free_matrix(char **matrix)
 		i++;
 	}
 	free(matrix);
+}
+
+int	skip_spaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '	')
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+int	trim_spaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	i = ft_strlen(str);
+	if (str[i - 1] == '\n')
+		i--;
+	while (i != 0)
+	{
+		if (str[i] != ' ' && str[i] != '	')
+			return (i);
+		i--;
+	}
+	return (0);
 }
