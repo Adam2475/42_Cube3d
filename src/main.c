@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/27 12:32:44 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:29:35 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int	main(int ac, char **av)
 {
 	t_map	map; // Struct map is initialized in "map_parsing"
+	t_game	game; // Initialized in game_init, hold the window pointer
 
 	if (ac != 2) // If the number of arguments is not 2 quit immediatly
 		return (printf("Bad number of arguments!\n"));
@@ -28,9 +29,12 @@ int	main(int ac, char **av)
 	// print_map(map.map);
 	// printf("%c\n", '\n');
 	// print_map(map.texture);
-	//if (game_init(av, &map)) // initialize game window
-	//	return (printf("Error while initializing the game\n"));
 
+	if (game_init(av, &map, &game)) // initialize game window
+		return (printf("Error while initializing the game\n"));
+
+	draw_square(S_W / 2, S_H / 2, 10, 0x00FF00, &game);
+	mlx_loop(game.mlx);
 	////////////////////////////////////////////////
 	// ??
 	// mlx_hook(vars.win, 17, 0, &exit_hook, &vars);

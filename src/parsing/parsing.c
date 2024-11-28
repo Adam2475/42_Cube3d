@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/27 12:43:36 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:31:26 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,35 @@
 
 // TODO : perform a check on the symbols in the map
 
-		if (ft_strncmp(map->texture[i], "SO", 2))
-			return (1);
-		if (ft_strncmp(map->texture[i], "WE", 2))
-			return (1);
-		if (ft_strncmp(map->texture[i], "EA", 2))
-			return (1);
-static	int	check_textures(t_map *map, int i)
-{
-	if (i == 0)
-	{
-		if (ft_strncmp(map->texture[i], "NO", 2))
-			return (1);
-	}
-	if (i == 0)
-	{
-		if (ft_strncmp(map->texture[i], "NO", 2))
-			return (1);
-	}
-	if (i == 0)
-	{
-		if (ft_strncmp(map->texture[i], "NO", 2))
-			return (1);
-	}
-	if (i == 0)
-	{
-		if (ft_strncmp(map->texture[i], "NO", 2))
-			return (1);
-	}
-}
+// 		if (ft_strncmp(map->texture[i], "SO", 2))
+// 			return (1);
+// 		if (ft_strncmp(map->texture[i], "WE", 2))
+// 			return (1);
+// 		if (ft_strncmp(map->texture[i], "EA", 2))
+// 			return (1);
+// static	int	check_textures(t_map *map, int i)
+// {
+// 	if (i == 0)
+// 	{
+// 		if (ft_strncmp(map->texture[i], "NO", 2))
+// 			return (1);
+// 	}
+// 	if (i == 0)
+// 	{
+// 		if (ft_strncmp(map->texture[i], "NO", 2))
+// 			return (1);
+// 	}
+// 	if (i == 0)
+// 	{
+// 		if (ft_strncmp(map->texture[i], "NO", 2))
+// 			return (1);
+// 	}
+// 	if (i == 0)
+// 	{
+// 		if (ft_strncmp(map->texture[i], "NO", 2))
+// 			return (1);
+// 	}
+// }
 
 static	int	check_configuration(t_map *map)
 {
@@ -54,12 +54,12 @@ static	int	check_configuration(t_map *map)
 		printf("Hello form the configuration check!\n\n");
 		print_map(map->texture);
 	}
-	while (i <= 3)
-	{
-		if (check_textures(map, i))
-			return (1);
-		i++;
-	}
+	// while (i <= 3)
+	// {
+	// 	if (check_textures(map, i))
+	// 		return (1);
+	// 	i++;
+	// }
 	return (0);
 }
 

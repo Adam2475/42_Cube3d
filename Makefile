@@ -6,15 +6,16 @@
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2024/11/27 10:00:58 by adapassa         ###   ########.fr        #
+#    Updated: 2024/11/28 12:31:38 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3d
 FLAGS =  -Wall -Wextra -Werror -g
-SRC = src/main.c src/init.c src/utils.c src/g_n_l.c \
+SRC = src/main.c src/init.c  src/g_n_l.c \
 		src/parsing/parsing.c src/parsing/parsing_utils.c \
+		src/utils/utils.c src/utils/utils2.c \
 		src/debug.c \
 
 OBJ = $(SRC:.c=.o)
