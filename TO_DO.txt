@@ -9,3 +9,4 @@ TODO : assigning in control line is forbidden by norme
 
 TODO : fix map parsing, check fails with "valid.cub"
 TODO : add function to draw the squares
+TODO : add the movement system
