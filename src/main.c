@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/03 10:21:02 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:19:10 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	main(int ac, char **av)
 	init_player(&game.player); // initializes the player structure
 
 	mlx_hook(game.win, 17, 0, &exit_hook, &game.player); // hook for exit button on window
-	 mlx_hook(game.win, 2, 1L<<0, &key_press, &game.player); // have to revise this fuckin functions
-	 mlx_hook(game.win, 3, 1L<<1, &key_release, &game.player); // aka : x_event && x-mask
+	mlx_hook(game.win, 2, 1L<<0, &key_press, &game.player); // have to revise this fuckin functions
+	mlx_hook(game.win, 3, 1L<<1, &key_release, &game.player); // aka : x_event && x-mask
 	//mlx_key_hook(game.win, &key_press, &game.player); // this one work and the previous one don't, lol
 	//mlx_key_hook(game.win, &key_release, &game.player);
 	//mlx_hook(game.win, 2, 1L<<1, &key_release, &game.player);

@@ -11,4 +11,5 @@ TODO : fix map parsing, check fails with "valid.cub"
 TODO : add function to draw the squares | OK
 TODO : add the movement system | OK
 
-TODO : 
+TODO : convert the "char **" map used for the test to the appropriate
+		t_map structure istance inside the game.

@@ -6,7 +6,7 @@
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2024/11/28 16:16:34 by adapassa         ###   ########.fr        #
+#    Updated: 2024/12/03 11:25:59 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = src/main.c src/init.c  src/g_n_l.c \
 		src/utils/utils.c src/utils/utils2.c \
 		src/debug.c \
 		src/controls/controls.c \
-		src/rendering/rendering.c \
+		src/rendering/rendering.c src/rendering/rendering_utils.c \
 
 OBJ = $(SRC:.c=.o)
 LIB = mlx_linux/libmlx_Linux.a -lXext -lm

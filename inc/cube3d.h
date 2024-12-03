@@ -10,10 +10,15 @@
 #define S_W 1900 // screen width
 #define S_H 1000 // screen height
 
+#define BLOCK 64
+
 #define W 119
 #define A 97
 #define S 115
 #define D 100
+
+#define LEFT 65361
+#define RIGHT 65363
 
 #define PI 3.14159265359
 
@@ -27,6 +32,8 @@ typedef struct s_player
 	float	p_x; // player x position in pixels
 	float	p_y; // player y position in pixels
 
+	float	angle; // rotation of the player
+
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
@@ -36,6 +43,8 @@ typedef struct s_player
 	// int rot; // rotation
 	// int l_r; // left right flag
 	// int u_d; // up down flag
+	bool 	left_rotate;
+	bool	right_rotate;
 }	t_player;
 
 typedef struct s_game
@@ -50,7 +59,9 @@ typedef struct s_game
 	int size_line;
 	int endian;
 
-	t_player player; // an istance of the player structure
+	char		**map; // a map used for the tutorial
+	//t_map		**map; // instance of the given map
+	t_player	player; // an istance of the player structure
 }	t_game;
 
 typedef struct s_ray
@@ -93,6 +104,7 @@ int		check_characters(t_map *map);
 int		trim_textures(char *str);
 int		in_map(char *line);
 int		count_line(int fd);
+void	draw_map(t_game *game);
 // GNL 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *backup, char *buffer);
@@ -112,4 +124,5 @@ int		exit_hook(t_player *player);
 // rendering
 int		draw_loop(t_game *game);
 // debug
+char	**save_map(void);
 void	print_map(char **map);

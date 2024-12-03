@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/03 10:02:59 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:13:05 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,38 @@ int	exit_hook(t_player *player)
 void	move_player(t_player *player)
 {
 	int speed = 5;
+	float angle_speed = 0.1;
+	float cos_angle = cos(player->angle);
+	float sin_angle = sin(player->angle);
 
+	if (player->left_rotate)
+		player->angle -= angle_speed;
+	if (player->right_rotate)
+		player->angle += angle_speed;
+	if (player->angle > 2 * PI)
+		player->angle = 0;
+	if (player->angle < 0)
+		player->angle = 2 * PI;
 	if (player->key_up)
-		player->p_y -= speed;
+	{
+		player->p_x += cos_angle * speed;
+		player->p_y += sin_angle * speed;
+	}
 	if (player->key_down)
-		player->p_y += speed;
+	{
+		player->p_x -= cos_angle * speed;
+		player->p_y -= sin_angle * speed;
+	}
 	if (player->key_left)
-		player->p_x -= speed;
+	{
+		player->p_x += cos_angle * speed;
+		player->p_y -= sin_angle * speed;
+	}
 	if (player->key_right)
-		player->p_x += speed;
+	{
+		player->p_x -= cos_angle * speed;
+		player->p_y += sin_angle * speed;
+	}
 }
 
 int	key_press(int keycode, t_player *player)
@@ -45,6 +68,10 @@ int	key_press(int keycode, t_player *player)
 		player->key_left = true;
 	if (keycode == D)
 		player->key_right = true;
+	if (keycode == LEFT)
+		player->left_rotate = true;
+	if (keycode == RIGHT)
+		player->right_rotate = true;
 	return (0);
 }
 
@@ -58,5 +85,9 @@ int	key_release(int keycode, t_player *player)
 		player->key_left = false;
 	if (keycode == D)
 		player->key_right = false;
+	if (keycode == LEFT)
+		player->left_rotate = false;
+	if (keycode == RIGHT)
+		player->right_rotate = false;
 	return (0);
 }
