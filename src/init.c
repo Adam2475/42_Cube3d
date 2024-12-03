@@ -6,20 +6,11 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/28 16:11:46 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/03 09:50:04 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
-
-int		draw_loop(t_game *game)
-{
-	t_player	*player = &game->player;
-	move_player(player);
-	draw_square(player->p_x, player->p_y, 5, 0x00FF00, game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (0);
-}
 
 void	init_player(t_player *player)
 {
@@ -33,6 +24,7 @@ void	init_player(t_player *player)
 
 int		game_init(char **av, t_map *map, t_game *game)
 {
+	//init_player(&game->player);
 	(void)av;
 	(void)map;
 	game->mlx = mlx_init();

@@ -6,11 +6,20 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/28 16:10:27 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:02:59 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
+
+int	exit_hook(t_player *player)
+{
+	(void)player;
+	printf("Window Closed\n");
+	//free_exit(vars);
+	exit(1);
+	return (0);
+}
 
 void	move_player(t_player *player)
 {
