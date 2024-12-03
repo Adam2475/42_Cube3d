@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/26 21:25:21 by giulio           ###   ########.fr       */
+/*   Updated: 2024/11/26 21:31:44 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,18 +143,6 @@ int	check_characters(t_map *map)
 		j = start;							 // TO DO: togliere spazi eventuali dopo il muro
 		while (mtx[i][j])
 		{
-			if (i == 0 || i == lines)
-			{
-				if (mtx[i][j] != '1')
-					return (1);
-			}
-			else if (j == start || j == end - 1)
-			{
-				if (mtx[i][j] != '1')
-				return (1);
-			}	
-			else if (!ft_strchr("10NSEW ", mtx[i][j]) && mtx[i][j] != '\n')
-				return(1);
 			if (j == end - 1)
 				break;
 			j++;
@@ -162,4 +150,20 @@ int	check_characters(t_map *map)
 		i++;
 	}
 	return (0);
+}
+
+int check_walls(char c)
+{
+				if (i == 0 || i == lines)
+		{
+			if (mtx[i][j] != '1')
+				return (1);
+		}
+		else if (j == start || j == end - 1)
+		{
+			if (mtx[i][j] != '1')
+			return (1);
+		}	
+		else if (!ft_strchr("10NSEW ", mtx[i][j]) && mtx[i][j] != '\n')
+				return(1);
 }
