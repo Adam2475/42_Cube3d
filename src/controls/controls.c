@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/03 12:13:05 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:09:18 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	exit_hook(t_player *player)
 
 void	move_player(t_player *player)
 {
-	int speed = 5;
-	float angle_speed = 0.1;
+	int speed = 3;
+	float angle_speed = 0.03;
 	float cos_angle = cos(player->angle);
 	float sin_angle = sin(player->angle);
 
@@ -36,6 +36,7 @@ void	move_player(t_player *player)
 		player->angle = 0;
 	if (player->angle < 0)
 		player->angle = 2 * PI;
+
 	if (player->key_up)
 	{
 		player->p_x += cos_angle * speed;
@@ -48,13 +49,13 @@ void	move_player(t_player *player)
 	}
 	if (player->key_left)
 	{
-		player->p_x += cos_angle * speed;
-		player->p_y -= sin_angle * speed;
+		player->p_x += sin_angle * speed;
+		player->p_y -= cos_angle * speed;
 	}
 	if (player->key_right)
 	{
-		player->p_x -= cos_angle * speed;
-		player->p_y += sin_angle * speed;
+		player->p_x -= sin_angle * speed;
+		player->p_y += cos_angle * speed;
 	}
 }
 

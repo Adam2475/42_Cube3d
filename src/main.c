@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/03 12:19:10 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:06:52 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ int	main(int ac, char **av)
 		return (printf("Bad number of arguments!\n"));
 	if (map_parsing(av, &map)) // Perform the checks on the map: extension, characters & configuration
 		return (printf("Invalid map or configuration!\n"));
-	
-	//////////////////////////
-	// For Debug
-	// print_map(map.map);
-	// printf("%c\n", '\n');
-	// print_map(map.texture);
-
 	if (game_init(av, &map, &game)) // initialize game window
 		return (printf("Error while initializing the game\n"));
 

@@ -123,6 +123,8 @@ int		key_release(int keycode, t_player *player);
 int		exit_hook(t_player *player);
 // rendering
 int		draw_loop(t_game *game);
+void	draw_line(t_player *player, t_game *game, float start_x, int i);
+bool	touch(float px, float py, t_game *game);
 // debug
 char	**save_map(void);
 void	print_map(char **map);
