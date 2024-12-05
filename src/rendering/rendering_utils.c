@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 12:56:43 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 13:43:01 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int draw_loop(t_game *game)
 	clear_image(game); // added clear function to reset the screen when moving
 
 
-	printf("%f\n", player->p_x);
-	printf("%f\n", player->p_y);
+	// printf("%f\n", player->p_x);
+	// printf("%f\n", player->p_y);
 	//////////////////////////////////////////////////////////////////
 	// Rendering 2d map for Debug:
-	//  draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
-	//  draw_map(game);
+	 draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
+	 draw_map(game);
 
 	// Starting raycasting part
 
@@ -85,12 +85,12 @@ int draw_loop(t_game *game)
 	float cos_angle = cos(player->angle);
 	float sin_angle = sin(player->angle);
 
-	// while (!touch(ray_x, ray_y, game))
-	// {
-	// 	put_pixel(ray_x, ray_y, 0xFF0000, game);
-	// 	ray_x += cos_angle;
-	// 	ray_y += sin_angle;
-	// }
+	while (!touch(ray_x, ray_y, game))
+	{
+		put_pixel(ray_x, ray_y, 0xFF0000, game);
+		ray_x += cos_angle;
+		ray_y += sin_angle;
+	}
 	//////////////////////////////////////////////
 	
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);

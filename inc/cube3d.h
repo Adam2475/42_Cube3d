@@ -45,6 +45,8 @@ typedef struct s_player
 	// int u_d; // up down flag
 	bool 	left_rotate;
 	bool	right_rotate;
+
+	float	collision_var;
 }	t_player;
 
 typedef struct s_game

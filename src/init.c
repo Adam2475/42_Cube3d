@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 12:55:02 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 13:47:32 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	init_player(t_player *player, t_map *map)
 {
 	player->angle = PI / 2;
-	player->p_x = map->p_init_pos[1] * S_W / map->width_i;
-	player->p_y = map->p_init_pos[0] * S_H / map->height_i;
+	player->p_x = map->p_init_pos[1] * BLOCK; //S_W;
+	player->p_y = map->p_init_pos[0] * BLOCK; //S_H / map->height_i;
 	// printf("\nx: %d\n", map->p_init_pos[1]);
 	// printf("\ny: %d\n", map->p_init_pos[0]);
 	player->key_up = false;
@@ -30,6 +30,7 @@ void	init_player(t_player *player, t_map *map)
 int		game_init(char **av, t_map *map, t_game *game)
 {
 	(void)av;
+	game->player.collision_var = 0;
 	game->mlx = mlx_init();
 	game->map = map->map;
 	game->win = mlx_new_window(game->mlx, S_W, S_H, "Cub3d");

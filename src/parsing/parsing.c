@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 12:52:52 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 13:02:34 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ int	check_characters(t_map *map)
 	}
 	map->height_i = i;
 	map->width_i = j;
-	printf("%d\n", i);	
-	printf("%d\n", j);
+	// printf("%d\n", i);	
+	// printf("%d\n", j);
 	return (0);
 }
