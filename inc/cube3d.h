@@ -72,6 +72,11 @@ typedef struct s_data
 typedef	struct s_map
 {
 	char	**texture;
+	char	**colors;
+	int		*f_color;
+	int		*c_color;
+	int		f_alloc;
+	int		c_alloc;
 	char	**map;
 	int		texture_lines;
 	int		total_lines;
@@ -80,6 +85,8 @@ typedef	struct s_map
 /////////////////////////////////////////
 // Prototypes
 // Initialization :
+
+void	init_map(t_map *map);
 int		game_init(char **av, t_map *map, t_game *game);
 void	init_player(t_player *player);
 int		key_release(int keycode, t_player *player);
@@ -90,9 +97,15 @@ int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
 //parsing utils
-int		trim_textures(char *str);
+int		trim_line_textures(char *str);
+char	*cub3d_strdup(char *str);
 int		in_map(char *line);
 int		count_line(int fd);
+int		check_texture_acces(char *texture, int i);
+int		check_line_config(t_map *map, char *str);
+int		check_colors(char *texture, char *str, int i, t_map *map);
+int		check_and_skip_range(char c, char *str, char *tmp, t_map *map, char type);
+void	alloc_colors(char type, int len, int num, t_map *map);
 // GNL 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *backup, char *buffer);
@@ -102,6 +115,7 @@ char	*strjoin_free(char *s1, char *s2);
 void	free_matrix(char **matrix);
 int		skip_spaces(char *str);
 int		trim_spaces(char *str);
+int		num_len(int n);
 void	put_pixel(int x, int y, int color, t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
 // controls

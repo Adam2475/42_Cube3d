@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:42:10 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/28 12:17:40 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:59:22 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,24 @@ int	trim_spaces(char *str)
 		i--;
 	}
 	return (0);
+}
+
+char *cub3d_strdup(char *str)
+{
+	int len;
+	char *pt1;
+	
+	len = ft_strlen(str);
+	while (len)
+	{
+		if (str[len - 1] != '\n' && str[len - 1] != ' ')
+			break ;
+		len--;
+	}
+	pt1 = malloc(sizeof(char) * (len + 1));
+	if (!pt1)
+		return (0);
+	ft_memcpy(pt1, str, len);
+	pt1[len] = '\0';
+	return (pt1);
 }

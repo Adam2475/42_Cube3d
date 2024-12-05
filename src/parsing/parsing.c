@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/28 10:31:26 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/04 20:03:16 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,13 @@
 
 static	int	check_configuration(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	if (map)
-	{
-		printf("Hello form the configuration check!\n\n");
-		print_map(map->texture);
-	}
-	// while (i <= 3)
-	// {
-	// 	if (check_textures(map, i))
-	// 		return (1);
-	// 	i++;
+	if (map->texture_lines != 6)
+		return (1);
+	if (check_line_config(map, "NO") || check_line_config(map, "SO") 
+		|| check_line_config(map, "WE") || check_line_config(map, "EA"))
+		return (1);
+	if (check_line_config(map, "F") || check_line_config(map, "C"))
+		return (1);	
 	// }
 	return (0);
 }
@@ -101,14 +95,15 @@ char	**read_map(char *path, t_map *map)
 	int		count;
 
 	i = 0;
-	fd = open(path, O_RDONLY);
-	//fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY);
+	(void)path;
+	// fd = open(path, O_RDONLY);
+	fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	count = count_line(fd);
 	close(fd);
-	fd = open(path, O_RDONLY); // diocane
-	//fd = open("/home/giulio/Desktop/42_Cube3d/prova.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
+	// fd = open(path, O_RDONLY); // diocane
+	fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
 	temp_map = ft_calloc(count, sizeof(char *));
 	while ((temp_line = get_next_line(fd)) != NULL) // assigning in control line is forbidden
 	{
@@ -132,7 +127,7 @@ int	get_map(char **tmp_map, t_map *map)
 	while (tmp_map[i] && in_map(tmp_map[i]))
 			i++;
 	size = map->total_lines - i;
-	map->texture_lines = i;
+	map->texture_lines = i - 1;
 	map->map = ft_calloc(size + 1, sizeof(char **));
 	if (!map->map)
 		return (1);
@@ -157,19 +152,19 @@ int	get_textures(char **tmp, t_map *map)
 	j = 0;
 	while (i != map->texture_lines)
 	{
-		if (!trim_textures(tmp[i]))
+		if (!trim_line_textures(tmp[i]))
 			counter++;
 		i++;
 	}
+	map->texture_lines = counter;
 	map->texture = calloc(counter + 1, sizeof(char **));
 	if (!map->texture)
 		return (1);
-	i = 0;
-	while (tmp[i] && j != counter)
+	i = -1;
+	while (tmp[i++] && j != counter)
 	{
-		if (!trim_textures(tmp[i]))
-			map->texture[j++] = ft_strdup(tmp[i]);
-		i++;
+		if (!trim_line_textures(tmp[i]))
+			map->texture[j++] = cub3d_strdup(tmp[i]);
 	}
 	map->texture[counter] = NULL;
 	return (0);

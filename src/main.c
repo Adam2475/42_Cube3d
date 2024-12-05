@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/03 10:21:02 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:41:34 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2) // If the number of arguments is not 2 quit immediatly
 		return (printf("Bad number of arguments!\n"));
+	init_map(&map);
 	if (map_parsing(av, &map)) // Perform the checks on the map: extension, characters & configuration
 		return (printf("Invalid map or configuration!\n"));
 	

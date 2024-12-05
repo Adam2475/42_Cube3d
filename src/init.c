@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/03 09:50:04 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:34:36 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
+void	init_map(t_map *map)
+{
+	map->c_alloc = 0;
+	map->f_alloc = 0;
+}
 void	init_player(t_player *player)
 {
 	player->p_x = S_W / 2;
