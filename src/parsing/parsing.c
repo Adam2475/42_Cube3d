@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/28 10:31:26 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:52:52 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,44 @@ static	int	check_configuration(t_map *map)
 	return (0);
 }
 
+int	check_strt_pos(t_map *map)
+{
+	int p_found;
+
+	p_found = 0;
+	int	i;
+	int	j;
+	char **mtx;
+	int	lines;
+	int start;
+	int end;
+	
+	lines = map->total_lines - map->texture_lines - 1;
+	mtx = map->map;
+	i = 0;
+	while(mtx[i])
+	{
+		start = skip_spaces(mtx[i]);
+		end = trim_spaces(mtx[i]);
+		j = start;						// TO DO: togliere spazi eventuali dopo il muro
+		while (mtx[i][j])
+		{
+			printf("%c", mtx[i][j]);
+			if (mtx[i][j] == 'P')
+			{
+				map->p_init_pos[0] = i;
+				map->p_init_pos[1] = j;
+				return (0);
+			}
+			if (j == end - 1)
+				break;
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	map_parsing(char **av, t_map *map)
 {
 	char	*tmp;
@@ -79,8 +117,9 @@ int	map_parsing(char **av, t_map *map)
 		return (1);
 	if (!get_map(tmp_map, map) && !get_textures(tmp_map, map))	//aggiunge alla struct la matrix mappa e texture
 		free_matrix(tmp_map);
-	if (check_characters(map)) // TO MOD;
+	if (check_characters(map) || check_strt_pos(map)) // TO MOD;
 	{
+		printf("Debug: problem with the checks!\n");
 		free_matrix(map->map);
 		// free_matrix(map.full_map); da aggiungere dopo il get textures
 		return (1);
@@ -194,7 +233,7 @@ int	check_characters(t_map *map)
 		j = start;						// TO DO: togliere spazi eventuali dopo il muro
 		while (mtx[i][j])
 		{
-			if (i == 0 || i == lines)
+			if (i == 0 || i == lines)	// MOD : modificata uscita in caso di carattere 'P' trovato
 			{
 				if (mtx[i][j] != '1')
 					return (1);
@@ -204,7 +243,7 @@ int	check_characters(t_map *map)
 				if (mtx[i][j] != '1')
 				return (1);
 			}	
-			else if (!ft_strchr("10NSEW ", mtx[i][j]) && mtx[i][j] != '\n')
+			else if (!ft_strchr("10NSEWP", mtx[i][j]) && mtx[i][j] != '\n')
 				return(1);
 			if (j == end - 1)
 				break;
@@ -212,5 +251,9 @@ int	check_characters(t_map *map)
 		}
 		i++;
 	}
+	map->height_i = i;
+	map->width_i = j;
+	printf("%d\n", i);	
+	printf("%d\n", j);
 	return (0);
 }

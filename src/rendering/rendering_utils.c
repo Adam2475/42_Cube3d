@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/03 16:45:25 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:56:43 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ float distance(float x, float y)
 	return (sqrt(x * x + y * y));
 }
 
-char **save_map(void)
-{
-	char **map = malloc(sizeof(char *) * 11);
-	map[0] = "1111111111111111";
-	map[1] = "1000000000000001";
-	map[2] = "1000000000000001";
-	map[3] = "1000001000000001";
-	map[4] = "1000000000000001";
-	map[5] = "1000000100000001";
-	map[6] = "1000010000000001";
-	map[7] = "1000000000000001";
-	map[8] = "1000000000000001";
-	map[9] = "1111111111111111";
-	map[10] = NULL;
-	return (map);
-}
+// char **save_map(void)
+// {
+// 	char **map = malloc(sizeof(char *) * 11);
+// 	map[0] = "1111111111111111";
+// 	map[1] = "1000000000000001";
+// 	map[2] = "1000000000000001";
+// 	map[3] = "1000001000000001";
+// 	map[4] = "1000000000000001";
+// 	map[5] = "1000000100000001";
+// 	map[6] = "1000010000000001";
+// 	map[7] = "1000000000000001";
+// 	map[8] = "1000000000000001";
+// 	map[9] = "1111111111111111";
+// 	map[10] = NULL;
+// 	return (map);
+// }
 
 void	clear_image(t_game *game)
 {
@@ -56,12 +56,13 @@ int draw_loop(t_game *game)
 	move_player(player);
 	clear_image(game); // added clear function to reset the screen when moving
 
-	//////////////////////////////////////////////////////////////////
-	// Rendering 2d map
-	// Debug:
-	// draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
-	// draw_map(game);
 
+	printf("%f\n", player->p_x);
+	printf("%f\n", player->p_y);
+	//////////////////////////////////////////////////////////////////
+	// Rendering 2d map for Debug:
+	//  draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
+	//  draw_map(game);
 
 	// Starting raycasting part
 
@@ -76,12 +77,13 @@ int draw_loop(t_game *game)
 		i++;
 	}
 
+
 	/////////////////////////////////////////////
-	// Debug:
-	// float ray_x = player->p_x;
-	// float ray_y = player->p_y;
-	// float cos_angle = cos(player->angle);
-	// float sin_angle = sin(player->angle);
+	//Debug:
+	float ray_x = player->p_x;
+	float ray_y = player->p_y;
+	float cos_angle = cos(player->angle);
+	float sin_angle = sin(player->angle);
 
 	// while (!touch(ray_x, ray_y, game))
 	// {

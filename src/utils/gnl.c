@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   g_n_l.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by girindi           #+#    #+#             */
-/*   Updated: 2024/11/25 22:25:29 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/05 10:08:36 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+#include "../../inc/cube3d.h"
 
 char	*read_line(int fd, char *backup, char *buffer)
 {

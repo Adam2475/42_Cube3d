@@ -82,6 +82,9 @@ typedef struct s_data
 
 typedef	struct s_map
 {
+	int		height_i;
+	int		width_i;
+	int		p_init_pos[2];
 	char	**texture;
 	char	**map;
 	int		texture_lines;
@@ -92,7 +95,7 @@ typedef	struct s_map
 // Prototypes
 // Initialization :
 int		game_init(char **av, t_map *map, t_game *game);
-void	init_player(t_player *player);
+void	init_player(t_player *player, t_map *map);
 int		key_release(int keycode, t_player *player);
 // Parsing
 int		map_parsing(char **av, t_map *map);
@@ -100,6 +103,7 @@ char	**read_map(char *path, t_map *map);
 int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
+int		check_strt_pos(t_map *map);
 //parsing utils
 int		trim_textures(char *str);
 int		in_map(char *line);
