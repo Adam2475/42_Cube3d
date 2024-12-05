@@ -125,7 +125,7 @@ void	draw_square(int x, int y, int size, int color, t_game *game);
 float	distance(float x, float y);
 // controls
 int		key_press(int keycode, t_player *player);
-void	move_player(t_player *player);
+void	move_player(t_game *game);
 int		key_release(int keycode, t_player *player);
 int		exit_hook(t_player *player);
 // rendering

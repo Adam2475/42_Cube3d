@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 13:02:34 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:13:30 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ int	get_textures(char **tmp, t_map *map)
 	map->texture = calloc(counter + 1, sizeof(char **));
 	if (!map->texture)
 		return (1);
-	i = 0;
+	i = 0;https://www.youtube.com/watch?v=G9i78WoBBIU
 	while (tmp[i] && j != counter)
 	{
 		if (!trim_textures(tmp[i]))

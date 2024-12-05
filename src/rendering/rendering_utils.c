@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 13:43:01 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 13:54:44 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	touch(float px, float py, t_game *game)
 int draw_loop(t_game *game)
 {
 	t_player *player = &game->player;
-	move_player(player);
+	move_player(game);
 	clear_image(game); // added clear function to reset the screen when moving
 
 
