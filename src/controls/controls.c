@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/07 16:25:10 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/07 16:54:02 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 	int tmp_x = 0;
 	int tmp_y = 0;
 
-	if (direction == 1 && (game->player.angle >= 3.5 && game->player.angle <= 6.5)) // Case for going up in straight line
+	printf("Angle: %f\n", game->player.angle);
+	if (direction == 1 && (game->player.angle >= 3.1 && game->player.angle <= 6.5)) // Case for going up in straight line
 	{
 		tmp_x = (int)(game->player.p_x + (sin_angle * speed)) / BLOCK;
 		tmp_y = (int)(game->player.p_y + (cos_angle * speed)) / BLOCK;
@@ -52,7 +53,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 				return (printf("Top-left collision!!\n"));
 		}
 	}
-	if (direction == 1 && ((game->player.angle >= 0 && game->player.angle <= 5) || game->player.angle > 5)) // Case for going right in straight line
+	if (direction == 1 && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle >= 4.8)) // Case for going right in straight line
 	{
 		tmp_x = (int)(game->player.p_x + (cos_angle * speed)) / BLOCK;
 		tmp_y = (int)(game->player.p_y + (sin_angle * speed)) / BLOCK;
@@ -94,7 +95,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 				return (printf("Back-top collision!!\n"));
 		}
 	}
-	if (direction == 2 && ((game->player.angle >= 0 && game->player.angle <= 6) || game->player.angle > 6)) // Case for pressing down and going left backwards
+	if (direction == 2 && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle >= 4.6)) // Case for pressing down and going left backwards
 	{
 		tmp_x = (int)(game->player.p_x - (cos_angle * speed)) / BLOCK;
 		tmp_y = (int)(game->player.p_y - (sin_angle * speed)) / BLOCK;
@@ -107,7 +108,6 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 				return (printf("Back-left collision!!\n"));
 		}
 	}
-	printf("Angle: %f\n", game->player.angle);
 	if (direction == 2 && (game->player.angle >= 1.5 && game->player.angle <= 4.5)) // Case for pressing down and goind right backwards
 	{
 		tmp_x = (int)(game->player.p_x - (cos_angle * speed)) / BLOCK;
@@ -124,7 +124,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 			}
 		}
 	}
-	if (direction == 2 && (game->player.angle >= 3 && game->player.angle <= 6)) // Case for pressing down and going down backwards
+	if (direction == 2 && (game->player.angle >= 3 && game->player.angle <= 6.2)) // Case for pressing down and going down backwards
 	{
 		tmp_x = (int)(game->player.p_x - (cos_angle * speed)) / BLOCK;
 		tmp_y = (int)(game->player.p_y - (sin_angle * speed)) / BLOCK;
