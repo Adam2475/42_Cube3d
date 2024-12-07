@@ -20,4 +20,9 @@ TODO : convert the "char **" map used for the test to the appropriate | OK
 
 TODO : find the starting player position and spawn istance
 TODO : add control for the character position into the parsing
-TODO : add collisions
+TODO : add collisions | WIP!!
+
+----------------------------------------------------------------
+
+TODO : add sounds to collisions
+TODO : render the minimap decently

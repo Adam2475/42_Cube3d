@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 13:54:44 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/07 16:01:47 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int draw_loop(t_game *game)
 	// printf("%f\n", player->p_y);
 	//////////////////////////////////////////////////////////////////
 	// Rendering 2d map for Debug:
-	 draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
-	 draw_map(game);
+	  draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
+	  draw_map(game);
 
 	// Starting raycasting part
 
