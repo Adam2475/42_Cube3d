@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/07 16:09:32 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/07 16:25:10 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 		tmp_y = (int)(game->player.p_y + (sin_angle * speed)) / BLOCK;
 		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
 		{
-			float tmp_wall = (float)(((tmp_x + 1) + (cos_angle * speed)) * BLOCK);
+			float tmp_wall = (float)(((tmp_x + 1) + (sin_angle * speed)) * BLOCK);
 			printf("x: %f\n", game->player.p_x);
 			printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_x >= (tmp_wall - 10))
+			if (game->player.p_x >= (tmp_wall - 13))
 				return (printf("Top-right collision!!\n"));
 		}
 	}
@@ -100,10 +100,10 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 		tmp_y = (int)(game->player.p_y - (sin_angle * speed)) / BLOCK;
 		if (game->map[tmp_y][tmp_x - 1] && game->map[(int)tmp_y][(int)tmp_x - 1] == '1')
 		{
-			float tmp_wall = (float)(((tmp_x) + (cos_angle * speed)) * BLOCK);
+			float tmp_wall = (float)(((tmp_x) + (sin_angle * speed)) * BLOCK);
 			printf("x: %f\n", game->player.p_x);
 			printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_x <= (tmp_wall - 5))
+			if (game->player.p_x <= (tmp_wall + 5))
 				return (printf("Back-left collision!!\n"));
 		}
 	}
