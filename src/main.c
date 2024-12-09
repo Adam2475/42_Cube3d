@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/04 15:41:34 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:38:02 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ int	main(int ac, char **av)
 	// For Debug
 	// print_map(map.map);
 	// printf("%c\n", '\n');
-	// print_map(map.texture);
-
+	print_map(map.texture);
 	if (game_init(av, &map, &game)) // initialize game window
 		return (printf("Error while initializing the game\n"));
-
 	init_player(&game.player); // initializes the player structure
 
 	mlx_hook(game.win, 17, 0, &exit_hook, &game.player); // hook for exit button on window
@@ -46,6 +44,7 @@ int	main(int ac, char **av)
 	//draw_square(S_W / 2, S_H / 2, 10, 0x00FF00, &game);
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	//data = init_argument(); // init the data structure
+	free_map(&map);
 	mlx_loop(game.mlx);
 	return (0);
 }

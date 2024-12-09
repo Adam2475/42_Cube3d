@@ -73,13 +73,14 @@ typedef	struct s_map
 {
 	char	**texture;
 	char	**colors;
-	int		*f_color;
-	int		*c_color;
+	int		**f_color;
+	int		**c_color;
 	int		f_alloc;
 	int		c_alloc;
 	char	**map;
 	int		texture_lines;
 	int		total_lines;
+	int		map_lines;
 }	t_map;
 
 /////////////////////////////////////////
@@ -97,15 +98,19 @@ int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
 //parsing utils
-int		trim_line_textures(char *str);
 char	*cub3d_strdup(char *str);
+int		out_map(char *line);
 int		in_map(char *line);
+int		in_texture(char *str);
 int		count_line(int fd);
+char	*tmp_num(char *tmp, char *texture);
+int		line_is_empty(char *str);
 int		check_texture_acces(char *texture, int i);
 int		check_line_config(t_map *map, char *str);
 int		check_colors(char *texture, char *str, int i, t_map *map);
 int		check_and_skip_range(char c, char *str, char *tmp, t_map *map, char type);
-void	alloc_colors(char type, int len, int num, t_map *map);
+int		check_len_color(char *str);
+void	alloc_colors(char type, int num, t_map *map);
 // GNL 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *backup, char *buffer);
@@ -127,3 +132,6 @@ int		exit_hook(t_player *player);
 int		draw_loop(t_game *game);
 // debug
 void	print_map(char **map);
+//free
+void	free_map(t_map *map);
+void	free_colors(t_map *map);

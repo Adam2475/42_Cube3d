@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:42:10 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/04 10:59:22 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/09 18:51:32 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,35 @@ void	free_matrix(char **matrix)
 	int	i;
 
 	i = 0;
+	if (!matrix)
+		return ;
 	while (matrix[i])
 	{
 		free(matrix[i]);
+		matrix[i] = NULL;
 		i++;
 	}
 	free(matrix);
 }
+
+// void	free_int_matrix(char **matrix)
+// {
+// 	int	i;
+// 	int	len;
+
+// 	i = 0;
+// 	len = 
+// 	if (!matrix)
+// 		return ;
+	
+// 	while (matrix[i])
+// 	{
+// 		free(matrix[i]);
+// 		matrix[i] = NULL;
+// 		i++;
+// 	}
+// 	free(matrix);
+// }
 
 int	skip_spaces(char *str)
 {
@@ -87,18 +109,19 @@ char *cub3d_strdup(char *str)
 {
 	int len;
 	char *pt1;
+	int	i;
 	
+	i = 0;
+	pt1 = NULL;
+	while (str[i] == ' ')
+		i++;
 	len = ft_strlen(str);
-	while (len)
-	{
-		if (str[len - 1] != '\n' && str[len - 1] != ' ')
-			break ;
+	while (str[len - 1] == '\n' || str[len - 1] == ' ') 
 		len--;
-	}
-	pt1 = malloc(sizeof(char) * (len + 1));
+	pt1 = malloc(sizeof(char) * (len - i + 1));
 	if (!pt1)
-		return (0);
-	ft_memcpy(pt1, str, len);
-	pt1[len] = '\0';
+		return (NULL);
+	strncpy(pt1, &str[i], len - i);
+	pt1[len - i] = '\0';
 	return (pt1);
 }
