@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/09 13:08:48 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:07:46 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,14 @@ int		game_init(char **av, t_map *map, t_game *game)
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return (0);
+}
+
+void	init_map(t_map *map)
+{
+	map->texture = NULL;
+	map->map = NULL;
+	map->c_color = NULL;
+	map->f_color = NULL;
+	map->c_alloc = 0;
+	map->f_alloc = 0;
 }

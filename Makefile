@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
+#    By: giulio <giulio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2024/12/09 09:49:50 by adapassa         ###   ########.fr        #
+#    Updated: 2024/12/09 23:51:05 by giulio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = src/main.c src/debug.c \
 		src/init/init.c \
 		src/controls/controls.c \
 		src/rendering/rendering.c src/rendering/rendering_utils.c \
+		src/free.c
 
 OBJ = $(SRC:.c=.o)
 LIB = mlx_linux/libmlx_Linux.a -lXext -lm

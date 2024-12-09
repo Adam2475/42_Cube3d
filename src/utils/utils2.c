@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:09 by adapassa          #+#    #+#             */
-/*   Updated: 2024/11/28 14:03:01 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:10:09 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,27 @@ void	draw_square(int x, int y, int size, int color, t_game *game)
 		put_pixel(x + size, y + i, color, game);
 	for (int i = 0; i < size; i++)
 		put_pixel(x + i, y + size, color, game);
+}
+
+int	num_len(int n)
+{
+	int	i;
+
+	i = 0;
+	while (n != 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_strnlen(char *str, int n)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && i <= n)
+		i++;
+	return (i);
 }
