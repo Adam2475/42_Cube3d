@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 14:13:30 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:48:49 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@
 
 static	int	check_configuration(t_map *map)
 {
-	int	i;
+	//int	i;
 
-	i = 0;
-	if (map)
-	{
-		printf("Hello form the configuration check!\n\n");
-		print_map(map->texture);
-	}
+	//i = 0;
+	// if (map)
+	// {
+	// 	printf("Hello form the configuration check!\n\n");
+	// 	print_map(map->texture);
+	// }
 	// while (i <= 3)
 	// {
 	// 	if (check_textures(map, i))
@@ -85,7 +85,7 @@ int	check_strt_pos(t_map *map)
 		j = start;						// TO DO: togliere spazi eventuali dopo il muro
 		while (mtx[i][j])
 		{
-			printf("%c", mtx[i][j]);
+			//printf("%c", mtx[i][j]); // Bada sto stronzo
 			if (mtx[i][j] == 'P')
 			{
 				map->p_init_pos[0] = i;
@@ -119,15 +119,15 @@ int	map_parsing(char **av, t_map *map)
 		free_matrix(tmp_map);
 	if (check_characters(map) || check_strt_pos(map)) // TO MOD;
 	{
-		printf("Debug: problem with the checks!\n");
+		//printf("Debug: problem with the checks!\n");
 		free_matrix(map->map);
 		// free_matrix(map.full_map); da aggiungere dopo il get textures
 		return (1);
 	}
 	if (check_configuration(map))
 		return(1);
-	printf("----------------------------\n");
-	printf("The passed map is valid!\n\n");
+	//printf("----------------------------\n");
+	//printf("The passed map is valid!\n\n");
 	return (0);
 }
 
@@ -203,7 +203,7 @@ int	get_textures(char **tmp, t_map *map)
 	map->texture = calloc(counter + 1, sizeof(char **));
 	if (!map->texture)
 		return (1);
-	i = 0;https://www.youtube.com/watch?v=G9i78WoBBIU
+	i = 0;													//https://www.youtube.com/watch?v=G9i78WoBBIU
 	while (tmp[i] && j != counter)
 	{
 		if (!trim_textures(tmp[i]))

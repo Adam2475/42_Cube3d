@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/09 12:25:21 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:47:55 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 	int tmp_x = 0;
 	int tmp_y = 0;
 
-	printf("Angle: %f\n", game->player.angle);
+	//printf("Angle: %f\n", game->player.angle);
 	if (direction == 1 && (game->player.angle >= 3.1 && game->player.angle <= 6.5)) // Case for going up in straight line
 	{
 		tmp_x = (int)(game->player.p_x + (sin_angle * speed)) / BLOCK;
@@ -34,8 +34,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
 		{
 			float tmp_wall = (float)(((tmp_y) + (sin_angle * speed)) * BLOCK);
-			printf("y: %f\n", game->player.p_y);
-			printf("wall pos: %f\n", tmp_wall);
+			//printf("y: %f\n", game->player.p_y);
+			//printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_y <= (tmp_wall + 5))
 				return (printf("Top collision!!\n"));
 		}
@@ -47,8 +47,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 		if (game->map[tmp_y][tmp_x - 1] && game->map[(int)tmp_y][(int)tmp_x - 1] == '1')
 		{
 			float tmp_wall = (float)(((tmp_x) + (sin_angle * speed)) * BLOCK);
-			printf("x: %f\n", game->player.p_x);
-			printf("wall pos: %f\n", tmp_wall);
+			//printf("x: %f\n", game->player.p_x);
+			//printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_x <= (tmp_wall + 5))
 				return (printf("Top-left collision!!\n"));
 		}

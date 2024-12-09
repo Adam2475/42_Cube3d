@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 09:57:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/09 09:14:31 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:49:05 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	print_map(char **map)
 	while (*map)
 		printf("%s", *map++);
 	printf("%c\n", '\n');
+	return ;
 }
 
 void	draw_map(t_game *game)

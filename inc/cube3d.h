@@ -161,7 +161,7 @@ int		exit_hook(t_player *player);
 int		draw_loop(t_game *game);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
 bool	touch(float px, float py, t_game *game);
-void	create_textures(t_game *game);
+void	create_textures(t_game *game, t_map *map);
 // debug
 char	**save_map(void);
 void	print_map(char **map);
