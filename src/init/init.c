@@ -44,32 +44,38 @@ void	add_texture_info(t_game *game)
 
 static void assign_size(t_game *game)
 {
-	game->texture_n.img.width
-	game->texture_n.img.height
+	// game->texture_n.img.width
+	// game->texture_n.img.height
 
-	game->texture_s.img.width
-	game->texture_s.img.height
+	// game->texture_s.img.width
+	// game->texture_s.img.height
 
-	game->texture_w.img.width
-	game->texture_w.img.height
+	// game->texture_w.img.width
+	// game->texture_w.img.height
 
-	game->texture_e.img.width
-	game->texture_e.img.height
+	// game->texture_e.img.width
+	// game->texture_e.img.height
+	return ;
 }
 
-void	create_textures(t_game *game, t_map *map)
+void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these images?
 {
 	assign_textures(game, map);
 	assign_size(game);
-	//write(1, "porcoddio\n", 11);
-	printf("%s\n", game->map_data.texture_no);
-	printf("%d\n", game->texture_n.img.width);
-	game->texture_n.img.img = mlx_xpm_file_to_image(game->mlx, game->map_data.texture_no, &game->texture_n.img.width, &game->texture_n.img.height);
-	game->texture_s.img.img = mlx_xpm_file_to_image(game->mlx, game->map_data.texture_so, &game->texture_s.img.width, &game->texture_s.img.height);
-	game->texture_w.img.img = mlx_xpm_file_to_image(game->mlx, game->map_data.texture_we, &game->texture_w.img.width, &game->texture_w.img.height);
-	game->texture_e.img.img = mlx_xpm_file_to_image(game->mlx, game->map_data.texture_ea, &game->texture_e.img.width, &game->texture_e.img.height);
+	char path[ft_strlen(game->map_data.texture_no)];
+	char path2[ft_strlen(game->map_data.texture_so)];
+	// char path3[ft_strlen(game->map_data.texture_ea)];
+	// char path4[ft_strlen(game->map_data.texture_we)];
+	ft_memcpy(path, game->map_data.texture_no, ft_strlen(game->map_data.texture_no) - 1);
+	ft_memcpy(path2, game->map_data.texture_so, ft_strlen(game->map_data.texture_so) - 1);
+	// ft_memcpy(path4, game->map_data.texture_we, ft_strlen(game->map_data.texture_we) - 1);
+	// ft_memcpy(path3, game->map_data.texture_ea, ft_strlen(game->map_data.texture_ea) - 1);
+	game->texture_n.img.img = mlx_xpm_file_to_image(game->mlx, path, &game->texture_n.img.width, &game->texture_n.img.height);
+	game->texture_s.img.img = mlx_xpm_file_to_image(game->mlx, path2, &game->texture_s.img.width, &game->texture_s.img.height);
+	game->texture_w.img.img = mlx_xpm_file_to_image(game->mlx, "./assets/mossy.xpm", &game->texture_w.img.width, &game->texture_w.img.height);
+	game->texture_e.img.img = mlx_xpm_file_to_image(game->mlx, "./assets/redbrick.xpm", &game->texture_e.img.width, &game->texture_e.img.height);
 	if (!game->texture_n.img.img || !game->texture_s.img.img || !game->texture_w.img.img || !game->texture_e.img.img)
-		printf("Path to textures does not exist or cannot be accessed");
+		exit(printf("Path to textures does not exist or cannot be accessed"));
 	add_texture_info(game);
 }
 

@@ -33,4 +33,7 @@ TODO : fix the pressing od other keys during a collision
 
 ----------------------------------------------------------------
 
-TODO : add the textures
+TODO : add the textures | WIP!!
+TODO : add controls and trim to the textures initialization
+		(remove spaces and '\n')
+TODO : wtf is a color??
