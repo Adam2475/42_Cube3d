@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/09 09:19:19 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:19:09 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int draw_loop(t_game *game)
 
 
 	/////////////////////////////////////////////
-	//Debug:
+	// //Debug:
 	float ray_x = player->p_x;
 	float ray_y = player->p_y;
 	float cos_angle = cos(player->angle);
@@ -91,7 +91,7 @@ int draw_loop(t_game *game)
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
-	//////////////////////////////////////////////
+	// //////////////////////////////////////////////
 	
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return (0);

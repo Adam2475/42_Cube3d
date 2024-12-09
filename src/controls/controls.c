@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/09 09:26:37 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:25:21 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 				return (printf("Collision!!!!\n"));
 		}
 	}
-	if (direction == 3 && (game->player.angle >= 3 && game->player.angle <= 6)) // Case for going left while pressing left
+	if (direction == 3 && (game->player.angle >= 3 && game->player.angle <= 6.3)) // Case for going left while pressing left
 	{
 		tmp_x = (int)(game->player.p_x + (sin_angle * speed)) / BLOCK;
 		tmp_y = (int)(game->player.p_y - (cos_angle * speed)) / BLOCK;

@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/09 09:19:11 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:18:45 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	int end = start_y + height;
 
 	// while (start_y < end)
-	// 	put_pixel(i, start_y++, 255, game); // Renders the walls in 3d
+	 //	put_pixel(i, start_y++, 255, game); // Renders the walls in 3d
 }
