@@ -30,3 +30,7 @@ TODO : render the minimap decently
 ----------------------------------------------------------------
 
 TODO : fix the pressing od other keys during a collision
+
+----------------------------------------------------------------
+
+TODO : add the textures

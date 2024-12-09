@@ -6,7 +6,7 @@
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2024/12/05 10:09:56 by adapassa         ###   ########.fr        #
+#    Updated: 2024/12/09 09:49:50 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ CC = cc
 NAME = cub3d
 FLAGS = -g
 # -Wall -Wextra -Werror 
-SRC = src/main.c src/init.c \
+SRC = src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing_utils.c \
 		src/utils/utils.c src/utils/utils2.c src/utils/gnl.c \
-		src/debug.c \
+		src/init/init.c \
 		src/controls/controls.c \
 		src/rendering/rendering.c src/rendering/rendering_utils.c \
 

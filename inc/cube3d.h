@@ -32,22 +32,60 @@ typedef struct s_player
 	float	p_x; // player x position in pixels
 	float	p_y; // player y position in pixels
 
-	float	angle; // rotation of the player
+	// Basic commands
+	bool	key_up; // up key press flag
+	bool	key_down; // down key press flag
+	bool	key_left; // left key press flag
+	bool	key_right; // right key press flag
 
-	bool	key_up;
-	bool	key_down;
-	bool	key_left;
-	bool	key_right;
-	// double angle; // player angle
-	// float fov_rd; // field of view in radiants
-	// int rot; // rotation
-	// int l_r; // left right flag
-	// int u_d; // up down flag
-	bool 	left_rotate;
-	bool	right_rotate;
+	// Track rotation
+	float	angle; // angle of rotation of the player
+	bool 	left_rotate; // flag for when rotating left
+	bool	right_rotate; // flag for when rotating right
 
-	float	collision_var;
 }	t_player;
+
+typedef struct s_color
+{
+	int	red;
+	int	green;
+	int	blue;
+	int	alpha;
+}	t_color;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		height;
+	int		width;
+}	t_img;
+
+typedef struct s_texture
+{
+	t_img	img;
+	int		*text_value;
+}	t_texture;
+
+typedef struct s_data
+{
+	char	**map2d; // the map
+	char	*texture_no;
+	char	*texture_so;
+	char	*texture_we;
+	char	*texture_ea;
+
+	int p_x; // player x position
+	int p_y; // player y position
+	int w_map; // map width
+	int h_map; // map height
+
+	t_color	floor;
+	t_color	ceiling;
+}	t_data;
 
 typedef struct s_game
 {
@@ -61,26 +99,16 @@ typedef struct s_game
 	int size_line;
 	int endian;
 
-	char		**map; // a map used for the tutorial
-	//t_map		**map; // instance of the given map
+	char	**map; // a copy of the map
+
+	t_texture	texture_n;
+	t_texture	texture_e;
+	t_texture	texture_w;
+	t_texture	texture_s;
+
 	t_player	player; // an istance of the player structure
+	t_data		map_data;
 }	t_game;
-
-typedef struct s_ray
-{
-	double ray_ngl; // ray angle
-	double distance; // distance to the wall
-	int flag; // flag for the wall
-}	t_ray;
-
-typedef struct s_data
-{
-	char **map2d; // the map
-	int p_x; // player x position
-	int p_y; // player y position
-	int w_map; // map width
-	int h_map; // map height
-}	t_data;
 
 typedef	struct s_map
 {
@@ -93,12 +121,13 @@ typedef	struct s_map
 	int		total_lines;
 }	t_map;
 
-/////////////////////////////////////////
+/////////////////////////////////////////////
 // Prototypes
 // Initialization :
 int		game_init(char **av, t_map *map, t_game *game);
 void	init_player(t_player *player, t_map *map);
 int		key_release(int keycode, t_player *player);
+void	add_texture_info(t_game *game);
 // Parsing
 int		map_parsing(char **av, t_map *map);
 char	**read_map(char *path, t_map *map);
@@ -132,6 +161,9 @@ int		exit_hook(t_player *player);
 int		draw_loop(t_game *game);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
 bool	touch(float px, float py, t_game *game);
+void	create_textures(t_game *game);
 // debug
 char	**save_map(void);
 void	print_map(char **map);
+
+///////////////////////////////////////////////
