@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/07 16:54:02 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/09 09:26:37 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 				return (printf("Top-left collision!!\n"));
 		}
 	}
-	if (direction == 1 && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle >= 4.8)) // Case for going right in straight line
+	if (direction == 1 && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle > 4.9)) // Case for going right in straight line
 	{
 		tmp_x = (int)(game->player.p_x + (cos_angle * speed)) / BLOCK;
 		tmp_y = (int)(game->player.p_y + (sin_angle * speed)) / BLOCK;
@@ -141,7 +141,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int cos_angle, i
 
 	// Left
 
-	if (direction == 3 && (game->player.angle <= 1.5 || game->player.angle >= 5)) // Case for going up while pressing the left key
+	if (direction == 3 && (game->player.angle <= 1.5 || game->player.angle >= 4.5)) // Case for going up while pressing the left key
 	{
 		tmp_x = (int)(game->player.p_x + (sin_angle * speed)) / BLOCK;
 		tmp_y = (int)(game->player.p_y - (cos_angle * speed)) / BLOCK;
