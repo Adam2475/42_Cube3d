@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 00:03:06 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/10 11:37:14 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,14 @@ char	**read_map(char *path, t_map *map) //togliere map
 
 	i = 0;
 	(void)path; // togliere versione definitiva
-	// fd = open(path, O_RDONLY);
-	fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY);
+	fd = open(path, O_RDONLY);
+	//fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	count = count_line(fd);
 	close(fd);
-	// fd = open(path, O_RDONLY); // diocane
-	fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
+	fd = open(path, O_RDONLY); // diocane
+	//fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
 	temp_map = ft_calloc(count + 1, sizeof(char *));
 	if (!temp_map)
 		return (NULL);

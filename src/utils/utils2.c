@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:09 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/05 11:10:09 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/10 12:31:12 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,35 @@ int	ft_strnlen(char *str, int n)
 	while (str[i] && i <= n)
 		i++;
 	return (i);
+}
+
+char **duplicate_double_pointer(char **original)
+{
+	size_t i, count = 0;
+	char **duplicate;
+
+	// Count the number of strings in the original double pointer
+	while (original && original[count])
+		count++;
+
+	// Allocate memory for the new double pointer (including NULL terminator)
+	duplicate = malloc((count + 1) * sizeof(char *));
+	if (!duplicate)
+		return NULL;
+
+	// Duplicate each string
+	for (i = 0; i < count; i++)
+	{
+		duplicate[i] = ft_strdup(original[i]);
+		if (!duplicate[i])
+		{
+			// Free previously allocated strings on failure
+			while (i > 0)
+				free(duplicate[--i]);
+			free(duplicate);
+			return NULL;
+		}
+	}
+	duplicate[count] = NULL;
+	return duplicate;
 }

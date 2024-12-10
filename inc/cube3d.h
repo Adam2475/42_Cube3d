@@ -171,11 +171,13 @@ int		num_len(int n);
 void	put_pixel(int x, int y, int color, t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
 float	distance(float x, float y);
+char	**duplicate_double_pointer(char **original);
 // controls
 int		key_press(int keycode, t_player *player);
 void	move_player(t_game *game);
 int		key_release(int keycode, t_player *player);
 int		exit_hook(t_player *player);
+int		check_collision(t_game *game, int x, int y, int direction, int speed);
 // rendering
 int		draw_loop(t_game *game);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
