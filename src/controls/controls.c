@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 13:53:20 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:36:27 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 
 	/////////////////////////////////////////////
 	//Debug
-	printf("Angle: %f\n", game->player.angle);
+	//printf("Angle: %f\n", game->player.angle);
 	//printf("y: %f\n", game->player.p_y);
 	//printf("x: %f\n", game->player.p_x);
 	//printf("wall pos: %f\n", tmp_wall);
@@ -82,11 +82,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 				return (printf("Top-down collision!!\n"));
 		}
 	}
-
 /* ------------------------------------------------------------------------------------------------------------------- */ 
-
 	// Down
-
 	if (direction == 2 && (game->player.angle >= 0.0 && game->player.angle <= 3.1)) // Case for pressing down and goind upwards
 	{
 		tmp_x = (int)(game->player.p_x) / BLOCK;
@@ -141,9 +138,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		}
 	}
 /* --------------------------------------------------------------------------------------------------------- */ 
-
 	// Left
-
 	if (direction == 3 && (game->player.angle <= 1.5 || game->player.angle >= 4.5)) // Case for going up while pressing the left key
 	{
 		tmp_x = (int)(game->player.p_x) / BLOCK;
@@ -181,7 +176,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 				return (printf("Left-right collision\n"));
 		}
 	}
-	if (direction == 3 && (game->player.angle >= 0 && game->player.angle <= 6)) // Case for pressing left while going down in straight line
+	if (direction == 3 && (game->player.angle >= 1.5 && game->player.angle <= 6)) // Case for pressing left while going down in straight line
 	{
 		tmp_x = (int)(game->player.p_x) / BLOCK;
 		tmp_y = (int)(game->player.p_y) / BLOCK;
@@ -193,9 +188,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		}
 	}
 	/* --------------------------------------------------------------------------------------------------------- */
-	
 	// Right
-
 	if (direction == 4 && (game->player.angle > 1.5 && game->player.angle <= 4.8)) // Case for going up while pressing right
 	{
 		tmp_x = (int)(game->player.p_x) / BLOCK;
@@ -259,13 +252,8 @@ void	move_player(t_game *game)
 		player->angle = 0;
 	if (player->angle < 0)
 		player->angle = 2 * PI;
-
 	int x = player->p_x / BLOCK;
 	int y = player->p_y / BLOCK;
-	// printf("%d\n", x);
-	// printf("%d\n", y);
-	// printf("%f\n", player->angle);
-	// printf("%c\n", game->map[y][x]);
 	if (player->key_up && !check_collision(game, x, y, 1,  speed))
 	{
 		player->p_x += cos_angle * speed;

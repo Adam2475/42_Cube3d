@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 12:30:05 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:24:21 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ int	main(int ac, char **av)
 	if (game_init(av, &map, &game)) // initialize game window
 		return (printf("Error while initializing the game\n"));
 	init_player(&game.player, &map); // initializes the player structure
+	 // TODO : initialize textures | OK
+	 // TODO : put control on the create textures | ??!
+	create_textures(&game, &map);
 	
-	// TODO : initialize textures
-	
-	//create_textures(&game, &map);
-	//print_map(game.map);
-
 	mlx_hook(game.win, 17, 0, &exit_hook, &game.player); // hook for exit button on window
 	mlx_hook(game.win, 2, 1L<<0, &key_press, &game.player); // have to revise this fuckin functions
 	mlx_hook(game.win, 3, 1L<<1, &key_release, &game.player); // aka : x_event && x-mask

@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 13:39:02 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:36:58 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 
 	while (!touch(ray_x, ray_y, game))
 	{
-		put_pixel(ray_x, ray_y, 0xFF0000, game);
+		//put_pixel(ray_x, ray_y, 0xFF0000, game);
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
@@ -30,6 +30,6 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	int start_y = (S_H - height) / 2;
 	int end = start_y + height;
 
-	//while (start_y < end)
-	//	put_pixel(i, start_y++, 255, game); // Renders the walls in 3d
+	while (start_y < end)
+		put_pixel(i, start_y++, 255, game); // Renders the walls in 3d
 }

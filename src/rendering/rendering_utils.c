@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 13:40:22 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:35:19 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,6 @@ float distance(float x, float y)
 {
 	return (sqrt(x * x + y * y));
 }
-
-// char **save_map(void)
-// {
-// 	char **map = malloc(sizeof(char *) * 11);
-// 	map[0] = "1111111111111111";
-// 	map[1] = "1000000000000001";
-// 	map[2] = "1000000000000001";
-// 	map[3] = "1000001000000001";
-// 	map[4] = "1000000000000001";
-// 	map[5] = "1000000100000001";
-// 	map[6] = "1000010000000001";
-// 	map[7] = "1000000000000001";
-// 	map[8] = "1000000000000001";
-// 	map[9] = "1111111111111111";
-// 	map[10] = NULL;
-// 	return (map);
-// }
 
 void	clear_image(t_game *game)
 {
@@ -62,8 +45,8 @@ int draw_loop(t_game *game)
 	// printf("%f\n", player->p_y);
 	//////////////////////////////////////////////////////////////////
 	// Rendering 2d map for Debug:
-	draw_square(player->p_x, player->p_y, 5, 0x00FF00, game);
-	draw_map(game);
+	// draw_square(player->p_x, player->p_y, 5, 0x00FF00, game);
+	// draw_map(game);
 
 	// Starting raycasting part
 
@@ -78,20 +61,19 @@ int draw_loop(t_game *game)
 		i++;
 	}
 
-
 	/////////////////////////////////////////////
 	//Debug:
-	float ray_x = player->p_x;
-	float ray_y = player->p_y;
-	float cos_angle = cos(player->angle);
-	float sin_angle = sin(player->angle);
+	// float ray_x = player->p_x;
+	// float ray_y = player->p_y;
+	// float cos_angle = cos(player->angle);
+	// float sin_angle = sin(player->angle);
 
-	while (!touch(ray_x, ray_y, game))
-	{
-		put_pixel(ray_x, ray_y, 0xFF0000, game);
-		ray_x += cos_angle;
-		ray_y += sin_angle;
-	}
+	// while (!touch(ray_x, ray_y, game))
+	// {
+	// 	put_pixel(ray_x, ray_y, 0xFF0000, game);
+	// 	ray_x += cos_angle;
+	// 	ray_y += sin_angle;
+	// }
 	////////////////////////////////////////////////
 	
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);

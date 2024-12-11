@@ -37,3 +37,7 @@ TODO : add the textures | WIP!!
 TODO : add controls and trim to the textures initialization
 		(remove spaces and '\n')
 TODO : wtf is a color??
+
+-----------------------------------------------------------------
+
+TODO : put control on the create textures | ??!

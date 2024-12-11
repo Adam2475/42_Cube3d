@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 12:29:14 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:22:09 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,26 @@ void	add_texture_info(t_game *game)
 			&game->texture_w.img.endian);
 }
 
+static	void	assign_texture_path(t_game *game, t_map *map)
+{
+	game->map_data.texture_no = ft_strdup(ft_strchr(map->texture[0], '.'));
+	game->map_data.texture_so = ft_strdup(ft_strchr(map->texture[1], '.'));
+	game->map_data.texture_ea = ft_strdup(ft_strchr(map->texture[3], '.'));
+	game->map_data.texture_we = ft_strdup(ft_strchr(map->texture[2], '.'));
+	// printf("%s\n", map->texture[0]);
+	// printf("%s\n", map->texture[1]);
+	// printf("%s\n", map->texture[3]);
+	// printf("%s\n", map->texture[2]);
+}
+
 void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these images?
 {
+	assign_texture_path(game, map);
+	//exit(1);
+	printf("%s\n", game->map_data.texture_ea);
+	printf("%s\n", game->map_data.texture_so);
+	printf("%s\n", game->map_data.texture_we);
+	printf("%s\n", game->map_data.texture_no);
 	char *tmp_no = ft_strdup(game->map_data.texture_ea);
 	char *tmp_so = ft_strdup(game->map_data.texture_so);
 	char *tmp_we = ft_strdup(game->map_data.texture_we);
