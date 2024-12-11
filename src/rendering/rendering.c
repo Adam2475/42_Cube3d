@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 13:28:42 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:33:31 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	render_background(t_game *game)
 		while (y < (S_H - 1))
 		{
 			if (y < (S_H / 2))
-				put_pixel(x, y++, 500000, game);
+				put_pixel2(x, y++, color_c, game);
 			else
-				put_pixel(x, y++, 120000, game);
+				put_pixel2(x, y++, color_f, game);
 		}
 		// y++;
 		// while (y > (S_H / 2))
