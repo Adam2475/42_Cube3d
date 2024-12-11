@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:09 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 12:31:12 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:02:32 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF; 
 	game->data[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	put_pixel2(int x, int y, int *color, t_game *game)
+{
+	if (x >= S_W || y >= S_H || x < 0 || y < 0) // check if point is in range
+		return ;
+
+	int index = y * game->size_line + x * game->bpp / 8; // put pixel into the buffer
+	game->data[index] = color[0];
+	game->data[index + 1] = color[1]; 
+	game->data[index + 2] = color[2];
 }
 
 // Our function to draw a square

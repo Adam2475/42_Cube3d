@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 11:35:19 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:20:32 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int draw_loop(t_game *game)
 	float fraction = PI / 3 / S_W;
 	float start_x = player->angle - PI / 6;
 	int i = 0;
+
+	render_background(game);
 
 	while (i < S_W)
 	{

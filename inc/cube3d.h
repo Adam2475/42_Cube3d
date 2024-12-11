@@ -87,6 +87,23 @@ typedef struct s_data
 	t_color	ceiling;
 }	t_data;
 
+typedef	struct s_map
+{
+	int		height_i;
+	int		width_i;
+	int		p_init_pos[2];
+	char	**texture;
+	char	**colors;
+	int		**f_color;
+	int		**c_color;
+	int		f_alloc;
+	int		c_alloc;
+	char	**map;
+	int		texture_lines;
+	int		total_lines;
+	int		map_lines;
+}	t_map;
+
 typedef struct s_game
 {
 	void *mlx; // ptr to mlx structure
@@ -107,25 +124,9 @@ typedef struct s_game
 	t_texture	texture_s;
 
 	t_player	player; // an istance of the player structure
+	t_map		*map_ref;
 	t_data		map_data;
 }	t_game;
-
-typedef	struct s_map
-{
-	int		height_i;
-	int		width_i;
-	int		p_init_pos[2];
-	char	**texture;
-	char	**colors;
-	int		**f_color;
-	int		**c_color;
-	int		f_alloc;
-	int		c_alloc;
-	char	**map;
-	int		texture_lines;
-	int		total_lines;
-	int		map_lines;
-}	t_map;
 
 /////////////////////////////////////////////
 // Prototypes
@@ -172,6 +173,7 @@ void	put_pixel(int x, int y, int color, t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
 float	distance(float x, float y);
 char	**duplicate_double_pointer(char **original);
+void	put_pixel2(int x, int y, int *color, t_game *game);
 // controls
 int		key_press(int keycode, t_player *player);
 void	move_player(t_game *game);
@@ -183,6 +185,7 @@ int		draw_loop(t_game *game);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
 bool	touch(float px, float py, t_game *game);
 void	create_textures(t_game *game, t_map *map);
+void	render_background(t_game *game);
 // debug
 char	**save_map(void);
 ///////////////////////////////////////////////
