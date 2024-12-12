@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 13:33:31 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/12 09:28:10 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,19 @@ void	render_background(t_game *game)
 	}
 }
 
+static void put_texture_pix()
+{
+	
+}
+
 static	void	draw_columns(t_player *player, t_game *game, float start_x, float start_y, int i, int end)
 {
+	int color[3];
+	color[0] = 234;
+	color[1] = 153;
+	color[2] = 53;
 	while (start_y < end)
-		put_pixel(i, start_y++, 255, game); // Renders the walls in 3d
+		put_pixel2(i, start_y++, color, game); // Renders the walls in 3d
 }
 
 void	draw_line(t_player *player, t_game *game, float start_x, int i)

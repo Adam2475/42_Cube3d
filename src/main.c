@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 13:17:55 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/12 09:40:30 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		return (printf("Invalid map or configuration!\n"));
 	if (game_init(av, &map, &game)) // initialize game window
 		return (printf("Error while initializing the game\n"));
-	init_player(&game.player, &map); // initializes the player structure
+	init_player(&game.player, &map); // initializb es the player structure
 	 // TODO : initialize textures | OK
 	 // TODO : put control on the create textures | ??!
 	create_textures(&game, &map);
@@ -37,12 +37,6 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game.mlx, draw_loop, &game); // wtf it does??
 	//free_map(&map);
 	mlx_loop(game.mlx); // main loop of the game
-	
-	//////////////////////////
-	// For Debug
-	// print_map(map.map);
-	// printf("%c\n", '\n');
-
-	//data = init_argument(); // init the data structure
+	// TODO: do a clean all function
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 13:20:32 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:23:19 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ bool	touch(float px, float py, t_game *game)
 	return (false);
 }
 
+// static void define_texture(t_game *game)
+// {
+// 	if (map->wall_side == 0)
+// 		map->wall_x = map->pos_y + map->perpwalldist * map->ray_dir_y;
+// 	else
+// 		map->wall_x = map->pos_x + map->perpwalldist * map->ray_dir_x;
+// 	map->wall_x -= floor(map->wall_x);
+// 	map->tex_x = map->wall_x * 128;
+// 	if (map->wall_side == 0 && map->ray_dir_x > 0)
+// 		map->tex_x = 128 - map->tex_x - 1;
+// 	if (map->wall_side == 1 && map->ray_dir_y < 0)
+// 		map->tex_x = 128 - map->tex_x - 1;
+// 	map->step = 1.0 * 128 / line_height;
+// 	map->tex_pos = (start - map->display_height / 2
+// 			+ line_height / 2) * map->step;
+// }
+
 int draw_loop(t_game *game)
 {
 	t_player *player = &game->player;
@@ -55,6 +72,7 @@ int draw_loop(t_game *game)
 	int i = 0;
 
 	render_background(game);
+	//define_texture(game);
 
 	while (i < S_W)
 	{
