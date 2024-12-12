@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/12 12:43:22 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/12 13:07:01 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,31 @@ static	int	check_configuration(t_map *map)  // tochange
 	return (0);
 }
 
-int	map_parsing(char **av, t_map *map)
+char	**check_and_read(char **av, t_map *map)
 {
 	char	*tmp;
-	char	**tmp_map; 
 	char	*path;
-
+	char	**tmp_map;
+	
 	tmp = ft_strnstr(av[1], ".cub", ft_strlen(av[1]));
 	if (!tmp || ft_strcmp(tmp, ".cub") != 0)
-		return (1);
+		return (NULL);
 	path = ft_strjoin("./", av[1]);
 	tmp_map = NULL;
 	tmp_map = read_map(path, map); // read full mappa
+	free(path);
+	if (!tmp_map)
+		return (NULL);
+	return (tmp_map);
+}
+
+int	map_parsing(char **av, t_map *map)
+{
+	char	**tmp_map; 
+
+	tmp_map = check_and_read(av, map);
 	if (!tmp_map)
 		return (1);
-	free(path);
 	if (get_map(tmp_map, map) || get_textures(tmp_map, map))	//aggiunge alla struct la matrix mappa e texture
 	{
 		free_map(map);

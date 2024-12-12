@@ -139,6 +139,7 @@ int		key_release(int keycode, t_player *player);
 void	add_texture_info(t_game *game);
 // Parsing
 int		check_wall_char(t_map *map, int start, int end, int i, int j);
+char	**check_and_read(char **av, t_map *map);
 int		map_parsing(char **av, t_map *map);
 char	**read_map(char *path, t_map *map);
 int		get_map(char **tmp_map, t_map *map);
