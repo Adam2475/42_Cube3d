@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/10 11:37:14 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:43:22 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,6 @@ static	int	check_configuration(t_map *map)  // tochange
 	if (check_line_config(map, "F") || check_line_config(map, "C"))
 		return (1);	
 	return (0);
-}
-
-int	check_strt_pos(t_map *map)
-{
-	int p_found;
-
-	p_found = 0;
-	int	i;
-	int	j;
-	char **mtx;
-	int	lines;
-	int start;
-	int end;
-	
-	lines = map->total_lines - map->texture_lines - 1;
-	mtx = map->map;
-	i = 0;
-	while(mtx[i])
-	{
-		start = skip_spaces(mtx[i]);
-		end = trim_spaces(mtx[i]);
-		j = start;						// TO DO: togliere spazi eventuali dopo il muro
-		while (mtx[i][j])
-		{
-			//printf("%c", mtx[i][j]); // Bada sto stronzo
-			if (mtx[i][j] == 'P')
-			{
-				map->p_init_pos[0] = i;
-				map->p_init_pos[1] = j;
-				return (0);
-			}
-			if (j == end - 1)
-				break;
-			j++;
-		}
-		i++;
-	}
-	return (1);
 }
 
 int	map_parsing(char **av, t_map *map)
@@ -82,7 +44,7 @@ int	map_parsing(char **av, t_map *map)
 		return (1);
 	}
 	free_matrix(tmp_map);
-	if (check_characters(map) || check_strt_pos(map)) // TO MOD;
+	if (check_characters(map)) // TO MOD;
 	{
 		free_map(map);
 		return (1);
@@ -182,47 +144,57 @@ int	get_textures(char **tmp, t_map *map)
 	map->texture[j] = NULL;
 	return (0);
 }
-
 int	check_characters(t_map *map)
 {
 	int	i;
 	int	j;
-	char **mtx;
-	int	lines;
+	char	**mtx;
 	int start;
 	int end;
-	
-	lines = map->map_lines;
+
 	mtx = map->map;
 	i = 0;
-	while(mtx[i])
+	map->p_init_pos[0] = -1;
+	while (mtx[i])
 	{
 		start = skip_spaces(mtx[i]);
 		end = trim_spaces(mtx[i]);
 		j = start;
-		while (mtx[i][j])
-		{
-			if (i == 0 || i == lines)	// MOD : modificata uscita in caso di carattere 'P' trovato
-			{
-				if (mtx[i][j] != '1')
-					return (1);
-			}
-			else if (j == start || j == end - 1)
-			{
-				if (mtx[i][j] != '1')
-				return (1);
-			}	
-			else if (!ft_strchr("10NSEWP", mtx[i][j]) && mtx[i][j] != '\n')
-				return(1);
-			if (j == end - 1)
-				break;
-			j++;
-		}
+		if (check_wall_char(map, start, end, i, j))
+			return (1);
 		i++;
 	}
 	map->height_i = i;
 	map->width_i = j;
-	// printf("%d\n", i);	
-	// printf("%d\n", j);
+	if (map->p_init_pos[0] == -1)
+		return (1);
+	return (0);
+}
+
+int	check_wall_char(t_map *map, int start, int end, int i, int j)
+{
+	while (map->map[i][j])
+	{
+		if (i == 0 || i == map->map_lines)	// MOD : modificata uscita in caso di carattere 'P' trovato
+		{
+			if (map->map[i][j] != '1')
+				return (1);
+		}
+		if (j == start || j == end - 1)
+		{
+			if (map->map[i][j] != '1')
+			return (1);
+		}
+		if (!ft_strchr("10NSEWP", map->map[i][j]) && map->map[i][j] != '\n')
+			return(1);
+		if (map->map[i][j] == 'P')
+			{
+				map->p_init_pos[0] = i;
+				map->p_init_pos[1] = j;
+			}
+		if (j == end - 1)
+			break;
+		j++;
+	}
 	return (0);
 }
