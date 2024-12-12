@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/12 13:07:01 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/12 15:55:15 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ char	**read_map(char *path, t_map *map) //togliere map
 
 	i = 0;
 	(void)path; // togliere versione definitiva
-	fd = open(path, O_RDONLY);
-	//fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY);
+	// fd = open(path, O_RDONLY);
+	fd = open("/nfs/homes/girindi/Desktop/42_Cube3d/collisions.cub", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	count = count_line(fd);
 	close(fd);
-	fd = open(path, O_RDONLY); // diocane
-	//fd = open("/home/giulio/Desktop/42_Cube3d/valid.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
+	// fd = open(path, O_RDONLY); // diocane
+	fd = open("/nfs/homes/girindi/Desktop/42_Cube3d/collisions.cub", O_RDONLY); // sul mio pc non funziona il path DIO MERDA
 	temp_map = ft_calloc(count + 1, sizeof(char *));
 	if (!temp_map)
 		return (NULL);
@@ -91,7 +91,6 @@ char	**read_map(char *path, t_map *map) //togliere map
 		free(temp_line);
 		i++; // togliere
 	}
-	map->total_lines = 0; // togliere
 	temp_map[i] = NULL;
 	close(fd);
 	return (temp_map);
@@ -174,8 +173,6 @@ int	check_characters(t_map *map)
 			return (1);
 		i++;
 	}
-	map->height_i = i;
-	map->width_i = j;
 	if (map->p_init_pos[0] == -1)
 		return (1);
 	return (0);

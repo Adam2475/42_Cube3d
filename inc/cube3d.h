@@ -89,8 +89,6 @@ typedef struct s_data
 
 typedef	struct s_map
 {
-	int		height_i;
-	int		width_i;
 	int		p_init_pos[2];
 	char	**texture;
 	char	**colors;
@@ -99,8 +97,6 @@ typedef	struct s_map
 	int		f_alloc;
 	int		c_alloc;
 	char	**map;
-	int		texture_lines;
-	int		total_lines;
 	int		map_lines;
 }	t_map;
 
@@ -145,7 +141,6 @@ char	**read_map(char *path, t_map *map);
 int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
-int		check_strt_pos(t_map *map);
 //parsing utils
 char	*cub3d_strdup(char *str);
 int		out_map(char *line);
@@ -180,7 +175,7 @@ void	put_pixel2(int x, int y, int *color, t_game *game);
 int		key_press(int keycode, t_player *player);
 void	move_player(t_game *game);
 int		key_release(int keycode, t_player *player);
-int		exit_hook(t_player *player);
+int		exit_hook(t_game *game);
 int		check_collision(t_game *game, int x, int y, int direction, int speed);
 // rendering
 int		draw_loop(t_game *game);
@@ -195,3 +190,5 @@ void	print_map(char **map);
 //free
 void	free_map(t_map *map);
 void	free_colors(t_map *map);
+void	free_textures(t_game *game);
+void	destroy_image(t_game *game);

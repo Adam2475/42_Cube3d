@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:35:29 by giulio            #+#    #+#             */
-/*   Updated: 2024/12/09 23:35:27 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/12 15:46:36 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,18 @@ int	in_texture(char *str)
 int	count_line(int fd)
 {
 	int		i;
+	char	*str;
 
 	i = 0;
 	while (1)
 	{
-		if (get_next_line(fd) == NULL)
+		str = get_next_line(fd);
+		if (str == NULL)
+		{
+			free(str);
 			break ;
+		}
+		free(str);
 		i++;
 	}
 	return (i);

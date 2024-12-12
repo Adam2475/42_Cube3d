@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:31:31 by giulio            #+#    #+#             */
-/*   Updated: 2024/12/09 23:38:05 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/12 17:51:40 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,28 @@ void	free_map(t_map *map)
 	free_matrix(map->map);
 	free_matrix(map->texture);
 	free_colors(map);
+}
+
+void	free_textures(t_game *game)
+{
+	if (game->map_data.texture_no)
+		free(game->map_data.texture_no);
+	if (game->map_data.texture_so)
+		free(game->map_data.texture_so);
+	if (game->map_data.texture_we)
+		free(game->map_data.texture_we);
+	if (game->map_data.texture_ea)
+		free(game->map_data.texture_ea);
+}
+
+void	destroy_image(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->texture_n.img.img);
+	mlx_destroy_image(game->mlx, game->texture_s.img.img);
+	mlx_destroy_image(game->mlx, game->texture_e.img.img);
+	mlx_destroy_image(game->mlx, game->texture_w.img.img);
+	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
 }

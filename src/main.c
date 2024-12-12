@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/12 12:48:48 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:31:35 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ int	main(int ac, char **av)
 	 // TODO : put control on the create textures | ??!
 	create_textures(&game, &map);
 	game.map_ref = &map;
-	mlx_hook(game.win, 17, 0, &exit_hook, &game.player); // hook for exit button on window
+	mlx_hook(game.win, 17, 0, &exit_hook, &game); // hook for exit button on window
 	mlx_hook(game.win, 2, 1L<<0, &key_press, &game.player); // have to revise this fuckin functions
 	mlx_hook(game.win, 3, 1L<<1, &key_release, &game.player); // aka : x_event && x-mask
 	mlx_loop_hook(game.mlx, draw_loop, &game); // wtf it does??
-	//free_map(&map);
 	mlx_loop(game.mlx); // main loop of the game
 	
 	//////////////////////////

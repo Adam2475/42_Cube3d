@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 11:36:27 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:43:23 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
 
-int	exit_hook(t_player *player)
+int	exit_hook(t_game *game)
 {
-	(void)player;
+	// (void)player;
 	printf("Window Closed\n");
+	destroy_image(game);
+	free_map(game->map_ref);
+	free_textures(game);
 	//free_exit(vars);
 	exit(1);
 	return (0);

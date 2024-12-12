@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 11:22:09 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:36:28 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,12 @@ static	void	assign_texture_path(t_game *game, t_map *map)
 	game->map_data.texture_so = ft_strdup(ft_strchr(map->texture[1], '.'));
 	game->map_data.texture_ea = ft_strdup(ft_strchr(map->texture[3], '.'));
 	game->map_data.texture_we = ft_strdup(ft_strchr(map->texture[2], '.'));
-	// printf("%s\n", map->texture[0]);
-	// printf("%s\n", map->texture[1]);
-	// printf("%s\n", map->texture[3]);
-	// printf("%s\n", map->texture[2]);
 }
 
 void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these images?
 {
 	assign_texture_path(game, map);
 	//exit(1);
-	printf("%s\n", game->map_data.texture_ea);
-	printf("%s\n", game->map_data.texture_so);
-	printf("%s\n", game->map_data.texture_we);
-	printf("%s\n", game->map_data.texture_no);
 	char *tmp_no = ft_strdup(game->map_data.texture_ea);
 	char *tmp_so = ft_strdup(game->map_data.texture_so);
 	char *tmp_we = ft_strdup(game->map_data.texture_we);
@@ -56,6 +48,10 @@ void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these im
 	game->texture_s.img.img = mlx_xpm_file_to_image(game->mlx, tmp_so, &game->texture_s.img.width, &game->texture_s.img.height);
 	game->texture_w.img.img = mlx_xpm_file_to_image(game->mlx, tmp_we, &game->texture_w.img.width, &game->texture_w.img.height);
 	game->texture_e.img.img = mlx_xpm_file_to_image(game->mlx, tmp_ea, &game->texture_e.img.width, &game->texture_e.img.height);
+	free(tmp_no);
+	free(tmp_so);
+	free(tmp_we);
+	free(tmp_ea);
 	if (!game->texture_n.img.img || !game->texture_s.img.img || !game->texture_w.img.img || !game->texture_e.img.img)
 		exit(printf("Path to textures does not exist or cannot be accessed"));
 	add_texture_info(game);
