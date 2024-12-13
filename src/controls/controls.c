@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/13 14:59:52 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/13 16:00:24 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	exit_hook(t_game *game)
 	// (void)player;
 	printf("Window Closed\n");
 	destroy_image(game);
+	free_matrix(game->map);
 	free_map(game->map_ref);
 	free_textures(game);
 	//free_exit(vars);
