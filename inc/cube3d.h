@@ -135,12 +135,13 @@ int		key_release(int keycode, t_player *player);
 void	add_texture_info(t_game *game);
 // Parsing
 int		check_wall_char(t_map *map, int start, int end, int i, int j);
-char	**check_and_read(char **av, t_map *map);
+char	**check_and_read(char **av);
 int		map_parsing(char **av, t_map *map);
-char	**read_map(char *path, t_map *map);
+char	**read_map(char *path);
 int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
+int		check_configuration(t_map *map);
 //parsing utils
 char	*cub3d_strdup(char *str);
 int		out_map(char *line);
@@ -150,9 +151,11 @@ int		count_line(int fd);
 void	draw_map(t_game *game);
 char	*tmp_num(char *tmp, char *texture);
 int		line_is_empty(char *str);
+char	**check_alloc_path(char *path);
 int		check_texture_acces(char *texture, int i);
 int		check_line_config(t_map *map, char *str);
 int		check_colors(char *texture, char *str, int i, t_map *map);
+int		loop_colors(t_map *map, char *tmp, int num, char *texture, char *str);
 int		check_and_skip_range(char c, char *str, char *tmp, t_map *map, char type);
 int		check_len_color(char *str);
 void	alloc_colors(char type, int num, t_map *map);

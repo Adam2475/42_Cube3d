@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/12 17:43:23 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/13 14:59:52 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 {
 	int tmp_x = 0;
 	int tmp_y = 0;
+	
+	x = 0;		//ERROR Unused parameter
+	y = 0;		//ERROR Unused parameter
 
+
+	
 	/////////////////////////////////////////////
 	//Debug
 	//printf("Angle: %f\n", game->player.angle);

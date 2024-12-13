@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:09 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 13:02:32 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:04:26 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char **duplicate_double_pointer(char **original)
 			return NULL;
 		}
 	}
+	// free_matrix(original);
 	duplicate[count] = NULL;
 	return duplicate;
 }

@@ -6,16 +6,17 @@
 #    By: giulio <giulio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2024/12/09 23:51:05 by giulio           ###   ########.fr        #
+#    Updated: 2024/12/13 15:01:00 by giulio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3d
-FLAGS = -g
-# -Wall -Wextra -Werror 
-SRC = src/main.c src/debug.c \
-		src/parsing/parsing.c src/parsing/parsing_utils.c \
+FLAGS = -g 
+# -Wall -Wextra -Werror
+SRC =	src/main.c src/debug.c \
+		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c \
+		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c \
 		src/utils/utils.c src/utils/utils2.c src/utils/gnl.c \
 		src/init/init.c \
 		src/controls/controls.c \
