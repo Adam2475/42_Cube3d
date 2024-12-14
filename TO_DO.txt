@@ -12,3 +12,7 @@ TODO : add the textures | WIP!!
 -----------------------------------------------------------------
 
 TODO : put control on the create textures | ??!
+		change assign_texture when there's absolute path |
+
+-----------------------------------------------------------------
+TODO: add ESC control |

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/11 13:33:31 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:56:25 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,3 +95,22 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	// TODO : Starting texture rendering
 	draw_columns(player, game, start_x, start_y, i, end);
 }
+
+    // Ora determiniamo la direzione del muro e carichiamo la texture corretta
+    // if (side == 0)  // Muro verticale
+    // {
+    //     if (dir_x > 0)  // Est
+    //      mlx_put_image_to_window(game->mlx, game->win, game->texture_e.img.img, 0, 0);
+    //     else            // Ovest
+    //         mlx_put_image_to_window(game->mlx, game->win, game->texture_w.img.img, 0, 0);
+    // }
+    // else  // Muro orizzontale
+    // {
+    //     if (dir_y > 0)  // Sud
+    //         mlx_put_image_to_window(game->mlx, game->win, game->texture_s.img.img, 0, 0);
+    //     else            // Nord
+    //         mlx_put_image_to_window(game->mlx, game->win, game->texture_n.img.img, 0, 0);
+    // }
+	// TODO : Starting texture rendering
+// 	draw_columns(player, game, start_x, start_y, i, end);
+// }

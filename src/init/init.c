@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/13 15:57:37 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/14 18:51:02 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,35 @@ void	add_texture_info(t_game *game)
 			&game->texture_w.img.endian);
 }
 
-static	void	assign_texture_path(t_game *game, t_map *map)
+static	void	assign_texture_path(t_game *game, t_map *map) //to_change: se il path è assoluto deve funzionare ma non c'è un ./ (cambiare strdup)
 {
-	game->map_data.texture_no = ft_strdup(ft_strchr(map->texture[0], '.'));
-	game->map_data.texture_so = ft_strdup(ft_strchr(map->texture[1], '.'));
-	game->map_data.texture_ea = ft_strdup(ft_strchr(map->texture[3], '.'));
-	game->map_data.texture_we = ft_strdup(ft_strchr(map->texture[2], '.'));
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (map->texture[i] && j <= 4)
+	{
+		if (!ft_strncmp(map->texture[i], "NO", 2) || !ft_strncmp(map->texture[i], "SO", 2) 
+		|| !ft_strncmp(map->texture[i], "WE", 2) || !ft_strncmp(map->texture[i], "EA", 2))
+		{
+			if (j == 0)
+				game->map_data.texture_no = ft_strdup(ft_strchr(map->texture[j], '.'));
+			else if (j == 1)
+				game->map_data.texture_so = ft_strdup(ft_strchr(map->texture[1], '.'));
+			else if (j == 2)
+				game->map_data.texture_we = ft_strdup(ft_strchr(map->texture[2], '.'));	
+			else if (j == 3)
+				game->map_data.texture_ea = ft_strdup(ft_strchr(map->texture[3], '.'));
+			j++;
+		}
+		i++;
+	}
 }
 
 void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these images?
 {
 	assign_texture_path(game, map);
-	//exit(1);
 	char *tmp_no = ft_strdup(game->map_data.texture_ea);
 	char *tmp_so = ft_strdup(game->map_data.texture_so);
 	char *tmp_we = ft_strdup(game->map_data.texture_we);

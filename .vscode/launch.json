@@ -5,7 +5,7 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "${workspaceFolder}/cub3d",
-		"args": ["collisions.cub"],
+		"args": ["valid.cub"],
 		"stopAtEntry": false,
 		"cwd": "/home/giulio/Desktop/42_Cube3d",
 		"environment": [],
