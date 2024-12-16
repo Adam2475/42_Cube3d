@@ -27,6 +27,14 @@
 #define ROTATION_SPEED 0.045 // rotation speed
 #define PLAYER_SPEED 4 // player speed
 
+typedef enum e_cardinal_direction
+{
+    NORTH = 0,
+    SOUTH = 1,
+    WEST = 2,
+    EAST = 3
+} t_cardinal_direction;
+
 typedef struct s_player
 {
 	float	p_x; // player x position in pixels
@@ -182,7 +190,7 @@ int		exit_hook(t_game *game);
 int		check_collision(t_game *game, int x, int y, int direction, int speed);
 // rendering
 int		draw_loop(t_game *game);
-void	draw_line(t_player *player, t_game *game, float start_x, int i);
+void draw_line(t_player *player, t_game *game, float start_x, int i);
 bool	touch(float px, float py, t_game *game);
 void	create_textures(t_game *game, t_map *map);
 void	render_background(t_game *game);

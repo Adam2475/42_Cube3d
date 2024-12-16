@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/14 18:33:09 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/16 17:47:02 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,37 @@ int draw_loop(t_game *game)
 
 	// Starting raycasting part
 
+	// float fraction = PI / 3 / S_W;
+	// float start_x = player->angle - PI / 6;
+	// int i = 0;
+
+	// render_background(game);
+
+	// while (i < S_W)
+	// {
+	// 	draw_line(player, game, start_x, i);
+	// 	start_x += fraction;
+	// 	i++;
+	// }
+
+// 	float angle = 45;  // Angolo in radianti (45 gradi)
+
+// // Direzione del giocatore
+// float dir_x = cos(angle);  // Direzione orizzontale
+// float dir_y = sin(angle);  // Direzione verticale
+
+// // Pianta della telecamera
+// float plane_x = 0.66;  // una certa larghezza
+// float plane_y = 0;     // perpendicolare alla direzione del giocatore
+
+// // Itera su ogni pixel della finestra
+// for (int x = 0; x < S_W; x++) {
+//     double camera_x = 2 * x / (double)S_W - 1;  // Posizione del raggio nella finestra
+//     double ray_dir_x = dir_x + plane_x * camera_x;    // Direzione del raggio X
+//     double ray_dir_y = dir_y + plane_y * camera_x;
+// 	draw_line(player, game, ray_dir_x, ray_dir_y, x);
+// }
+
 	float fraction = PI / 3 / S_W;
 	float start_x = player->angle - PI / 6;
 	int i = 0;
@@ -62,7 +93,6 @@ int draw_loop(t_game *game)
 		start_x += fraction;
 		i++;
 	}
-
 	/////////////////////////////////////////////
 	//Debug:
 	// float ray_x = player->p_x;
