@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/12 09:40:30 by adapassa         ###   ########.fr       */
+/*   Updated: 2024/12/13 12:55:24 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	main(int ac, char **av)
 	t_map		map; // Struct map is initialized in "map_parsing"
 	t_game		game; // Initialized in game_init, hold the window pointer
 
+	map = (t_map){0};
+	game = (t_game){0};
+	
 	if (ac != 2) // If the number of arguments is not 2 quit immediatly
 		return (printf("Bad number of arguments!\n"));
 	init_map(&map);
