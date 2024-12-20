@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/20 14:43:04 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/20 16:06:56 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ void	init_player(t_player *player, t_map *map)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
+	player->dir_x = -1.0f; // Facing north
+	player->dir_y = 0.0f;
+	player->plane_x = 0.0f;
+	player->plane_y = 0.66f;
 }
 
 int		game_init(char **av, t_map *map, t_game *game)

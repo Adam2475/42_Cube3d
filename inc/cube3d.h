@@ -40,7 +40,13 @@ typedef struct s_player
 {
 	float	p_x; // player x position in pixels
 	float	p_y; // player y position in pixels
-
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
 	// Basic commands
 	bool	key_up; // up key press flag
 	bool	key_down; // down key press flag

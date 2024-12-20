@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/20 14:51:58 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/20 17:13:46 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,17 @@ void	render_background(t_game *game)
 
 static	void	get_delta_dist(t_map *map)
 {
-	if (map->ray_dir_x == 0)
-		map->delta_dist_x = 1e30;
-	else
-		map->delta_dist_x = fabs(1 / map->ray_dir_x);
-	if (map->ray_dir_y == 0)
-		map->delta_dist_y = 1e30;
-	else
-		map->delta_dist_y = fabs(1 / map->ray_dir_y);
+	// if (map->ray_dir_x == 0)
+	// 	map->delta_dist_x = 1e30;
+	// else
+	// 	map->delta_dist_x = fabs(1 / map->ray_dir_x);
+	// if (map->ray_dir_y == 0)
+	// 	map->delta_dist_y = 1e30;
+	// else
+	// 	map->delta_dist_y = fabs(1 / map->ray_dir_y);
+	map->delta_dist_x = fabs(1 / map->ray_dir_x);
+ 	map->delta_dist_y = fabs(1 / map->ray_dir_y);
+	//  printf("delta_dist_x: %f, delta_dist_y: %f\n", map->delta_dist_x, map->delta_dist_y);
 }
 
 static void	digital_differential_analyser(t_map *map)
@@ -124,6 +127,8 @@ static void	get_step(t_map *map, t_player *player)
 		map->step_y = 1;
 		map->side_dist_y = (map->map_y + 1.0 - player->p_y) * map->delta_dist_y;
 	}
+	// printf("step_x: %d, step_y: %d\n", map->step_x, map->step_y);
+	// printf("side_dist_x: %f, side_dist_y: %f\n", map->side_dist_x, map->side_dist_y);
 }
 
 static	int	get_color(t_game *game, int x, int y, int i)
@@ -217,9 +222,9 @@ static	void	draw_column(t_player *player, t_game *game, float start_x, float sta
 	//  	//put_pixel2(i, start_y, color, game);
 	//  	start_y++;
 	//  }
-	printf("wall side: %d\n", game->map_ref->wall_side);
-	printf("ray_dir_x: %f\n", game->map_ref->ray_dir_x);
-	printf("ray_dir_y: %f\n", game->map_ref->ray_dir_y);
+	// printf("wall side: %d\n", game->map_ref->wall_side);
+	// printf("ray_dir_x: %f\n", game->map_ref->ray_dir_x);
+	// printf("ray_dir_y: %f\n", game->map_ref->ray_dir_y);
 	while (start_y < end)
 	{
 		img_pix_put(game, i, start_y++,  0x0); // Renders the walls in 3d
@@ -246,6 +251,10 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	// init the starting point of the ray
 	float ray_x = player->p_x;
 	float ray_y = player->p_y;
+	game->map_ref->pos_x = player->p_x;  // Initialize pos_x to player's position
+    game->map_ref->pos_y = player->p_y;
+	game->map_ref->map_x = player->p_x / BLOCK;
+    game->map_ref->map_y = player->p_y / BLOCK;
 
 	// touch check if a collision happens at a given angle
 	while (!touch(ray_x, ray_y, game))
@@ -268,12 +277,12 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	int end2 = 0;
 	//int start;
 	//game->map_ref->wall_side = 0;
-	game->map_ref->ray_dir_x = cos(ray_x);
-	game->map_ref->ray_dir_y = cos(ray_y);
-	//get_delta_dist(game->map_ref);
+	game->map_ref->ray_dir_x = player->ray_dir_x;
+	game->map_ref->ray_dir_y = player->ray_dir_y;
+	get_delta_dist(game->map_ref);
 	//game->map_ref->map_x = player->p_x;
 	//game->map_ref->map_y = player->p_y;
-	// get_step(game->map_ref, player);
+	get_step(game->map_ref, player);
 	digital_differential_analyser(game->map_ref);
 	//if (game->map_ref->wall_side == 0)
 	//	game->map_ref->perpwalldist = ((game->map_ref->side_dist_x - game->map_ref->delta_dist_x));
@@ -288,22 +297,3 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	//printf("%f\n", game->map_ref->ray_dir_x);
 	draw_column(player, game, start_x, start_y, i, end);
 }
-
-    // Ora determiniamo la direzione del muro e carichiamo la texture corretta
-    // if (side == 0)  // Muro verticale
-    // {
-    //     if (dir_x > 0)  // Est
-    //      mlx_put_image_to_window(game->mlx, game->win, game->texture_e.img.img, 0, 0);
-    //     else            // Ovest
-    //         mlx_put_image_to_window(game->mlx, game->win, game->texture_w.img.img, 0, 0);
-    // }
-    // else  // Muro orizzontale
-    // {
-    //     if (dir_y > 0)  // Sud
-    //         mlx_put_image_to_window(game->mlx, game->win, game->texture_s.img.img, 0, 0);
-    //     else            // Nord
-    //         mlx_put_image_to_window(game->mlx, game->win, game->texture_n.img.img, 0, 0);
-    // }
-	// TODO : Starting texture rendering
-// 	draw_columns(player, game, start_x, start_y, i, end);
-// }

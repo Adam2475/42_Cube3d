@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/20 14:38:44 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/20 16:08:50 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ int draw_loop(t_game *game)
 	// one iteration for every pixel on the screen width
 	while (i < S_W)
 	{
+
+    	player->camera_x = 2 * i / (double)S_W - 1;
+        player->ray_dir_x = player->dir_x + player->plane_x * player->camera_x;
+        player->ray_dir_y = player->dir_y + player->plane_y * player->camera_x;
 		draw_line(player, game, start_x, i);
 		// fraction will be the amount of distance from one column to another
 		// it's calculated based on : PI / 3 / s_width
