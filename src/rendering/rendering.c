@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/20 14:47:37 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/20 14:51:58 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	//get_delta_dist(game->map_ref);
 	//game->map_ref->map_x = player->p_x;
 	//game->map_ref->map_y = player->p_y;
-	get_step(game->map_ref, player);
+	// get_step(game->map_ref, player);
 	digital_differential_analyser(game->map_ref);
 	//if (game->map_ref->wall_side == 0)
 	//	game->map_ref->perpwalldist = ((game->map_ref->side_dist_x - game->map_ref->delta_dist_x));
