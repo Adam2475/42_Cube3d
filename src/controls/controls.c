@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/13 16:00:24 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/20 14:37:01 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
 		{
 			float tmp_wall = (float)((tmp_y) * BLOCK);
+			// printf("y: %f\n", game->player.p_y);
+			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_y <= (tmp_wall + 5))
 				return (printf("Top collision!!\n"));
 		}
@@ -72,8 +74,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
 		{
 			float tmp_wall = (float)((tmp_x + 1) * BLOCK);
-			printf("x: %f\n", game->player.p_x);
-			printf("wall pos: %f\n", tmp_wall);
+			// printf("x: %f\n", game->player.p_x);
+			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_x >= (tmp_wall - 13))
 				return (printf("Top-right collision!!\n"));
 		}
@@ -85,8 +87,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		if (game->map[tmp_y + 1][tmp_x] && game->map[(int)tmp_y + 1][(int)tmp_x] == '1')
 		{
 			float tmp_wall = (float)((tmp_y + 1) * BLOCK);
-			printf("y: %f\n", game->player.p_y);
-			printf("wall pos: %f\n", tmp_wall);
+			// printf("y: %f\n", game->player.p_y);
+			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_y >= (tmp_wall - 11))
 				return (printf("Top-down collision!!\n"));
 		}
@@ -111,8 +113,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		if (game->map[tmp_y][tmp_x - 1] && game->map[(int)tmp_y][(int)tmp_x - 1] == '1')
 		{
 			float tmp_wall = (float)((tmp_x) * BLOCK);
-			printf("x: %f\n", game->player.p_x);
-			printf("wall pos: %f\n", tmp_wall);
+			// printf("x: %f\n", game->player.p_x);
+			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_x <= (tmp_wall + 5))
 				return (printf("Back-left collision!!\n"));
 		}
@@ -125,8 +127,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
 		{
 			float tmp_wall = (float)((tmp_x + 1) * BLOCK);
-			printf("x: %f\n", game->player.p_x);
-			printf("wall pos: %f\n", tmp_wall);
+			// printf("x: %f\n", game->player.p_x);
+			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_x >= (tmp_wall - 12))
 			{
 				printf("Back-right collision!!\n");
@@ -155,8 +157,8 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
 		{
 			float tmp_wall = (float)((tmp_y) * BLOCK);
-			printf("y: %f\n", game->player.p_y);
-			printf("wall pos: %f\n", tmp_wall);
+			// printf("y: %f\n", game->player.p_y);
+			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_y <= (tmp_wall + 5))
 				return (printf("Left-top collision!!\n"));
 		}
@@ -172,15 +174,15 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 				return (printf("Left-left collision\n"));
 		}
 	}
-	if (direction == 3 && ((game->player.angle >= 0 && game->player.angle <= 2) || game->player.angle > 6)) // Case for going right while pressing left
+	if (direction == 3 && ((game->player.angle >= 0 && game->player.angle <= 3.3) || game->player.angle > 6)) // Case for going right while pressing left
 	{
 		tmp_x = (int)(game->player.p_x) / BLOCK;
 		tmp_y = (int)(game->player.p_y) / BLOCK;
 		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
 		{
 			float tmp_wall = (float)((tmp_x + 1) * BLOCK);
-			printf("y: %f\n", game->player.p_y);
-			printf("wall pos: %f\n", tmp_wall);
+			// printf("y: %f\n", game->player.p_y);
+			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_x >= (tmp_wall - 10))
 				return (printf("Left-right collision\n"));
 		}
@@ -248,7 +250,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 void	move_player(t_game *game)
 {
 	t_player *player = &game->player;
-	int speed = 3;
+	int speed = 5;
 	float angle_speed = 0.03;
 	float cos_angle = cos(player->angle);
 	float sin_angle = sin(player->angle);

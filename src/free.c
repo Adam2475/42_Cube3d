@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:31:31 by giulio            #+#    #+#             */
-/*   Updated: 2024/12/12 17:51:40 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/20 14:40:37 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	destroy_image(t_game *game)
 	mlx_destroy_image(game->mlx, game->texture_s.img.img);
 	mlx_destroy_image(game->mlx, game->texture_e.img.img);
 	mlx_destroy_image(game->mlx, game->texture_w.img.img);
-	mlx_destroy_image(game->mlx, game->img);
+	// mlx_destroy_image(game->mlx, game->img); //todo
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);

@@ -4,6 +4,7 @@
 #include <math.h>
 #include <fcntl.h>
 #include <stdbool.h>
+#include <limits.h>
 #include "../mlx_linux/mlx.h"
 #include "../libft/libft.h"
 
@@ -26,6 +27,14 @@
 #define FOV 60 // field of view
 #define ROTATION_SPEED 0.045 // rotation speed
 #define PLAYER_SPEED 4 // player speed
+
+enum	e_direction
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
 
 typedef struct s_player
 {
@@ -55,6 +64,7 @@ typedef struct s_color
 
 typedef struct s_img
 {
+	void	*mlx_img;
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -98,13 +108,42 @@ typedef	struct s_map
 	int		c_alloc;
 	char	**map;
 	int		map_lines;
+
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perpwalldist;
+
+	double	side_dist_x;
+	double	side_dist_y;
+
+	int		wall_side; // the side of the wall we are looking at
+
+	int		step_x;
+	int		step_y;
+
+	double	pos_x;
+	double	pos_y;
+
+	float	map_x;
+	float	map_y;
+
+	double	wall_x;
+	double	tex_x;
+	double	tex_y;
+	double	step;
+	double	tex_pos;
+
+	int		start;
 }	t_map;
 
 typedef struct s_game
 {
-	void *mlx; // ptr to mlx structure
-	void *win; // ptr to the window structure
-	void *img; // ptr to the image path
+	void	*mlx; // ptr to mlx structure
+	void	*win; // ptr to the window structure
+	//void *img; // ptr to the image path
+	t_img	img;
 
 	// variables for the put_pixel function
 	char *data;
@@ -120,6 +159,7 @@ typedef struct s_game
 	t_texture	texture_s;
 
 	t_player	player; // an istance of the player structure
+	//t_img		img;
 	t_map		*map_ref;
 	t_data		map_data;
 }	t_game;
@@ -186,6 +226,9 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i);
 bool	touch(float px, float py, t_game *game);
 void	create_textures(t_game *game, t_map *map);
 void	render_background(t_game *game);
+void	define_texture(t_game *game, int start, int line_height);
+void	define_column(t_map *map, int *line_height, int *start, int *end);
+void	img_pix_put(t_game *game, int x, int y, int color);
 // debug
 char	**save_map(void);
 ///////////////////////////////////////////////
