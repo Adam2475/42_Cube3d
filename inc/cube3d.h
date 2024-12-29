@@ -40,6 +40,8 @@ typedef struct s_player
 {
 	float	p_x; // player x position in pixels
 	float	p_y; // player y position in pixels
+	float	p_tx; // player x position in tiles
+	float	p_ty; // player y position in tiles
 	float	dir_x;
 	float	dir_y;
 	float	plane_x;
@@ -47,6 +49,7 @@ typedef struct s_player
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
+	double	fov_rd;
 	// Basic commands
 	bool	key_up; // up key press flag
 	bool	key_down; // down key press flag
@@ -114,7 +117,8 @@ typedef	struct s_map
 	int		c_alloc;
 	char	**map;
 	int		map_lines;
-
+	int		h_map;
+	int		w_map;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	delta_dist_x;
@@ -156,7 +160,9 @@ typedef struct s_game
 	int bpp;
 	int size_line;
 	int endian;
-
+	int flag;
+	double ray_distance;
+	double ray_angle;
 	char	**map; // a copy of the map
 
 	t_texture	texture_n;
@@ -229,6 +235,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed);
 // rendering
 int		draw_loop(t_game *game);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
+void	draw_wall(t_game *game, int ray, int t_pix, int b_pix);
 bool	touch(float px, float py, t_game *game);
 void	create_textures(t_game *game, t_map *map);
 void	render_background(t_game *game);

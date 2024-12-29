@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/20 16:06:56 by girindi          ###   ########.fr       */
+/*   Updated: 2024/12/29 17:14:11 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,21 @@ void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these im
 void	init_player(t_player *player, t_map *map)
 {
 	player->angle = PI / 2;
-	player->p_x = map->p_init_pos[1] * BLOCK;
-	player->p_y = map->p_init_pos[0] * BLOCK;
+	player->p_x = map->p_init_pos[1] * TILE_SIZE + TILE_SIZE / 2;
+	player->p_y = map->p_init_pos[0] * TILE_SIZE + TILE_SIZE / 2;
+	player->p_tx = map->p_init_pos[1] * BLOCK;
+	player->p_ty = map->p_init_pos[0] * BLOCK;
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
-	player->dir_x = -1.0f; // Facing north
-	player->dir_y = 0.0f;
-	player->plane_x = 0.0f;
-	player->plane_y = 0.66f;
+	player->dir_x = -1.0; // Facing north
+	player->dir_y = 0.0;
+	player->plane_x = 0.0;
+	player->plane_y = 0.66;
+	player->fov_rd = (FOV * PI) / 180;
 }
 
 int		game_init(char **av, t_map *map, t_game *game)
@@ -138,4 +141,6 @@ void	init_map(t_map *map)
 	map->f_color = NULL;
 	map->c_alloc = 0;
 	map->f_alloc = 0;
+	map->h_map = 6;
+	map->w_map = 25;
 }
