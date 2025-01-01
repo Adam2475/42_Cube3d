@@ -109,6 +109,7 @@ typedef struct s_data
 typedef	struct s_map
 {
 	int		p_init_pos[2];
+	char	dir;
 	char	**texture;
 	char	**colors;
 	int		**f_color;
@@ -183,6 +184,7 @@ typedef struct s_game
 void	init_map(t_map *map);
 int		game_init(char **av, t_map *map, t_game *game);
 void	init_player(t_player *player, t_map *map);
+void	init_dir(t_map *map, t_player *player);
 int		key_release(int keycode, t_player *player);
 void	add_texture_info(t_game *game);
 // Parsing
@@ -193,6 +195,7 @@ char	**read_map(char *path);
 int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
+void	pos_or_dir(char c, int i, int j, t_map *map);
 int		check_configuration(t_map *map);
 //parsing utils
 char	*cub3d_strdup(char *str);

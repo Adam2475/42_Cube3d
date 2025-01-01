@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/29 17:47:06 by giulio           ###   ########.fr       */
+/*   Updated: 2024/12/29 17:57:18 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ float nor_angle(float angle)
 	return (angle);
 }
 
-int get_color(t_game *game, int flag)
+int get_color(t_game *game, int flag, int x, int y)
 {
 	game->ray_angle = nor_angle(game->ray_angle);
 	if (flag == 0)
@@ -86,7 +86,7 @@ void draw_wall(t_game *game, int ray, int t_pix, int b_pix)
 {
 	int color;
 
-	color = get_color(game, game->flag);
+	color = get_color(game, game->flag, ray, t_pix);
 	while (t_pix < b_pix)
 		img_pix_put(game, ray, t_pix++, color);
 }

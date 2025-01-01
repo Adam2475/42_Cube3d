@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/29 17:14:11 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/01 21:14:13 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ static	void	init_struct(t_game *game)
 void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these images?
 {
 	assign_texture_path(game, map);
-	//exit(1);
-	//printf("%s\n", game->map_data.texture_ea);
-	//printf("%s\n", game->map_data.texture_so);
-	//printf("%s\n", game->map_data.texture_we);
-	//printf("%s\n", game->map_data.texture_no);
 	char *tmp_no = ft_strdup(game->map_data.texture_ea);
 	char *tmp_so = ft_strdup(game->map_data.texture_so);
 	char *tmp_we = ft_strdup(game->map_data.texture_we);
@@ -98,7 +93,6 @@ void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these im
 
 void	init_player(t_player *player, t_map *map)
 {
-	player->angle = PI / 2;
 	player->p_x = map->p_init_pos[1] * TILE_SIZE + TILE_SIZE / 2;
 	player->p_y = map->p_init_pos[0] * TILE_SIZE + TILE_SIZE / 2;
 	player->p_tx = map->p_init_pos[1] * BLOCK;
@@ -109,8 +103,7 @@ void	init_player(t_player *player, t_map *map)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
-	player->dir_x = -1.0; // Facing north
-	player->dir_y = 0.0;
+	init_dir(map, player);
 	player->plane_x = 0.0;
 	player->plane_y = 0.66;
 	player->fov_rd = (FOV * PI) / 180;
@@ -120,19 +113,25 @@ int		game_init(char **av, t_map *map, t_game *game)
 {
 	(void)av;
 	game->mlx = mlx_init();
-	game->map = duplicate_double_pointer(map->map); // duplicate the ptr instead of taking map reference
+	game->map = duplicate_double_pointer(map->map);
 	game->win = mlx_new_window(game->mlx, S_W, S_H, "Cub3d");
-	// printf("%d\n", game->img.height);
-	// printf("%d\n", game->img.width);
-	// exit(1);
 	game->img.img = mlx_new_image(game->mlx, S_W, S_H);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.line_len, &game->img.endian);
-	//printf("hello world!\n");
-	//printf("%s\n", game->img.addr);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
 
+void	init_dir(t_map *map, t_player *player)
+{
+	if (map->dir == 'N')
+		player->angle = 3 * PI / 2;
+	else if (map->dir== 'S')
+		player->angle = PI / 2;
+	else if (map->dir == 'E')
+		player->angle = 0;
+	else if (map->dir== 'W')
+		player->angle = PI;
+}
 void	init_map(t_map *map)
 {
 	map->texture = NULL;
