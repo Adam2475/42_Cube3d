@@ -130,7 +130,7 @@ void draw_line(t_player *player, t_game *game, float start_x, int i)
 		wall_dist = (map_x - player->p_x + (1 - step_x) / 2) / ray_dir_x;
 	else
 		wall_dist = (map_y - player->p_y + (1 - step_y) / 2) / ray_dir_y;
-	int line_height = (int)(S_H / wall_dist);
+	int line_height = (int)(S_H / wall_dist * 64); // The line height multiplied for 64 is correct
 	int draw_start = -line_height / 2 + S_H / 2;
 	if (draw_start < 0)
 		draw_start = 0;
@@ -144,12 +144,15 @@ void draw_line(t_player *player, t_game *game, float start_x, int i)
 	wall_x -= floor(wall_x);	
 	// Seleziona la texture in base alla direzione
 	int *texture;
-	if (side == 0) {
+	if (side == 0)
+	{
 		if (ray_dir_x > 0)
 			texture = game->texture_e.text_value; // Est
 		else
 			texture = game->texture_w.text_value; // Ovest
-	} else {
+	}
+	else
+	{
 		if (ray_dir_y > 0)
 			texture = game->texture_s.text_value; // Sud
 		else
@@ -164,9 +167,9 @@ void draw_line(t_player *player, t_game *game, float start_x, int i)
 		if (side == 1 && ray_dir_y < 0) tex_x = 64 - tex_x - 1;
 		int color = texture[64 * tex_y + tex_x];
 		put_pixel(i, y, color, game);
-		printf("wall_dist: %f\n", wall_dist);
-		printf("line_height: %d\n", line_height);
-		printf("tex_x: %d, tex_y: %d\n", tex_x, tex_y);
+		// printf("wall_dist: %f\n", wall_dist);
+		// printf("line_height: %d\n", line_height);
+		// printf("tex_x: %d, tex_y: %d\n", tex_x, tex_y);
 	}
 }
 
