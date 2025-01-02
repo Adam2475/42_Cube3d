@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/29 17:57:18 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/02 18:10:54 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,53 +62,183 @@ float nor_angle(float angle)
 		angle -= (2 * PI);
 	return (angle);
 }
+// int get_texture_color(t_img *texture, int x, int y)
+// {
+//     char *pixel;
+//     int color;
 
-int get_color(t_game *game, int flag, int x, int y)
+//     pixel = texture->addr + (y * texture->line_len + x * (texture->bpp / 8));
+//     color = *(int *)pixel;
+//     return color;
+// }
+
+// int get_color(t_game *game, int flag, int x, int y)
+// {
+// 	int	tex_x;
+// 	int	tex_y;
+// 	double	wall_x;
+// 	t_img	*texture;
+
+// 	game->ray_angle = nor_angle(game->ray_angle);
+// 	if (flag == 0)
+// 	{
+// 		if (game->ray_angle > PI / 2 && game->ray_angle < 3 * (PI / 2))
+// 			texture = &game->texture_w.img; // west wall
+// 		else
+// 			texture = &game->texture_e.img;; // east wall
+// 		wall_x = game->player.p_y + game->ray_distance * game->player.ray_dir_y;
+// 	}
+// 	else
+// 	{
+// 		if (game->ray_angle > 0 && game->ray_angle < PI)
+// 			texture = &game->texture_s.img; // south wall
+// 		else
+// 			texture = &game->texture_n.img; // north wall
+// 		 wall_x = game->player.p_x + game->ray_distance * game->player.ray_dir_x;
+//     }
+
+//     wall_x -= floor(wall_x);
+//     tex_x = (int)(wall_x * (double)texture->width);
+//     tex_y = (int)((double)y / S_H * texture->height);
+
+//     return get_texture_color(texture, tex_x, tex_y);
+// }
+
+
+// void draw_wall(t_game *game, int ray, int t_pix, int b_pix)
+// {
+// 	int color;
+
+// 	color = get_color(game, game->flag, ray, t_pix);
+// 	while (t_pix < b_pix)
+// 		img_pix_put(game, ray, t_pix++, color);
+// }
+
+// void render_wall(t_game *game, int ray)
+// {
+// 	double wall_h;
+// 	double b_pix;
+// 	double t_pix;
+// 	double proj_plane_dist = (S_W / 2) / tan(game->player.fov_rd / 2);
+	
+// 	game->ray_distance *= cos(nor_angle(game->ray_angle - game->player.angle));
+// 	wall_h = (TILE_SIZE / game->ray_distance) * proj_plane_dist;
+// 	b_pix = (S_H / 2) + (wall_h / 2);
+// 	t_pix = (S_H / 2) - (wall_h / 2);
+// 	if (b_pix > S_H)
+// 		b_pix = S_H;
+// 	if (t_pix < 0)
+// 		t_pix = 0;
+// 	draw_wall(game, ray, t_pix, b_pix);
+// }
+int get_texture_color(t_img *texture, int x, int y)
 {
-	game->ray_angle = nor_angle(game->ray_angle);
-	if (flag == 0)
-	{
-		if (game->ray_angle > PI / 2 && game->ray_angle < 3 * (PI / 2))
-			return (0x0000FF); // west wall
-		else
-			return (0xFFFF00); // east wall
-	}
-	else
-	{
-		if (game->ray_angle > 0 && game->ray_angle < PI)
-			return (0x00FF00); // south wall
-		else
-			return (0xFF0000); // north wall
-	}
+    char *pixel;
+    int color;
+
+    pixel = texture->addr + (y * texture->line_len + x * (texture->bpp / 8));
+    color = *(int *)pixel;
+    return color;
 }
 
-void draw_wall(t_game *game, int ray, int t_pix, int b_pix)
+void draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h)
 {
-	int color;
+    int color;
+    int tex_x;
+    int tex_y;
+    double step;
+    double tex_pos;
+    t_img *texture;
 
-	color = get_color(game, game->flag, ray, t_pix);
-	while (t_pix < b_pix)
-		img_pix_put(game, ray, t_pix++, color);
+    // Select the correct texture based on the wall side
+    if (game->flag == 0) // Vertical wall
+    {
+        if (game->ray_angle > PI / 2 && game->ray_angle < 3 * (PI / 2))
+        {
+            texture = &game->texture_w.img; // West wall
+        }
+        else
+        {
+            texture = &game->texture_e.img; // East wall
+        }
+    }
+    else // Horizontal wall
+    {
+        if (game->ray_angle > 0 && game->ray_angle < PI)
+        {
+            texture = &game->texture_s.img; // South wall
+        }
+        else
+        {
+            texture = &game->texture_n.img; // North wall
+        }
+    }
+
+    // Calculate the exact x-coordinate on the wall where the ray hits
+    double wall_x;
+    if (game->flag == 0)
+        wall_x = game->player.p_y + game->ray_distance * game->player.ray_dir_y;
+    else
+        wall_x = game->player.p_x + game->ray_distance * game->player.ray_dir_x;
+    wall_x -= floor(wall_x);
+
+    // Calculate the x-coordinate in the texture
+    tex_x = (int)(wall_x * (double)texture->width);
+    if ((game->flag == 0 && game->player.ray_dir_x > 0) || (game->flag == 1 && game->player.ray_dir_y < 0))
+        tex_x = texture->width - tex_x - 1;
+	// if (tex_x < 0) 
+	// 	tex_x = 0;
+	// if (tex_x >= texture->width)
+    // 	tex_x = texture->width - 1;
+    // Calculate the step to move in the texture for each pixel drawn
+    step = 1.0 * texture->height / wall_h;
+    tex_pos = (t_pix - S_H / 2 + wall_h / 2) * step;
+	printf("Initial tex_pos calculation: %f (t_pix: %d, wall_h: %f, step: %f)\n", tex_pos, t_pix, wall_h, step);
+
+    // Imposta tex_pos a 0 se è negativo
+	tex_pos = fmod(tex_pos, 1.0f);
+	if (tex_pos < 0) tex_pos += 1.0f;
+
+	if (t_pix < 0)
+{
+    tex_pos += -t_pix * step;
+    t_pix = 0;
+}
+	// printf("wall_h: %f, tex_pos: %f\n", wall_h, tex_pos);
+    // Loop through each pixel from t_pix to b_pix
+	// printf("t_pix: %d, b_pix: %d, wall_h: %f, step: %f, tex_pos: %f\n", 
+    //    t_pix, b_pix, wall_h, step, tex_pos);
+    while (t_pix < b_pix)
+    {
+        tex_y = (int)tex_pos;
+        tex_pos += step;
+		if (tex_y < 0) tex_y = 0;
+        if (tex_y >= texture->height) tex_y = texture->height - 1;
+        color = get_texture_color(texture, tex_x, tex_y);
+        img_pix_put(game, ray, t_pix++, color);
+    }
+	// printf("tex_x: %d, tex_y: %d\n", tex_x, tex_y);
+	// printf("tex_x: %d, tex_y: %d, tex_width: %d, tex_height: %d\n", tex_x, tex_y, texture->width, texture->height);
 }
 
 void render_wall(t_game *game, int ray)
 {
-	double wall_h;
-	double b_pix;
-	double t_pix;
-	double proj_plane_dist = (S_W / 2) / tan(game->player.fov_rd / 2);
+    double wall_h;
+    double b_pix;
+    double t_pix;
+    double proj_plane_dist = (S_W / 2) / tan(game->player.fov_rd / 2);
+    
+    game->ray_distance *= cos(nor_angle(game->ray_angle - game->player.angle));
+    wall_h = (TILE_SIZE / game->ray_distance) * proj_plane_dist;
+    b_pix = (S_H / 2) + (wall_h / 2);
+    t_pix = (S_H / 2) - (wall_h / 2);
+    if (b_pix > S_H)
+        b_pix = S_H;
+    if (t_pix < 0)
+        t_pix = 0;
 	
-	game->ray_distance *= cos(nor_angle(game->ray_angle - game->player.angle));
-	wall_h = (TILE_SIZE / game->ray_distance) * proj_plane_dist;
-	b_pix = (S_H / 2) + (wall_h / 2);
-	t_pix = (S_H / 2) - (wall_h / 2);
-	if (b_pix > S_H)
-		b_pix = S_H;
-	if (t_pix < 0)
-		t_pix = 0;
-	draw_wall(game, ray, t_pix, b_pix);
+    draw_wall(game, ray, t_pix, b_pix, wall_h);
 }
-
 int wall_hit(float x, float y, t_map *map)
 {
 	int  x_m;
@@ -228,6 +358,8 @@ int draw_loop(t_game *game)
 	render_background(game);
 	while (i < S_W)
 	{
+		game->player.ray_dir_x = cos(game->ray_angle);
+		game->player.ray_dir_y = sin(game->ray_angle);
 		game->flag = 0;
 		h_inter = get_h_inter(player, game->map_ref, nor_angle(game->ray_angle));
 		v_inter = get_v_inter(player, game->map_ref, nor_angle(game->ray_angle));

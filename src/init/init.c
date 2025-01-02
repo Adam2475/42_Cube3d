@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/01 21:14:13 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/02 17:28:17 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these im
 	game->texture_e.img.mlx_img = mlx_xpm_file_to_image(game->mlx, tmp_ea, &game->texture_e.img.width, &game->texture_e.img.height);
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	game->texture_n.img.addr = mlx_get_data_addr(game->texture_n.img.mlx_img, &game->texture_n.img.bpp, &game->texture_n.img.line_len, &game->texture_n.img.endian);
-	game->texture_s.img.addr = mlx_get_data_addr(game->texture_n.img.mlx_img, &game->texture_s.img.bpp, &game->texture_s.img.line_len, &game->texture_s.img.endian);
-	game->texture_w.img.addr = mlx_get_data_addr(game->texture_n.img.mlx_img, &game->texture_w.img.bpp, &game->texture_w.img.line_len, &game->texture_w.img.endian);
+	game->texture_s.img.addr = mlx_get_data_addr(game->texture_s.img.mlx_img, &game->texture_s.img.bpp, &game->texture_s.img.line_len, &game->texture_s.img.endian);
+	game->texture_w.img.addr = mlx_get_data_addr(game->texture_w.img.mlx_img, &game->texture_w.img.bpp, &game->texture_w.img.line_len, &game->texture_w.img.endian);
 	game->texture_e.img.addr = mlx_get_data_addr(game->texture_e.img.mlx_img, &game->texture_e.img.bpp, &game->texture_e.img.line_len, &game->texture_e.img.endian);
 	free(tmp_no);
 	free(tmp_so);
@@ -88,7 +88,7 @@ void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these im
 	free(tmp_ea);
 	if (!game->texture_n.img.mlx_img || !game->texture_s.img.mlx_img || !game->texture_w.img.mlx_img || !game->texture_e.img.mlx_img)
 		exit(printf("Path to textures does not exist or cannot be accessed"));
-	//add_texture_info(game);
+	// add_texture_info(game);
 }
 
 void	init_player(t_player *player, t_map *map)

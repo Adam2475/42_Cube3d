@@ -238,7 +238,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed);
 // rendering
 int		draw_loop(t_game *game);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
-void	draw_wall(t_game *game, int ray, int t_pix, int b_pix);
+void draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h);
 bool	touch(float px, float py, t_game *game);
 void	create_textures(t_game *game, t_map *map);
 void	render_background(t_game *game);
