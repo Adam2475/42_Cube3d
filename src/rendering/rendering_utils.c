@@ -85,10 +85,16 @@ static double	calc_wall_px_hit(t_game *game, int flag)
 {
 	double			wall_px;
 
+	// printf("player ray: %f\n", game->player.ray_dir_x);
+	// printf("map ray: %f\n", game->map_ref->ray_dir_x);
+
+	// printf("x: %f\n", game->player.p_x);
+	// printf("tx: %f\n", game->player.p_tx);
+
 	if (flag == 0)
-		wall_px = game->player.p_y / 64 + game->ray_distance * game->player.ray_dir_y;
+		wall_px = game->player.p_y + game->ray_distance * game->player.ray_dir_y;
 	else
-		wall_px = game->player.p_x / 64 + game->ray_distance * game->player.ray_dir_x;
+		wall_px = game->player.p_x + game->ray_distance * game->player.ray_dir_x;
 	return (wall_px);
 }
 
@@ -111,10 +117,6 @@ static int calc_tex_x(t_game *game, t_img *texture, int flag)
 	text_perc_px_hit = calc_wall_px_hit(game, flag) / 64;
 	text_perc_px_hit -= floor(text_perc_px_hit);
 	//////////////////////////////////////////////////////////////////
-	//printf("hit: %f\n", text_perc_px_hit);
-	//printf("tex_pos: %f\n", tex_pos);
-	//printf("floored: %f\n", floor(tex_pos));
-	//tex_pos -= floor(tex_pos)
 	tex_x = (int)((text_perc_px_hit) * 64);
 	if (texture && texture->width > 0 && tex_x >= texture->width)
 		tex_x = texture->width - 1;
