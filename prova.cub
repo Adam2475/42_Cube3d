@@ -1,0 +1,16 @@
+NO ./assets/bluestone.xpm
+SO ./assets/greystone.xpm
+WE ./assets/mossy.xpm
+EA ./assets/redbrick.xpm
+
+F 100,100,50
+C 225,30,60
+
+11111111111
+10000000001
+10000000001
+10000P00001
+10000000001
+10000000001
+10000000001
+11111111111
