@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:35:29 by giulio            #+#    #+#             */
-/*   Updated: 2024/12/13 14:50:26 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:17:14 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	out_map(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] && line[i] == ' ')
@@ -26,7 +26,7 @@ int	out_map(char *line)
 
 int	in_map(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] && line[i] == ' ')
@@ -41,7 +41,7 @@ int	in_texture(char *str)
 	int	i;
 
 	i = skip_spaces(str);
-	if (!ft_strncmp(&str[i], "NO", 2) || !ft_strncmp(&str[i], "SO", 2) 
+	if (!ft_strncmp(&str[i], "NO", 2) || !ft_strncmp(&str[i], "SO", 2)
 		|| !ft_strncmp(&str[i], "WE", 2) || !ft_strncmp(&str[i], "EA", 2))
 		return (0);
 	else if (!ft_strncmp(&str[i], "F", 1) || !ft_strncmp(&str[i], "C", 1))
@@ -69,14 +69,13 @@ int	count_line(int fd)
 	return (i);
 }
 
-int check_texture_acces(char *texture, int i)
+int	check_texture_acces(char *texture, int i)
 {
 	int	fd;
 
 	i += skip_spaces(&texture[i]);
 	fd = open(&texture[i], O_RDONLY);
-	if (fd == -1)	
+	if (fd == -1)
 		return (1);
 	return (0);
 }
-

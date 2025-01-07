@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/01 20:48:37 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:20:05 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	map_parsing(char **av, t_map *map)
 {
-	char	**tmp_map; 
+	char	**tmp_map;
 
 	tmp_map = check_and_read(av);
 	if (!tmp_map)
 		return (1);
-	if (get_map(tmp_map, map) || get_textures(tmp_map, map))	//aggiunge alla struct la matrix mappa e texture
+	if (get_map(tmp_map, map) || get_textures(tmp_map, map))
 	{
 		free_map(map);
 		free_matrix(tmp_map);
 		return (1);
 	}
 	free_matrix(tmp_map);
-	if (check_characters(map)) // TO MOD;
+	if (check_characters(map))
 	{
 		free_map(map);
 		return (1);
 	}
 	if (check_configuration(map))
-		return(1);
+		return (1);
 	return (0);
 }
 
@@ -41,13 +41,13 @@ char	**check_and_read(char **av)
 	char	*tmp;
 	char	*path;
 	char	**tmp_map;
-	
+
 	tmp = ft_strnstr(av[1], ".cub", ft_strlen(av[1]));
 	if (!tmp || ft_strcmp(tmp, ".cub") != 0)
 		return (NULL);
 	path = ft_strjoin("./", av[1]);
 	tmp_map = NULL;
-	tmp_map = read_map(path); // read full mappa
+	tmp_map = read_map(path);
 	free(path);
 	if (!tmp_map)
 		return (NULL);
@@ -60,14 +60,14 @@ int	get_map(char **tmp_map, t_map *map)
 	int	j;
 	int	size;
 	int	check_line;
-	
+
 	j = 0;
 	i = 0;
 	while (tmp_map[i] && in_map(tmp_map[i]))
-			i++;
+		i++;
 	check_line = i;
 	while (tmp_map[check_line] && !in_map(tmp_map[check_line]))
-			check_line++;
+		check_line++;
 	size = check_line - i;
 	map->map = ft_calloc(size + 1, sizeof(char *));
 	if (!map->map)
@@ -114,11 +114,11 @@ int	get_textures(char **tmp, t_map *map)
 
 int	check_characters(t_map *map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**mtx;
-	int start;
-	int end;
+	int		start;
+	int		end;
 
 	mtx = map->map;
 	i = 0;
@@ -136,14 +136,3 @@ int	check_characters(t_map *map)
 		return (1);
 	return (0);
 }
-
-int	check_configuration(t_map *map)
-{
-	if (check_line_config(map, "NO") || check_line_config(map, "SO") 
-		|| check_line_config(map, "WE") || check_line_config(map, "EA"))
-		return (1);
-	if (check_line_config(map, "F") || check_line_config(map, "C"))
-		return (1);	
-	return (0);
-}
-

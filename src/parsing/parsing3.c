@@ -6,11 +6,21 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2024/12/13 14:51:01 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:16:37 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
+
+int	check_configuration(t_map *map)
+{
+	if (check_line_config(map, "NO") || check_line_config(map, "SO")
+		|| check_line_config(map, "WE") || check_line_config(map, "EA"))
+		return (1);
+	if (check_line_config(map, "F") || check_line_config(map, "C"))
+		return (1);
+	return (0);
+}
 
 char	**check_alloc_path(char *path)
 {
@@ -44,12 +54,12 @@ int	loop_colors(t_map *map, char *tmp, int num, char *texture, char *str)
 		i += ft_strlen(tmp);
 		i += skip_spaces(&texture[i]);
 		num = check_and_skip_range(texture[i], &texture[i],
-			tmp, map, str[0]);
+				tmp, map, str[0]);
 		i += num;
 		if (num == -1)
 			break ;
 		else if (num == 0)
-				return (free(tmp),1);
+			return (free(tmp), 1);
 	}
 	free(tmp);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:41:38 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/01 21:03:39 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:21:39 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ int	check_line_config(t_map *map, char *str)
 	return (1);
 }
 
-int check_colors(char *texture, char *str, int i, t_map *map)
+int	check_colors(char *texture, char *str, int i, t_map *map)
 {
-	char *tmp;
-	int	num;
-	
+	char	*tmp;
+	int		num;
+
 	num = 0;
 	i += skip_spaces(texture + i);
 	if (check_len_color(&texture[i]))
@@ -97,14 +97,14 @@ int	check_wall_char(t_map *map, int start, int end, int i, int j)
 		if (j == start || j == end - 1)
 		{
 			if (map->map[i][j] != '1')
-			return (1);
+				return (1);
 		}
 		if (!ft_strchr("10NSEW", map->map[i][j]) && map->map[i][j] != '\n')
-			return(1);
+			return (1);
 		if (ft_strchr("NSEW", map->map[i][j]))
 			pos_or_dir(map->map[i][j], i, j, map);
 		if (j == end - 1)
-			break;
+			break ;
 		j++;
 	}
 	return (0);
@@ -115,5 +115,4 @@ void	pos_or_dir(char c, int i, int j, t_map *map)
 	map->dir = c;
 	map->p_init_pos[0] = i;
 	map->p_init_pos[1] = j;
-
 }

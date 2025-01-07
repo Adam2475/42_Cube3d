@@ -6,53 +6,41 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/02 17:28:17 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:09:04 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
-// void	add_texture_info(t_game *game)
-// {
-// 	game->texture_n.text_value = (int *)mlx_get_data_addr(game->texture_n.img.img,
-// 			&game->texture_n.img.bpp, &game->texture_n.img.line_len,
-// 			&game->texture_n.img.endian);
-// 	game->texture_s.text_value = (int *)mlx_get_data_addr(game->texture_s.img.img,
-// 			&game->texture_s.img.bpp, &game->texture_s.img.line_len,
-// 			&game->texture_s.img.endian);
-// 	game->texture_e.text_value = (int *)mlx_get_data_addr(game->texture_e.img.img,
-// 			&game->texture_e.img.bpp, &game->texture_e.img.line_len,
-// 			&game->texture_e.img.endian);
-// 	game->texture_w.text_value = (int *)mlx_get_data_addr(game->texture_w.img.img,
-// 			&game->texture_w.img.bpp, &game->texture_w.img.line_len,
-// 			&game->texture_w.img.endian);
-// }
-
 static	void	assign_texture_path(t_game *game, t_map *map) //to_change: se il path è assoluto deve funzionare ma non c'è un ./ (cambiare strdup)
 {
 	int	i;
 	int	j;
+	int skip;
 
+	skip = 0;
 	j = 0;
 	i = 0;
 	while (map->texture[i] && j <= 4)
 	{
+		skip = skip_spaces(&map->texture[i][2]);
 		if (!ft_strncmp(map->texture[i], "NO", 2) || !ft_strncmp(map->texture[i], "SO", 2) 
 		|| !ft_strncmp(map->texture[i], "WE", 2) || !ft_strncmp(map->texture[i], "EA", 2))
 		{
 			if (j == 0)
-				game->map_data.texture_no = ft_strdup(ft_strchr(map->texture[j], '.'));
+				game->map_data.texture_no = ft_strdup(&map->texture[0][2 + skip]);
 			else if (j == 1)
-				game->map_data.texture_so = ft_strdup(ft_strchr(map->texture[1], '.'));
+				game->map_data.texture_so = ft_strdup(&map->texture[1][2 + skip]);
 			else if (j == 2)
-				game->map_data.texture_we = ft_strdup(ft_strchr(map->texture[2], '.'));	
+				game->map_data.texture_we = ft_strdup(&map->texture[2][2 + skip]);
 			else if (j == 3)
-				game->map_data.texture_ea = ft_strdup(ft_strchr(map->texture[3], '.'));
+				game->map_data.texture_ea = ft_strdup(&map->texture[3][2 + skip]);
 			j++;
 		}
 		i++;
 	}
 }
+
 static	void	init_struct(t_game *game)
 {
 	game->texture_n.img.mlx_img = NULL;
@@ -65,7 +53,7 @@ static	void	init_struct(t_game *game)
 	game->texture_e.img.addr = NULL;
 }
 
-void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these images?
+void	create_textures(t_game *game, t_map *map)
 {
 	assign_texture_path(game, map);
 	char *tmp_no = ft_strdup(game->map_data.texture_ea);
@@ -88,15 +76,12 @@ void	create_textures(t_game *game, t_map *map) // da fuck is wrong with these im
 	free(tmp_ea);
 	if (!game->texture_n.img.mlx_img || !game->texture_s.img.mlx_img || !game->texture_w.img.mlx_img || !game->texture_e.img.mlx_img)
 		exit(printf("Path to textures does not exist or cannot be accessed"));
-	// add_texture_info(game);
 }
 
 void	init_player(t_player *player, t_map *map)
 {
 	player->p_x = map->p_init_pos[1] * TILE_SIZE + TILE_SIZE / 2;
 	player->p_y = map->p_init_pos[0] * TILE_SIZE + TILE_SIZE / 2;
-	player->p_tx = map->p_init_pos[1] * BLOCK;
-	player->p_ty = map->p_init_pos[0] * BLOCK;
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;
@@ -104,8 +89,6 @@ void	init_player(t_player *player, t_map *map)
 	player->left_rotate = false;
 	player->right_rotate = false;
 	init_dir(map, player);
-	player->plane_x = 0.0;
-	player->plane_y = 0.66;
 	player->fov_rd = (FOV * PI) / 180;
 }
 
@@ -132,6 +115,7 @@ void	init_dir(t_map *map, t_player *player)
 	else if (map->dir== 'W')
 		player->angle = PI;
 }
+
 void	init_map(t_map *map)
 {
 	map->texture = NULL;

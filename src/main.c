@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/20 14:37:34 by girindi          ###   ########.fr       */
+/*   Updated: 2025/01/07 19:08:39 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,21 @@ int	main(int ac, char **av)
 	map = (t_map){0};
 	game = (t_game){0};
 	
-	if (ac != 2) // If the number of arguments is not 2 quit immediatly
+	if (ac != 2)
 		return (printf("Bad number of arguments!\n"));
 	init_map(&map);
-	if (map_parsing(av, &map)) // Perform the checks on the map: extension, characters & configuration
+	if (map_parsing(av, &map))
 		return (printf("Invalid map or configuration!\n"));
-	if (game_init(av, &map, &game)) // initialize game window
+	if (game_init(av, &map, &game))
 		return (printf("Error while initializing the game\n"));
-	init_player(&game.player, &map); // initializb es the player structure
-	 // TODO : initialize textures | OK
-	 // TODO : put control on the create textures | ??!
+	init_player(&game.player, &map);
 	create_textures(&game, &map);
 	game.map_ref = &map;
-	mlx_hook(game.win, 17, 0, &exit_hook, &game); // hook for exit button on window
-	mlx_hook(game.win, 2, 1L<<0, &key_press, &game.player); // have to revise this fuckin functions
-	mlx_hook(game.win, 3, 1L<<1, &key_release, &game.player); // aka : x_event && x-mask
-	mlx_loop_hook(game.mlx, draw_loop, &game); // wtf it does??
-	mlx_loop(game.mlx); // main loop of the game
-	// TODO: do a clean all function
+	mlx_hook(game.win, 17, 0, &exit_hook, &game);
+	mlx_hook(game.win, 2, 1L<<0, &key_press, &game);
+	mlx_hook(game.win, 3, 1L<<1, &key_release, &game.player);
+	mlx_loop_hook(game.mlx, draw_loop, &game);
+	mlx_loop(game.mlx);
+
 	return (0);
 }

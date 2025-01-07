@@ -6,12 +6,11 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:48:30 by giulio            #+#    #+#             */
-/*   Updated: 2024/12/13 14:49:39 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:20:42 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
-
 
 int	check_and_skip_range(char c, char *str, char *tmp, t_map *map, char type)
 {
@@ -37,7 +36,7 @@ int	check_and_skip_range(char c, char *str, char *tmp, t_map *map, char type)
 		else
 			return (-1);
 	}
-		return (0);
+	return (0);
 }
 
 void	alloc_colors(char type, int num, t_map *map)
@@ -57,7 +56,7 @@ void	alloc_colors(char type, int num, t_map *map)
 		map->c_color[map->c_alloc] = malloc(1 * sizeof(int));
 		map->c_color[map->c_alloc][0] = num;
 		map->c_alloc++;
-	}	
+	}
 }
 
 int	check_len_color(char *str)

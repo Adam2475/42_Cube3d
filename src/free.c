@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:31:31 by giulio            #+#    #+#             */
-/*   Updated: 2024/12/20 14:53:39 by girindi          ###   ########.fr       */
+/*   Updated: 2025/01/07 19:07:19 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	free_colors(t_map *map)
 	
 }
 
-
 void	free_map(t_map *map)
 {
 	free_matrix(map->map);
@@ -67,7 +66,7 @@ void	destroy_image(t_game *game)
 	mlx_destroy_image(game->mlx, game->texture_s.img.mlx_img );
 	mlx_destroy_image(game->mlx, game->texture_e.img.mlx_img );
 	mlx_destroy_image(game->mlx, game->texture_w.img.mlx_img );
-	// mlx_destroy_image(game->mlx, game->img); //todo
+	mlx_destroy_image(game->mlx, game->img.img);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);

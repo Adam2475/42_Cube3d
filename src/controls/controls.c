@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2024/12/29 17:34:48 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:02:31 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,8 +368,11 @@ void	move_player(t_game *game)
 
 
 
-int	key_press(int keycode, t_player *player)
+int	key_press(int keycode, t_game *game)
 {
+	t_player *player;
+
+	player = &game->player;
 	if (keycode == W)
 		player->key_up = true;
 	if (keycode == S)
@@ -382,6 +385,8 @@ int	key_press(int keycode, t_player *player)
 		player->left_rotate = true;
 	if (keycode == RIGHT)
 		player->right_rotate = true;
+	if (keycode == ESC)
+		exit_hook(game);
 	return (0);
 }
 
