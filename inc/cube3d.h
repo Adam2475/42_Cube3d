@@ -17,6 +17,7 @@
 #define A 97
 #define S 115
 #define D 100
+#define ESC 65307
 
 #define LEFT 65361
 #define RIGHT 65363
@@ -231,7 +232,7 @@ float	distance(float x, float y);
 char	**duplicate_double_pointer(char **original);
 void	put_pixel2(int x, int y, int *color, t_game *game);
 // controls
-int		key_press(int keycode, t_player *player);
+int		key_press(int keycode, t_game *game);
 void	move_player(t_game *game);
 int		key_release(int keycode, t_player *player);
 int		exit_hook(t_game *game);
