@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/07 19:02:31 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/09 12:08:49 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,14 @@ int	exit_hook(t_game *game)
 	exit(1);
 	return (0);
 }
-
 int		check_collision(t_game *game, int x, int y, int direction, int speed)
 {
 	int tmp_x = 0;
 	int tmp_y = 0;
-	
-	x = 0;		//ERROR Unused parameter
-	y = 0;		//ERROR Unused parameter
 
-
-	
 	/////////////////////////////////////////////
 	//Debug
-	//printf("Angle: %f\n", game->player.angle);
+	printf("Angle: %f\n", game->player.angle);
 	//printf("y: %f\n", game->player.p_y);
 	//printf("x: %f\n", game->player.p_x);
 	//printf("wall pos: %f\n", tmp_wall);
@@ -265,108 +259,28 @@ void	move_player(t_game *game)
 		player->angle = 2 * PI;
 	int x = player->p_x / BLOCK;
 	int y = player->p_y / BLOCK;
-	// if (player->key_up && !check_collision(game, x, y, 1,  speed))
-	// {
-	// 	player->p_x += cos_angle * speed;
-	// 	player->p_y += sin_angle * speed;
-	// }
-	// if (player->key_down && !check_collision(game, x, y, 2,  speed))
-	// {
-	// 	player->p_x -= cos_angle * speed;
-	// 	player->p_y -= sin_angle * speed;
-	// }
-	// if (player->key_left && !check_collision(game, x, y, 3, speed))
-	// {
-	// 	player->p_x += sin_angle * speed;
-	// 	player->p_y -= cos_angle * speed;
-	// }
-	// if (player->key_right && !check_collision(game, x, y, 4,  speed))
-	// {
-	// 	player->p_x -= sin_angle * speed;
-	// 	player->p_y += cos_angle * speed;
-	// }
-	if (player->key_up)
+
+	if (player->key_up && !check_collision(game, x, y, 1,  speed))
 	{
 		player->p_x += cos_angle * speed;
 		player->p_y += sin_angle * speed;
 	}
-	if (player->key_down)
+	if (player->key_down && !check_collision(game, x, y, 2,  speed))
 	{
 		player->p_x -= cos_angle * speed;
 		player->p_y -= sin_angle * speed;
 	}
-	if (player->key_left)
+	if (player->key_left && !check_collision(game, x, y, 3,  speed))
 	{
 		player->p_x += sin_angle * speed;
 		player->p_y -= cos_angle * speed;
 	}
-	if (player->key_right)
+	if (player->key_right && !check_collision(game, x, y, 4,  speed))
 	{
 		player->p_x -= sin_angle * speed;
 		player->p_y += cos_angle * speed;
 	}
-    }
-// }
-// void move_player(t_game *game)
-// {
-//     t_player *player = &game->player;
-//     int speed = 3;  // Velocità di movimento
-//     float angle_speed = 0.03; // Velocità di rotazione
-//     float cos_angle = cos(player->angle);
-//     float sin_angle = sin(player->angle);
-
-//     // Muovi il giocatore senza influenzare la direzione o il piano della proiezione
-//     int x = player->p_x / BLOCK;
-//     int y = player->p_y / BLOCK;
-
-//     if (player->key_up && !check_collision(game, x, y, 1, speed))
-//     {
-//         player->p_x += cos_angle * speed;
-//         player->p_y += sin_angle * speed;
-//     }
-//     if (player->key_down && !check_collision(game, x, y, 2, speed))
-//     {
-//         player->p_x -= cos_angle * speed;
-//         player->p_y -= sin_angle * speed;
-//     }
-//     if (player->key_left && !check_collision(game, x, y, 3, speed))
-//     {
-//         player->p_x += sin_angle * speed;
-//         player->p_y -= cos_angle * speed;
-//     }
-//     if (player->key_right && !check_collision(game, x, y, 4, speed))
-//     {
-//         player->p_x -= sin_angle * speed;
-//         player->p_y += cos_angle * speed;
-//     }
-
-//     // Ruota solo se il giocatore sta ruotando
-//     if (player->left_rotate || player->right_rotate)
-//     {
-//         double old_dir_x = player->dir_x;
-//         double old_plane_x = player->plane_x;
-
-//         // Ruota la direzione del giocatore
-//         if (player->left_rotate) 
-//             player->angle -= angle_speed;
-//         if (player->right_rotate) 
-//             player->angle += angle_speed;
-
-//         if (player->angle > 2 * PI)
-//             player->angle = 0;
-//         if (player->angle < 0)
-//             player->angle = 2 * PI;
-
-//         player->dir_x = cos(player->angle);  // Allinea direzione con angolo
-//         player->dir_y = sin(player->angle);  // Allinea direzione con angolo
-
-//         // Ruota il piano di proiezione solo durante la rotazione
-//         player->plane_x = cos(player->angle) * 0.66;  // Dipendente dall'angolo
-//         player->plane_y = sin(player->angle) * 0.66;  // Dipendente dall'angolo
-//     }
-// }
-
-
+}
 
 int	key_press(int keycode, t_game *game)
 {

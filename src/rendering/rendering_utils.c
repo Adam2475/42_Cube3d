@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/07 15:29:08 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:14:55 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,8 +197,10 @@ int wall_hit(float x, float y, t_map *map)
 		return (0);
 	x_m = floor (x / TILE_SIZE);
 	y_m = floor (y / TILE_SIZE);
-	if ((y_m >= map->h_map || x_m >= map->w_map))
+	if ((y_m >= map->h_map || x_m >= map->w_map || y_m <= 0 || x_m <= 0))
 		return (0);
+	// printf("y: %d\n", y_m);
+	// printf("x: %d\n", x_m);
 	if (map->map[y_m][x_m] == '1')
 			return (0);
 	return (1);
@@ -210,8 +212,10 @@ int draw_loop(t_game *game)
 	move_player(game);
 	//////////////////////////////////////////////////////////////////
 	// Rendering 2d map for Debug:
-	//  draw_square(player->p_x, player->p_y, 5, 0x00FF00, game);
-	//  draw_map(game);
+	//printf("y: %f\n", player->p_y);
+	//printf("x: %f\n", player->p_x);
+	// draw_square(player->p_x * 64, player->p_y * 64, 5, 0x00FF00, game);
+	// draw_map(game);
 	//////////////////////////////////////////////////////////////////
 	double h_inter;
 	double v_inter;
@@ -238,6 +242,7 @@ int draw_loop(t_game *game)
 		game->ray_angle += (player->fov_rd / S_W);
 		i++;
 	}
+	usleep(1);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
