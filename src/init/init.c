@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/07 19:09:04 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/09 17:13:21 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	init_player(t_player *player, t_map *map)
 {
 	player->p_x = map->p_init_pos[1] * TILE_SIZE + TILE_SIZE / 2;
 	player->p_y = map->p_init_pos[0] * TILE_SIZE + TILE_SIZE / 2;
+	player->p_tx = map->p_init_pos[1] * BLOCK;
+	player->p_ty = map->p_init_pos[0] * BLOCK;
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;
@@ -99,7 +101,7 @@ int		game_init(char **av, t_map *map, t_game *game)
 	game->map = duplicate_double_pointer(map->map);
 	game->win = mlx_new_window(game->mlx, S_W, S_H, "Cub3d");
 	game->img.img = mlx_new_image(game->mlx, S_W, S_H);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.line_len, &game->img.endian);
+	game->img.addr = mlx_get_data_addr(game->img.img, &game->bpp, &game->size_line, &game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }

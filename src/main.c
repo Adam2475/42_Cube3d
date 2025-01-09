@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 10:40:49 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/07 19:08:39 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/09 16:55:53 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	main(int ac, char **av)
 		return (printf("Error while initializing the game\n"));
 	init_player(&game.player, &map);
 	create_textures(&game, &map);
+	printf("Pointer address of game in main: %p\n", &game);
+	
 	game.map_ref = &map;
 	mlx_hook(game.win, 17, 0, &exit_hook, &game);
 	mlx_hook(game.win, 2, 1L<<0, &key_press, &game);

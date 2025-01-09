@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/09 12:14:55 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:14:19 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,37 +212,37 @@ int draw_loop(t_game *game)
 	move_player(game);
 	//////////////////////////////////////////////////////////////////
 	// Rendering 2d map for Debug:
-	//printf("y: %f\n", player->p_y);
-	//printf("x: %f\n", player->p_x);
-	// draw_square(player->p_x * 64, player->p_y * 64, 5, 0x00FF00, game);
-	// draw_map(game);
+	printf("Player x: %f\n", player->p_x);
+	printf("Player y: %f\n", player->p_y);
+	draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
+	draw_map(game);
 	//////////////////////////////////////////////////////////////////
 	double h_inter;
 	double v_inter;
 	double angle;
 
-	game->ray_angle = player->angle - (player->fov_rd / 2);
-	int i = 0;
-	render_background(game);
-	while (i < S_W)
-	{
-		game->player.ray_dir_x = cos(game->ray_angle);
-		game->player.ray_dir_y = sin(game->ray_angle);
-		game->flag = 0;
-		h_inter = get_h_inter(player, game->map_ref, nor_angle(game->ray_angle));
-		v_inter = get_v_inter(player, game->map_ref, nor_angle(game->ray_angle));
-		if (v_inter <= h_inter)
-			game->ray_distance = v_inter;
-		else
-		{
-			game->ray_distance = h_inter;
-			game->flag = 1;
-		}
-		render_wall(game, i);
-		game->ray_angle += (player->fov_rd / S_W);
-		i++;
-	}
-	usleep(1);
+	// game->ray_angle = player->angle - (player->fov_rd / 2);
+	// int i = 0;
+	//  render_background(game);
+	// while (i < S_W)
+	// {
+	// 	game->player.ray_dir_x = cos(game->ray_angle);
+	// 	game->player.ray_dir_y = sin(game->ray_angle);
+	// 	game->flag = 0;
+	// 	h_inter = get_h_inter(player, game->map_ref, nor_angle(game->ray_angle));
+	// 	v_inter = get_v_inter(player, game->map_ref, nor_angle(game->ray_angle));
+	// 	if (v_inter <= h_inter)
+	// 		game->ray_distance = v_inter;
+	// 	else
+	// 	{
+	// 		game->ray_distance = h_inter;
+	// 		game->flag = 1;
+	// 	}
+	// 	render_wall(game, i);
+	// 	game->ray_angle += (player->fov_rd / S_W);
+	// 	i++;
+	// }
+	// usleep(1);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }

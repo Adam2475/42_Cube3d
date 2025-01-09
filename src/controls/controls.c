@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/09 12:08:49 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:21:19 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 
 	/////////////////////////////////////////////
 	//Debug
-	printf("Angle: %f\n", game->player.angle);
+	// printf("Angle: %f\n", game->player.angle);
 	//printf("y: %f\n", game->player.p_y);
 	//printf("x: %f\n", game->player.p_x);
 	//printf("wall pos: %f\n", tmp_wall);
