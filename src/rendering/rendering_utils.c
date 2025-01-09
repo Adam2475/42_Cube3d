@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/09 17:14:19 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/09 19:47:35 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,20 +210,20 @@ int draw_loop(t_game *game)
 {
 	t_player *player = &game->player;
 	move_player(game);
-	//////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////
 	// Rendering 2d map for Debug:
-	printf("Player x: %f\n", player->p_x);
-	printf("Player y: %f\n", player->p_y);
+	printf("Player px: %f player x: %f\n", player->p_x, player->p_x / BLOCK);
+	printf("Player py: %f player y: %f\n", player->p_y , player->p_y / BLOCK);
 	draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
 	draw_map(game);
-	//////////////////////////////////////////////////////////////////
-	double h_inter;
-	double v_inter;
-	double angle;
+	// //////////////////////////////////////////////////////////////////
+	// double h_inter;
+	// double v_inter;
+	// double angle;
 
 	// game->ray_angle = player->angle - (player->fov_rd / 2);
 	// int i = 0;
-	//  render_background(game);
+	// render_background(game);
 	// while (i < S_W)
 	// {
 	// 	game->player.ray_dir_x = cos(game->ray_angle);
