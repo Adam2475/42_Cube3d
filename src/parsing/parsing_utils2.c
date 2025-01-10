@@ -6,17 +6,19 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:48:30 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/07 19:20:42 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:08:58 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
 
-int	check_and_skip_range(char c, char *str, char *tmp, t_map *map, char type)
+int	check_and_skip_range(char *str, char *tmp, t_map *map, char type)
 {
-	int	num;
-	int	space;
+	int		num;
+	int		space;
+	char	c;
 
+	c = str[0];
 	space = 0;
 	if (c != ',')
 	{

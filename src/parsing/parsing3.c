@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/10 15:57:22 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:08:14 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ char	**check_alloc_path(char *path)
 	return (temp_map);
 }
 
-int	loop_colors(t_map *map, char *tmp, int num, char *texture, char *str)
+int	loop_colors(t_map *map, char *tmp, char *texture, char *str)
 {
 	int	i;
+	int	num;
 
 	i = 0;
 	while (texture[i])
@@ -53,7 +54,7 @@ int	loop_colors(t_map *map, char *tmp, int num, char *texture, char *str)
 			return (free(tmp), 1);
 		i += ft_strlen(tmp);
 		i += skip_spaces(&texture[i]);
-		num = check_and_skip_range(texture[i], &texture[i],
+		num = check_and_skip_range(&texture[i],
 				tmp, map, str[0]);
 		i += num;
 		if (num == -1)

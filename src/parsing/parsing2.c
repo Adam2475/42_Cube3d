@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:41:38 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/10 16:00:48 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:04:41 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,14 @@ int	check_line_config(t_map *map, char *str)
 int	check_colors(char *texture, char *str, int i, t_map *map)
 {
 	char	*tmp;
-	int		num;
 
-	num = 0;
 	i += skip_spaces(texture + i);
 	if (check_len_color(&texture[i]))
 		return (1);
 	tmp = calloc(4, sizeof(char));
 	if (!tmp)
 		return (1);
-	if (loop_colors(map, tmp, num, &texture[i], str))
+	if (loop_colors(map, tmp, &texture[i], str))
 		return (1);
 	return (0);
 }
@@ -105,7 +103,7 @@ int	check_wall_char(t_map *map, int start, int end, int i)
 		if (!ft_strchr("10NSEW", map->map[i][j]) && map->map[i][j] != '\n')
 			return (1);
 		if (ft_strchr("NSEW", map->map[i][j]))
-				pos_or_dir(map->map[i][j], i, j, map);
+			pos_or_dir(map->map[i][j], i, j, map);
 		if (j == end - 1)
 			break ;
 		j++;

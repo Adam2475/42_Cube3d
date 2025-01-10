@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/10 16:01:26 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:03:07 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	check_characters(t_map *map)
 	while (mtx[i])
 	{
 		start = skip_spaces(mtx[i]);
-		end = trim_spaces(mtx[i]);;
+		end = trim_spaces(mtx[i]);
 		if (check_wall_char(map, start, end, i))
 			return (1);
 		i++;

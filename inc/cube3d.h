@@ -212,8 +212,8 @@ char	**check_alloc_path(char *path);
 int		check_texture_acces(char *texture, int i);
 int		check_line_config(t_map *map, char *str);
 int		check_colors(char *texture, char *str, int i, t_map *map);
-int		loop_colors(t_map *map, char *tmp, int num, char *texture, char *str);
-int		check_and_skip_range(char c, char *str, char *tmp, t_map *map, char type);
+int		loop_colors(t_map *map, char *tmp, char *texture, char *str);
+int		check_and_skip_range(char *str, char *tmp, t_map *map, char type);
 int		check_len_color(char *str);
 void	alloc_colors(char type, int num, t_map *map);
 // GNL 
