@@ -1,18 +1,3 @@
 TODO : add sounds to collisions
-TODO : render the minimap decently
-
-----------------------------------------------------------------
-
-TODO : fix the pressing od other keys during a collision
-
-----------------------------------------------------------------
-
-TODO : add the textures | WIP!!
-
------------------------------------------------------------------
-
-TODO : put control on the create textures | ??!
-		change assign_texture when there's absolute path |
-
------------------------------------------------------------------
-TODO: add ESC control |
+TODO : fix parsing mura intorno alla mappa. 
+	Devono essere della stessa lunghezza della linea sotto. Se c'è poche mura deve dare map invalid

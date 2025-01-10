@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:41:38 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/07 19:21:39 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:00:48 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ int	check_colors(char *texture, char *str, int i, t_map *map)
 	return (0);
 }
 
-int	check_wall_char(t_map *map, int start, int end, int i, int j)
+int	check_wall_char(t_map *map, int start, int end, int i)
 {
+	int	j;
+
+	j = start;
 	while (map->map[i][j])
 	{
 		if (i == 0 || i == map->map_lines)
@@ -102,7 +105,7 @@ int	check_wall_char(t_map *map, int start, int end, int i, int j)
 		if (!ft_strchr("10NSEW", map->map[i][j]) && map->map[i][j] != '\n')
 			return (1);
 		if (ft_strchr("NSEW", map->map[i][j]))
-			pos_or_dir(map->map[i][j], i, j, map);
+				pos_or_dir(map->map[i][j], i, j, map);
 		if (j == end - 1)
 			break ;
 		j++;

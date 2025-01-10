@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odudniak <odudniak@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/10 10:50:26 by odudniak         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:20:51 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,7 @@ static int calc_tex_x(t_game *game, t_img *texture, int flag)
 	tex_x = (int)((text_perc_px_hit) * 64);
 	if (texture && texture->width > 0 && tex_x >= texture->width)
 		tex_x = texture->width - 1;
-	tex_x = int_imax(0, tex_x);
-	//printf("tex_x: %d\n", tex_x);
+	tex_x = int_imax(0, tex_x);;
 	return (tex_x);
 }
 
@@ -161,8 +160,7 @@ void draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h)
 	// Calc scaled textpos
 	step = (1.0 * (double)64 / (double)wall_h); // aka: texture.scale
 	tex_pos = (t_pix - (S_H / 2) + wall_h / 2) * step; // aka: scaled_textpos
-	/////////////////////////////////////////////////////////////////////
-	//printf("%d\n", tex_x);
+	/////////////////////////////////////////////////////////////////////;
 	while (t_pix < b_pix)
 	{
 		tex_y = calc_tex_y(game, texture, tex_pos);
@@ -199,8 +197,6 @@ int wall_hit(float x, float y, t_map *map)
 	y_m = floor (y / TILE_SIZE);
 	if ((y_m >= map->h_map || x_m >= map->w_map || y_m <= 0 || x_m <= 0))
 		return (0);
-	// printf("y: %d\n", y_m);
-	// printf("x: %d\n", x_m);
 	if (map->map[y_m][x_m] == '1')
 			return (0);
 	return (1);
@@ -211,18 +207,14 @@ int draw_loop(t_game *game)
 	t_player *player = &game->player;
 	move_player(game);
 	clear_image(game);
-	// //////////////////////////////////////////////////////////////////
-	// Rendering 2d map for Debug:
-	//printf("Player px: %f player x: %f\n", player->p_x, player->p_x / BLOCK);
-	//printf("Player py: %f player y: %f\n", player->p_y , player->p_y / BLOCK);
-	// //////////////////////////////////////////////////////////////////
 	 double h_inter;
 	 double v_inter;
 	 double angle;
 
 	 game->ray_angle = player->angle - (player->fov_rd / 2);
+	 game->ray_angle = nor_angle(game->ray_angle);
 	 int i = 0;
-	 //render_background(game);
+	 render_background(game);
 	 while (i < S_W)
 	 {
 	 	game->player.ray_dir_x = cos(game->ray_angle);
@@ -239,12 +231,11 @@ int draw_loop(t_game *game)
 	 	}
 	 	render_wall(game, i);
 	 	game->ray_angle += (player->fov_rd / S_W);
+		game->ray_angle = nor_angle(game->ray_angle);
 	 	i++;
 	 }
-	draw_map(game);
-	draw_square(player->p_x / TILE_SIZE * BLOCK, player->p_y / TILE_SIZE * BLOCK, 10, 0x00FF00, game);
-
-	// usleep(1);
+	// draw_map(game);
+	// draw_square(player->p_x / TILE_SIZE * BLOCK, player->p_y / TILE_SIZE * BLOCK, 10, 0x00FF00, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }

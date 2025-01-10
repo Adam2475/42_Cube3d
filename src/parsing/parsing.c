@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/07 19:20:05 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:01:26 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,20 +115,17 @@ int	get_textures(char **tmp, t_map *map)
 int	check_characters(t_map *map)
 {
 	int		i;
-	int		j;
 	char	**mtx;
 	int		start;
 	int		end;
 
 	mtx = map->map;
 	i = 0;
-	map->p_init_pos[0] = -1;
 	while (mtx[i])
 	{
 		start = skip_spaces(mtx[i]);
-		end = trim_spaces(mtx[i]);
-		j = start;
-		if (check_wall_char(map, start, end, i, j))
+		end = trim_spaces(mtx[i]);;
+		if (check_wall_char(map, start, end, i))
 			return (1);
 		i++;
 	}

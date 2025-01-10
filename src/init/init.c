@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/09 19:50:44 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 15:29:13 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	void	init_struct(t_game *game)
 void	create_textures(t_game *game, t_map *map)
 {
 	assign_texture_path(game, map);
-	char *tmp_no = ft_strdup(game->map_data.texture_ea);
+	char *tmp_no = ft_strdup(game->map_data.texture_no);
 	char *tmp_so = ft_strdup(game->map_data.texture_so);
 	char *tmp_we = ft_strdup(game->map_data.texture_we);
 	char *tmp_ea = ft_strdup(game->map_data.texture_ea);
@@ -130,4 +130,6 @@ void	init_map(t_map *map)
 	map->f_alloc = 0;
 	map->h_map = 6;
 	map->w_map = 25;
+	map->p_init_pos[0] = -1;
+	map->p_init_pos[1] = -1;
 }
