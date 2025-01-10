@@ -1,3 +1,4 @@
 TODO : add sounds to collisions
 TODO : fix parsing mura intorno alla mappa. 
-	Devono essere della stessa lunghezza della linea sotto. Se c'è poche mura deve dare map invalid
+	Devono essere della stessa lunghezza della linea sotto. Se c'è poche mura deve dare map invalid | OK
+TODO : togliere ciclo for in	char **duplicate_double_pointer(char **original)

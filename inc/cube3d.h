@@ -188,7 +188,8 @@ int		game_init(char **av, t_map *map, t_game *game);
 void	init_player(t_player *player, t_map *map);
 void	init_dir(t_map *map, t_player *player);
 int		key_release(int keycode, t_player *player);
-void	add_texture_info(t_game *game);
+void	init_struct(t_game *game);
+void	assign_texture_path(t_game *game, t_map *map);
 // Parsing
 int		check_wall_char(t_map *map, int start, int end, int i);
 char	**check_and_read(char **av);
@@ -231,6 +232,7 @@ void	draw_square(int x, int y, int size, int color, t_game *game);
 float	distance(float x, float y);
 char	**duplicate_double_pointer(char **original);
 void	put_pixel2(int x, int y, int *color, t_game *game);
+int		ft_strnlen(char *str, int n);
 // controls
 int		key_press(int keycode, t_game *game);
 void	move_player(t_game *game);

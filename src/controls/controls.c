@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/09 12:21:19 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 18:25:15 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 int	exit_hook(t_game *game)
 {
-	// (void)player;
 	printf("Window Closed\n");
 	destroy_image(game);
 	free_matrix(game->map);
 	free_map(game->map_ref);
 	free_textures(game);
-	//free_exit(vars);
 	exit(1);
 	return (0);
 }
@@ -29,23 +27,13 @@ int		check_collision(t_game *game, int x, int y, int direction, int speed)
 	int tmp_x = 0;
 	int tmp_y = 0;
 
-	/////////////////////////////////////////////
-	//Debug
-	// printf("Angle: %f\n", game->player.angle);
-	//printf("y: %f\n", game->player.p_y);
-	//printf("x: %f\n", game->player.p_x);
-	//printf("wall pos: %f\n", tmp_wall);
-	/////////////////////////////////////////////
-
-	if (direction == 1 && (game->player.angle >= 3.1 && game->player.angle <= 6.5)) // Case for going up in straight line
+	if (direction == 1 && (game->player.angle >= 3.1 && game->player.angle <= 6.5))
 	{
 		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
 		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
 		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
 		{
 			float tmp_wall = (float)((tmp_y) * TILE_SIZE);
-			// printf("y: %f\n", game->player.p_y);
-			// printf("wall pos: %f\n", tmp_wall);
 			if (game->player.p_y <= (tmp_wall + 5))
 				return (printf("Top collision!!\n"));
 		}
