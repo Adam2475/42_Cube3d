@@ -73,6 +73,7 @@ int unit_circle(float angle, char c)
 	return (0);
 }
 
+
 int inter_check(float angle, float *inter, float *step, int is_horizon)
 {
 	if (is_horizon)
@@ -98,8 +99,8 @@ int inter_check(float angle, float *inter, float *step, int is_horizon)
 
 bool	touch(float px, float py, t_game *game)
 {
-	int x = px / BLOCK;
-	int y = py / BLOCK;
+	int x = px / TILE_SIZE;
+	int y = py / TILE_SIZE;
 	if (game->map[y][x] == '1')
 		return (true);
 	return (false);

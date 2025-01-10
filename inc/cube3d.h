@@ -11,7 +11,7 @@
 #define S_W 1900 // screen width
 #define S_H 1000 // screen height
 
-#define BLOCK 64
+#define BLOCK 32
 
 #define W 119
 #define A 97
@@ -24,7 +24,7 @@
 
 #define PI 3.14159265359
 
-#define TILE_SIZE 30 // tile size
+#define TILE_SIZE 64 // tile size
 #define FOV 60 // field of view
 #define ROTATION_SPEED 0.045 // rotation speed
 #define PLAYER_SPEED 4 // player speed

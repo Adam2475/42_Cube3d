@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odudniak <odudniak@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/09 19:47:35 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/10 10:50:26 by odudniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	clear_image(t_game *game)
 {
 	for (int y = 0; y < S_H; y++)
 		for(int x = 0; x < S_W; x++)
-			put_pixel(x, y, 0, game->img.img);
+			put_pixel(x, y, 0, game);
 }
 
 void	define_texture(t_game *game, int start, int line_height)
@@ -210,38 +210,40 @@ int draw_loop(t_game *game)
 {
 	t_player *player = &game->player;
 	move_player(game);
+	clear_image(game);
 	// //////////////////////////////////////////////////////////////////
 	// Rendering 2d map for Debug:
-	printf("Player px: %f player x: %f\n", player->p_x, player->p_x / BLOCK);
-	printf("Player py: %f player y: %f\n", player->p_y , player->p_y / BLOCK);
-	draw_square(player->p_x, player->p_y, 10, 0x00FF00, game);
-	draw_map(game);
+	//printf("Player px: %f player x: %f\n", player->p_x, player->p_x / BLOCK);
+	//printf("Player py: %f player y: %f\n", player->p_y , player->p_y / BLOCK);
 	// //////////////////////////////////////////////////////////////////
-	// double h_inter;
-	// double v_inter;
-	// double angle;
+	 double h_inter;
+	 double v_inter;
+	 double angle;
 
-	// game->ray_angle = player->angle - (player->fov_rd / 2);
-	// int i = 0;
-	// render_background(game);
-	// while (i < S_W)
-	// {
-	// 	game->player.ray_dir_x = cos(game->ray_angle);
-	// 	game->player.ray_dir_y = sin(game->ray_angle);
-	// 	game->flag = 0;
-	// 	h_inter = get_h_inter(player, game->map_ref, nor_angle(game->ray_angle));
-	// 	v_inter = get_v_inter(player, game->map_ref, nor_angle(game->ray_angle));
-	// 	if (v_inter <= h_inter)
-	// 		game->ray_distance = v_inter;
-	// 	else
-	// 	{
-	// 		game->ray_distance = h_inter;
-	// 		game->flag = 1;
-	// 	}
-	// 	render_wall(game, i);
-	// 	game->ray_angle += (player->fov_rd / S_W);
-	// 	i++;
-	// }
+	 game->ray_angle = player->angle - (player->fov_rd / 2);
+	 int i = 0;
+	 //render_background(game);
+	 while (i < S_W)
+	 {
+	 	game->player.ray_dir_x = cos(game->ray_angle);
+	 	game->player.ray_dir_y = sin(game->ray_angle);
+	 	game->flag = 0;
+	 	h_inter = get_h_inter(player, game->map_ref, nor_angle(game->ray_angle));
+	 	v_inter = get_v_inter(player, game->map_ref, nor_angle(game->ray_angle));
+	 	if (v_inter <= h_inter)
+	 		game->ray_distance = v_inter;
+	 	else
+	 	{
+	 		game->ray_distance = h_inter;
+	 		game->flag = 1;
+	 	}
+	 	render_wall(game, i);
+	 	game->ray_angle += (player->fov_rd / S_W);
+	 	i++;
+	 }
+	draw_map(game);
+	draw_square(player->p_x / TILE_SIZE * BLOCK, player->p_y / TILE_SIZE * BLOCK, 10, 0x00FF00, game);
+
 	// usleep(1);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);

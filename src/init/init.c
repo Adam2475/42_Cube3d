@@ -82,8 +82,8 @@ void	init_player(t_player *player, t_map *map)
 {
 	player->p_x = map->p_init_pos[1] * TILE_SIZE + TILE_SIZE / 2;
 	player->p_y = map->p_init_pos[0] * TILE_SIZE + TILE_SIZE / 2;
-	player->p_tx = map->p_init_pos[1] * BLOCK;
-	player->p_ty = map->p_init_pos[0] * BLOCK;
+	player->p_tx = map->p_init_pos[1] * TILE_SIZE;
+	player->p_ty = map->p_init_pos[0] * TILE_SIZE;
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;
