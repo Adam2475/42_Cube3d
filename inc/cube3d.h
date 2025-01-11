@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
+/*   Updated: 2025/01/11 19:55:31 by giulio           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -8,69 +20,41 @@
 #include "../mlx_linux/mlx.h"
 #include "../libft/libft.h"
 
-#define S_W 1900 // screen width
-#define S_H 1000 // screen height
-
+#define S_W 1900
+#define S_H 1000
 #define BLOCK 32
-
 #define W 119
 #define A 97
 #define S 115
 #define D 100
 #define ESC 65307
-
 #define LEFT 65361
 #define RIGHT 65363
-
 #define PI 3.14159265359
-
-#define TILE_SIZE 64 // tile size
-#define FOV 60 // field of view
-#define ROTATION_SPEED 0.045 // rotation speed
-#define PLAYER_SPEED 4 // player speed
-
-enum	e_direction
-{
-	NORTH = 0,
-	SOUTH = 1,
-	EAST = 2,
-	WEST = 3
-};
+#define TILE_SIZE 64
+#define FOV 60
+#define ROTATION_SPEED 0.045
+#define PLAYER_SPEED 4
 
 typedef struct s_player
 {
-	float	p_x; // player x position in pixels
-	float	p_y; // player y position in pixels
-	float	p_tx; // player x position in tiles
-	float	p_ty; // player y position in tiles
-	float	dir_x;
-	float	dir_y;
+	float	p_x;
+	float	p_y;
 	float	plane_x;
 	float	plane_y;
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	fov_rd;
-	// Basic commands
-	bool	key_up; // up key press flag
-	bool	key_down; // down key press flag
-	bool	key_left; // left key press flag
-	bool	key_right; // right key press flag
-
-	// Track rotation
-	float	angle; // angle of rotation of the player
-	bool 	left_rotate; // flag for when rotating left
-	bool	right_rotate; // flag for when rotating right
+	bool	key_up;
+	bool	key_down;
+	bool	key_left;
+	bool	key_right;
+	float	angle;
+	bool	left_rotate;
+	bool	right_rotate;
 
 }	t_player;
-
-typedef struct s_color
-{
-	int	red;
-	int	green;
-	int	blue;
-	int	alpha;
-}	t_color;
 
 typedef struct s_img
 {
@@ -92,19 +76,15 @@ typedef struct s_texture
 
 typedef struct s_data
 {
-	char	**map2d; // the map
+	char	**map2d;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;
 	char	*texture_ea;
-
-	int p_x; // player x position
-	int p_y; // player y position
-	int w_map; // map width
-	int h_map; // map height
-
-	t_color	floor;
-	t_color	ceiling;
+	int		p_x;
+	int		p_y;
+	int		w_map;
+	int		h_map;
 }	t_data;
 
 typedef	struct s_map
@@ -123,65 +103,29 @@ typedef	struct s_map
 	int		w_map;
 	double	ray_dir_x;
 	double	ray_dir_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perpwalldist;
-
-	double	side_dist_x;
-	double	side_dist_y;
-
-	int		wall_side; // the side of the wall we are looking at
-
-	int		step_x;
-	int		step_y;
-
-	double	pos_x;
-	double	pos_y;
-
-	float	map_x;
-	float	map_y;
-
-	double	wall_x;
-	double	tex_x;
-	double	tex_y;
-	double	step;
-	double	tex_pos;
-
-	int		start;
 }	t_map;
 
 typedef struct s_game
 {
-	void	*mlx; // ptr to mlx structure
-	void	*win; // ptr to the window structure
-	//void *img; // ptr to the image path
-	t_img	img;
-
-	// variables for the put_pixel function
-	char *data;
-	int bpp;
-	int size_line;
-	int endian;
-	int flag;
-	double ray_distance;
-	double ray_angle;
-	char	**map; // a copy of the map
-	double scaled_textpos;
-
+	void		*mlx;
+	void		*win;
+	char		*data;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	int			flag;
+	double		ray_distance;
+	double		ray_angle;
+	char		**map;
+	t_img		img;
 	t_texture	texture_n;
 	t_texture	texture_e;
 	t_texture	texture_w;
 	t_texture	texture_s;
-
-	t_player	player; // an istance of the player structure
-	//t_img		img;
+	t_player	player;
 	t_map		*map_ref;
 	t_data		map_data;
 }	t_game;
-
-/////////////////////////////////////////////
-// Prototypes
-// Initialization :
 
 void	init_map(t_map *map);
 int		game_init(char **av, t_map *map, t_game *game);
@@ -190,7 +134,6 @@ void	init_dir(t_map *map, t_player *player);
 int		key_release(int keycode, t_player *player);
 void	init_struct(t_game *game);
 void	assign_texture_path(t_game *game, t_map *map);
-// Parsing
 int		check_wall_char(t_map *map, int start, int end, int i);
 char	**check_and_read(char **av);
 int		map_parsing(char **av, t_map *map);
@@ -200,7 +143,6 @@ int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
 void	pos_or_dir(char c, int i, int j, t_map *map);
 int		check_configuration(t_map *map);
-//parsing utils
 char	*cub3d_strdup(char *str);
 int		out_map(char *line);
 int		in_map(char *line);
@@ -217,11 +159,9 @@ int		loop_colors(t_map *map, char *tmp, char *texture, char *str);
 int		check_and_skip_range(char *str, char *tmp, t_map *map, char type);
 int		check_len_color(char *str);
 void	alloc_colors(char type, int num, t_map *map);
-// GNL 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *backup, char *buffer);
 char	*divide_line(char **backup);
-// utils
 char	*strjoin_free(char *s1, char *s2);
 void	free_matrix(char **matrix);
 int		skip_spaces(char *str);
@@ -232,13 +172,11 @@ void	draw_square(int x, int y, int size, int color, t_game *game);
 char	**duplicate_double_pointer(char **original);
 void	put_pixel2(int x, int y, int *color, t_game *game);
 int		ft_strnlen(char *str, int n);
-// controls
 int		key_press(int keycode, t_game *game);
 void	move_player(t_game *game);
 int		key_release(int keycode, t_player *player);
 int		exit_hook(t_game *game);
 int		check_collision(t_game *game, int x, int y, int direction, int speed);
-// rendering
 int		draw_loop(t_game *game);
 void	draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h);
 void	create_textures(t_game *game, t_map *map);
@@ -252,16 +190,11 @@ int		calc_tex_x(t_game *game, t_img *texture, int flag);
 int		calc_tex_y(t_game *game, t_img *texture, double tex_pos);
 double	calc_wall_px_hit(t_game *game, int flag);
 t_img	*define_side(t_game *game);
-// debug
-///////////////////////////////////////////////
 void	print_map(char **map);
-//free
 void	free_map(t_map *map);
 void	free_colors(t_map *map);
 void	free_textures(t_game *game);
 void	destroy_image(t_game *game);
-
-
 float	get_v_inter(t_player *player, t_map *map, float angl);
 float	get_h_inter(t_player *player, t_map *map, float angl);
 int		wall_hit(float x, float y, t_map *map);

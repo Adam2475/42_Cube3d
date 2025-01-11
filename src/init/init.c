@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/10 18:15:51 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/11 19:50:20 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	init_player(t_player *player, t_map *map)
 {
 	player->p_x = map->p_init_pos[1] * TILE_SIZE + TILE_SIZE / 2;
 	player->p_y = map->p_init_pos[0] * TILE_SIZE + TILE_SIZE / 2;
-	player->p_tx = map->p_init_pos[1] * TILE_SIZE;
-	player->p_ty = map->p_init_pos[0] * TILE_SIZE;
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;
