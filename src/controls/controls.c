@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/10 18:25:15 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/11 19:40:08 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	exit_hook(t_game *game)
 	exit(1);
 	return (0);
 }
+
 int		check_collision(t_game *game, int x, int y, int direction, int speed)
 {
 	int tmp_x = 0;

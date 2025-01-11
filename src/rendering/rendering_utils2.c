@@ -3,105 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/07 11:12:58 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/07 11:41:44 by adapassa         ###   ########.fr       */
+/*   Created: 2024/11/28 16:16:00 by adapassa          #+#    #+#             */
+/*   Updated: 2025/01/11 19:24:04 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
 
-float get_h_inter(t_player *player, t_map *map, float angl)
+int	create_trgb(int t, int r, int g, int b)
 {
-	float h_x;
-	float h_y;
-	float x_step;
-	float y_step;
-	int  pixel;
-
-	y_step = TILE_SIZE;
-	x_step = TILE_SIZE / tan(angl);
-	h_y = floor(player->p_y / TILE_SIZE) * TILE_SIZE;
-	pixel = inter_check(angl, &h_y, &y_step, 1);
-	h_x = player->p_x + (h_y - player->p_y) / tan(angl);
-	if ((unit_circle(angl, 'y') && x_step > 0) || (!unit_circle(angl, 'y') && x_step < 0))
-		x_step *= -1;
-	while (wall_hit(h_x, h_y - pixel, map))
-	{
-		h_x += x_step;
-		h_y += y_step;
-	}
-	return (sqrt(pow(h_x - player->p_x, 2) + pow(h_y - player->p_y, 2)));
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-float get_v_inter(t_player *player, t_map *map, float angl)
+static void	assign_colors(t_map *map, int color_f[3], int color_c[3])
 {
-	float v_x;
-	float v_y;
-	float x_step;
-	float y_step;
-	int  pixel;
-
-	x_step = TILE_SIZE; 
-	y_step = TILE_SIZE * tan(angl);
-	v_x = floor(player->p_x / TILE_SIZE) * TILE_SIZE;
-	pixel = inter_check(angl, &v_x, &x_step, 0);
-	v_y = player->p_y + (v_x - player->p_x) * tan(angl);
-	if ((unit_circle(angl, 'x') && y_step < 0) || (!unit_circle(angl, 'x') && y_step > 0))
-		y_step *= -1;
-	while (wall_hit(v_x - pixel, v_y, map))
-	{
-		v_x += x_step;
-		v_y += y_step;
-	}
-	return (sqrt(pow(v_x - player->p_x, 2) + pow(v_y - player->p_y, 2)));
+	color_f[0] = *map->f_color[0];
+	color_f[1] = *map->f_color[1];
+	color_f[2] = *map->f_color[2];
+	color_c[0] = *map->c_color[0];
+	color_c[1] = *map->c_color[1];
+	color_c[2] = *map->c_color[2];
 }
 
-int unit_circle(float angle, char c)
+void	render_background(t_game *game)
 {
-	if (c == 'x')
-	{
-		if (angle > 0 && angle < PI)
-		return (1);
-	}
-	else if (c == 'y')
-	{
-		if (angle > (PI / 2) && angle < (3 * PI) / 2)
-		return (1);
-	}
-	return (0);
-}
+	t_map	*map;
+	int		x;
+	int		y;
+	int		color_f[3];
+	int		color_c[3];
 
-
-int inter_check(float angle, float *inter, float *step, int is_horizon)
-{
-	if (is_horizon)
+	map = game->map_ref;
+	assign_colors(map, color_f, color_c);
+	x = 0;
+	while (x < S_W)
 	{
-		if (angle > 0 && angle < PI)
+		y = 0;
+		while (y < (S_H - 1))
 		{
-			*inter += TILE_SIZE;
-			return (-1);
+			if (y < (S_H / 2))
+				img_pix_put(game, x, y++, create_trgb(0, color_c[0],
+						color_c[1], color_c[2]));
+			else
+				img_pix_put(game, x, y++, create_trgb(0, color_f[0],
+						color_f[1], color_f[2]));
 		}
-		*step *= -1;
+		x++;
 	}
-	else
-	{
-		if (!(angle > PI / 2 && angle < 3 * PI / 2)) 
-		{
-			*inter += TILE_SIZE;
-			return (-1);
-		}
-		*step *= -1;
-	}
-	return (1);
 }
 
-bool	touch(float px, float py, t_game *game)
+void	img_pix_put(t_game *game, int x, int y, int color)
 {
-	int x = px / TILE_SIZE;
-	int y = py / TILE_SIZE;
-	if (game->map[y][x] == '1')
-		return (true);
-	return (false);
+	char	*pixel;
+
+	if (y < 0 || y > S_H - 1 || x < 0
+		|| x > S_W - 1)
+		return ;
+	pixel = (game->img.addr + (y * game->img.line_len
+				+ x * (game->img.bpp / 8)));
+	*(int *)pixel = color;
+}
+
+double	normalize_to_one(double num)
+{
+	return (num - floor(num));
 }

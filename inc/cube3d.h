@@ -229,7 +229,6 @@ int		trim_spaces(char *str);
 int		num_len(int n);
 void	put_pixel(int x, int y, int color, t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
-float	distance(float x, float y);
 char	**duplicate_double_pointer(char **original);
 void	put_pixel2(int x, int y, int *color, t_game *game);
 int		ft_strnlen(char *str, int n);
@@ -241,16 +240,19 @@ int		exit_hook(t_game *game);
 int		check_collision(t_game *game, int x, int y, int direction, int speed);
 // rendering
 int		draw_loop(t_game *game);
-void	draw_line(t_player *player, t_game *game, float start_x, int i);
-void draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h);
-bool	touch(float px, float py, t_game *game);
+void	draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h);
 void	create_textures(t_game *game, t_map *map);
 void	render_background(t_game *game);
-void	define_texture(t_game *game, int start, int line_height);
-void	define_column(t_map *map, int *line_height, int *start, int *end);
 void	img_pix_put(t_game *game, int x, int y, int color);
+float	nor_angle(float angle);
+double	normalize_to_one(double num);
+int		int_imax(int n1, int n2);
+int		get_texture_color(t_img *texture, int x, int y);
+int		calc_tex_x(t_game *game, t_img *texture, int flag);
+int		calc_tex_y(t_game *game, t_img *texture, double tex_pos);
+double	calc_wall_px_hit(t_game *game, int flag);
+t_img	*define_side(t_game *game);
 // debug
-char	**save_map(void);
 ///////////////////////////////////////////////
 void	print_map(char **map);
 //free

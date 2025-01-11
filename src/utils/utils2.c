@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:09 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/10 18:22:48 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/11 19:38:08 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ void	put_pixel2(int x, int y, int *color, t_game *game)
 
 void	draw_square(int x, int y, int size, int color, t_game *game)
 {
-	for (int i = 0; i < size; i++)
+	int	i;
+
+	i = -1;
+	while (++i < size)
 		put_pixel(x + i, y, color, game);
-	for (int i = 0; i < size; i++)
+	i = -1;
+	while (++i < size)
 		put_pixel(x, y + i, color, game);
-	for (int i = 0; i < size; i++)
+	i = -1;
+	while (++i < size)
 		put_pixel(x + size, y + i, color, game);
-	for (int i = 0; i < size; i++)
+	i = -1;
+	while (++i < size)
 		put_pixel(x + i, y + size, color, game);
 }
 
@@ -69,32 +75,4 @@ int	ft_strnlen(char *str, int n)
 	while (str[i] && i <= n)
 		i++;
 	return (i);
-}
-
-char	**duplicate_double_pointer(char **original)
-{
-	size_t	i;
-	size_t	count;
-	char	**duplicate;
-
-	i = 0;
-	count = 0;
-	while (original && original[count])
-		count++;
-	duplicate = malloc((count + 1) * sizeof(char *));
-	if (!duplicate)
-		return (NULL);
-	for (i = 0; i < count; i++)
-	{
-		duplicate[i] = ft_strdup(original[i]);
-		if (!duplicate[i])
-		{
-			while (i > 0)
-				free(duplicate[--i]);
-			free(duplicate);
-			return (NULL);
-		}
-	}
-	duplicate[count] = NULL;
-	return (duplicate);
 }
