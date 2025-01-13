@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/10 17:14:31 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/13 18:51:44 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
+
 
 int	map_parsing(char **av, t_map *map)
 {
@@ -33,6 +34,7 @@ int	map_parsing(char **av, t_map *map)
 	}
 	if (check_configuration(map))
 		return (1);
+	init_map_h_w(map);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:23:12 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/11 19:50:20 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/13 18:48:31 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	init_map(t_map *map)
 	map->f_color = NULL;
 	map->c_alloc = 0;
 	map->f_alloc = 0;
-	map->h_map = 6;
-	map->w_map = 25;
+	map->h_map = 0;
+	map->w_map = 0;
 	map->p_init_pos[0] = -1;
 	map->p_init_pos[1] = -1;
 }

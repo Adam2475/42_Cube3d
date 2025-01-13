@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: giulio <giulio@student.42.fr>              +#+  +:+       +#+         #
+#    By: girindi <girindi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2025/01/11 19:35:26 by giulio           ###   ########.fr        #
+#    Updated: 2025/01/13 18:33:57 by girindi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-NAME = cub3d
+NAME = cub3D
 FLAGS = -g 
 # -Wall -Wextra -Werror
 SRC =	src/main.c src/debug.c \
