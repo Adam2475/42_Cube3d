@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/14 09:25:40 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:40:44 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 #define ROTATION_SPEED 0.045
 #define PLAYER_SPEED 4
 
-#define TARGET_FPS 50
+#define TARGET_FPS 100
 #define FRAME_TIME_MS (1000 / TARGET_FPS)
 
 typedef struct s_player
@@ -206,3 +206,7 @@ float	get_h_inter(t_player *player, t_map *map, float angl);
 int		wall_hit(float x, float y, t_map *map);
 int		inter_check(float angle, float *inter, float *step, int is_horizon);
 int		unit_circle(float angle, char c);
+int		check_direction_up(t_game *game, int code);
+int		check_direction_down(t_game *game, int code);
+int		check_direction_left(t_game *game, int code);
+int		check_direction_right(t_game *game, int code);

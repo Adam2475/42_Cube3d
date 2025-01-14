@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/14 09:24:31 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:39:33 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,228 +25,61 @@ int	exit_hook(t_game *game)
 
 int		check_collision(t_game *game, int direction)
 {
-	int tmp_x = 0;
-	int tmp_y = 0;
-
-	if (direction == 1 && (game->player.angle >= 3.1 && game->player.angle <= 6.5))
+	int	result = 0;
+	if (direction == 1)
 	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y) * TILE_SIZE);
-			if (game->player.p_y <= (tmp_wall + 5))
-				return (printf("Top collision!!\n"));
-		}
-	}
-	if (direction == 1 && (game->player.angle >= 1 && game->player.angle <= 5)) // Case for going left in straight line
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x - 1] && game->map[(int)tmp_y][(int)tmp_x - 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x) * TILE_SIZE);
-			if (game->player.p_x <= (tmp_wall + 5))
-				return (printf("Top-left collision!!\n"));
-		}
-	}
-	if (direction == 1 && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle > 4.7)) // Case for going right in straight line
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x + 1) * TILE_SIZE);
-			// printf("x: %f\n", game->player.p_x);
-			// printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_x >= (tmp_wall - 13))
-				return (printf("Top-right collision!!\n"));
-		}
-	}
-	if (direction == 1 && (game->player.angle >= 0.01 && game->player.angle < 3)) // Case for going down in straight line
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y + 1][tmp_x] && game->map[(int)tmp_y + 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y + 1) * TILE_SIZE);
-			// printf("y: %f\n", game->player.p_y);
-			// printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_y >= (tmp_wall - 11))
-				return (printf("Top-down collision!!\n"));
-		}
+		if (!result && game->player.angle >= 3.1 && game->player.angle <= 6.5)
+			result = (check_direction_up(game, 0));
+		if (!result && game->player.angle >= 1 && game->player.angle <= 5) // Case for going left in straight line
+			result = (check_direction_up(game, 1));
+		if (!result && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle > 4.7)) // Case for going right in straight line
+			result = (check_direction_up(game, 2));
+		if (!result && game->player.angle >= 0.01 && game->player.angle < 3) // Case for going down in straight line
+			result = (check_direction_up(game, 3));
 	}
 /* ------------------------------------------------------------------------------------------------------------------- */ 
-	// Down
-	if (direction == 2 && (game->player.angle >= 0.0 && game->player.angle <= 3.1)) // Case for pressing down and goind upwards
+	if (direction == 2)
 	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y) * TILE_SIZE);
-			if (game->player.p_y <= (tmp_wall + 5))
-				return (printf("Back-top collision!!\n"));
-		}
+		if (!result && game->player.angle >= 0.0 && game->player.angle <= 3.1) // Case for pressing down and goind upwards
+			result = (check_direction_down(game, 0));
+		if (!result && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle >= 4.6)) // Case for pressing down and going left backwards
+			result = (check_direction_down(game, 1));
+		if (!result && game->player.angle >= 1.5 && game->player.angle <= 4.7) // Case for pressing down and goind right backwards
+			result = (check_direction_down(game, 2));
+		if (!result && game->player.angle >= 3 && game->player.angle <= 6.4) // Case for pressing down and going down backwards
+			result = (check_direction_down(game, 3));
 	}
-	if (direction == 2 && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle >= 4.6)) // Case for pressing down and going left backwards
+/* --------------------------------------------------------------------------------------------------------- */
+	if (direction == 3)
 	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x - 1] && game->map[(int)tmp_y][(int)tmp_x - 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x) * TILE_SIZE);
-			// printf("x: %f\n", game->player.p_x);
-			// printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_x <= (tmp_wall + 5))
-				return (printf("Back-left collision!!\n"));
-		}
+		if (!result && game->player.angle <= 1.5 || game->player.angle >= 4.5) // Case for going up while pressing the left key
+			result = (check_direction_left(game, 0));
+		if (!result && game->player.angle >= 3 && game->player.angle <= 6.3) // Case for going left while pressing left
+			result = (check_direction_left(game, 1));
+		if (!result && ((game->player.angle >= 0 && game->player.angle <= 3.3) || game->player.angle > 6)) // Case for going right while pressing left
+			result = (check_direction_left(game, 2));
+		if (!result && game->player.angle >= 1.5 && game->player.angle <= 6) // Case for pressing left while going down in straight line
+			result = (check_direction_left(game, 3));
 	}
-	// down - right
-	if (direction == 2 && (game->player.angle >= 1.5 && game->player.angle <= 4.7)) // Case for pressing down and goind right backwards
+/* --------------------------------------------------------------------------------------------------------- */
+	if (direction == 4)
 	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x + 1) * TILE_SIZE);
-			// printf("x: %f\n", game->player.p_x);
-			// printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_x >= (tmp_wall - 12))
-			{
-				printf("Back-right collision!!\n");
-				return (1);
-			}
-		}
+		if (!result && game->player.angle > 1.5 && game->player.angle <= 4.8) // Case for going up while pressing right
+			result = (check_direction_right(game, 0));
+		if (!result && game->player.angle >= 0 && game->player.angle <= 4) // Case for going left while pressing right
+			result = (check_direction_right(game, 1));
+		if (!result && ((game->player.angle >= 3.3 && game->player.angle <= 6) || game->player.angle > 6)) // Case for going right while pressing right
+			result = (check_direction_right(game, 2));
+		if (!result && (game->player.angle >= 0 && game->player.angle <= 6) || game->player.angle > 6) // Case for going down while pressing right
+			result = (check_direction_right(game, 3));
 	}
-	// down - down
-	if (direction == 2 && (game->player.angle >= 3 && game->player.angle <= 6.4)) // Case for pressing down and going down backwards
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y + 1][tmp_x] && game->map[(int)tmp_y + 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y + 1) * TILE_SIZE);
-			if (game->player.p_y >= (tmp_wall - 10))
-				return (printf("Back-bottom collision!!\n"));
-		}
-	}
-/* --------------------------------------------------------------------------------------------------------- */ 
-	// Left
-	if (direction == 3 && (game->player.angle <= 1.5 || game->player.angle >= 4.5)) // Case for going up while pressing the left key
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y) * TILE_SIZE);
-			// printf("y: %f\n", game->player.p_y);
-			// printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_y <= (tmp_wall + 5))
-				return (printf("Left-top collision!!\n"));
-		}
-	}
-	if (direction == 3 && (game->player.angle >= 3 && game->player.angle <= 6.3)) // Case for going left while pressing left
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x - 1] && game->map[(int)tmp_y][(int)tmp_x - 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x) * TILE_SIZE);
-			if (game->player.p_x <= (tmp_wall + 5))
-				return (printf("Left-left collision\n"));
-		}
-	}
-	if (direction == 3 && ((game->player.angle >= 0 && game->player.angle <= 3.3) || game->player.angle > 6)) // Case for going right while pressing left
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x + 1) * TILE_SIZE);
-			// printf("y: %f\n", game->player.p_y);
-			// printf("wall pos: %f\n", tmp_wall);
-			if (game->player.p_x >= (tmp_wall - 10))
-				return (printf("Left-right collision\n"));
-		}
-	}
-	if (direction == 3 && (game->player.angle >= 1.5 && game->player.angle <= 6)) // Case for pressing left while going down in straight line
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y + 1][tmp_x] && game->map[(int)tmp_y + 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y + 1) * TILE_SIZE);
-			if (game->player.p_y >= (tmp_wall - 12))
-				return (printf("Left-bottom collision!!\n"));
-		}
-	}
-	/* --------------------------------------------------------------------------------------------------------- */
-	// Right
-	if (direction == 4 && (game->player.angle > 1.5 && game->player.angle <= 4.8)) // Case for going up while pressing right
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y - 1][tmp_x] && game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y) * TILE_SIZE);
-			if (game->player.p_y <= (tmp_wall + 5))
-				return (printf("Collision!!!!\n"));
-		}
-	}
-	if (direction == 4 && (game->player.angle >= 0 && game->player.angle <= 4)) // Case for going left while pressing right
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x - 1] && game->map[(int)tmp_y][(int)tmp_x - 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x) * TILE_SIZE);
-			if (game->player.p_x <= (tmp_wall + 5))
-				return (printf("Collision!!!!\n"));
-		}
-	}
-	if (direction == 4 && ((game->player.angle >= 3.3 && game->player.angle <= 6) || game->player.angle > 6)) // Case for going right while pressing right
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
-		{
-			float tmp_wall = (float)((tmp_x + 1)* TILE_SIZE);
-			if (game->player.p_x >= (tmp_wall - 13))
-				return (printf("Right-right collision!!\n"));
-		}
-	}
-	if (direction == 4 && ((game->player.angle >= 0 && game->player.angle <= 6) || game->player.angle > 6)) // Case for going down while pressing right
-	{
-		tmp_x = (int)(game->player.p_x) / TILE_SIZE;
-		tmp_y = (int)(game->player.p_y) / TILE_SIZE;
-		if (game->map[tmp_y + 1][tmp_x] && game->map[(int)tmp_y + 1][(int)tmp_x] == '1')
-		{
-			float tmp_wall = (float)((tmp_y + 1) * TILE_SIZE);
-			if (game->player.p_y >= (tmp_wall - 12))
-				return (printf("Right-bottom collision!!\n"));
-		}
-	}
-	return (0);
+	return (result);
 }
 
-void	move_player(t_game *game)
+static	void	handle_player_movement(t_game *game,
+		float cos_angle, float sin_angle, int speed)
 {
 	t_player *player = &game->player;
-	int speed = 5;
-	float angle_speed = 0.05;
-	float cos_angle = cos(player->angle);
-	float sin_angle = sin(player->angle);
-
-	if (player->left_rotate)
-		player->angle -= angle_speed;
-	if (player->right_rotate)
-		player->angle += angle_speed;
-	if (player->angle > 2 * PI)
-		player->angle = 0;
-	if (player->angle < 0)
-		player->angle = 2 * PI;
-
 	if (player->key_up && !check_collision(game, 1))
 	{
 		player->p_x += cos_angle * speed;
@@ -267,6 +100,28 @@ void	move_player(t_game *game)
 		player->p_x -= sin_angle * speed;
 		player->p_y += cos_angle * speed;
 	}
+}
+
+void	move_player(t_game *game)
+{
+	int		speed;
+	float	angle_speed;
+	float	cos_angle;
+	float	sin_angle;
+
+	speed = 5;
+	angle_speed = 0.05;
+	cos_angle = cos(game->player.angle);
+	sin_angle = sin(game->player.angle);
+	if (game->player.left_rotate)
+		game->player.angle -= angle_speed;
+	if (game->player.right_rotate)
+		game->player.angle += angle_speed;
+	if (game->player.angle > 2 * PI)
+		game->player.angle = 0;
+	if (game->player.angle < 0)
+		game->player.angle = 2 * PI;
+	handle_player_movement(game, cos_angle, sin_angle, speed);
 }
 
 int	key_press(int keycode, t_game *game)

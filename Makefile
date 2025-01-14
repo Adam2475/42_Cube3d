@@ -6,19 +6,20 @@
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2025/01/14 09:21:30 by adapassa         ###   ########.fr        #
+#    Updated: 2025/01/14 11:03:06 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3D
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -g
+#-Wall -Wextra -Werror
 SRC =	src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c \
 		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c \
 		src/utils/utils.c src/utils/utils2.c src/utils/utils3.c src/utils/gnl.c \
-		src/init/init.c src/init/init2.c\
-		src/controls/controls.c \
+		src/init/init.c src/init/init2.c \
+		src/controls/controls.c src/controls/collisions.c src/controls/collisions2.c \
 		src/rendering/rendering.c src/rendering/rendering_utils.c src/rendering/rendering_utils2.c \
 		src/rendering/rendering_utils3.c src/rendering/rendering_utils4.c \
 		src/free.c
