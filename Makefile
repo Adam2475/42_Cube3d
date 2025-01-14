@@ -6,11 +6,9 @@
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2025/01/14 09:09:46 by adapassa         ###   ########.fr        #
+#    Updated: 2025/01/14 09:09:55 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 
 CC = cc
 NAME = cub3D
