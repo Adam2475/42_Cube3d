@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 19:08:26 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/11 19:32:44 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/14 15:33:15 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,23 @@ int	int_imax(int n1, int n2)
 	if (n1 >= n2)
 		return (n1);
 	return (n2);
+}
+
+void	clear_image(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	x = 0;
+	while (y < S_H)
+	{
+		while (x < S_W)
+		{
+			put_pixel(x, y, 0, game);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 }

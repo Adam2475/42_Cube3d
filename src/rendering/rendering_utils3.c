@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 19:07:21 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/11 19:31:22 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/14 15:33:03 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,16 @@ float	nor_angle(float angle)
 	if (angle > (2 * PI))
 		angle -= (2 * PI);
 	return (angle);
+}
+
+bool	touch(float px, float py, t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = px / BLOCK;
+	y = py / BLOCK;
+	if (game->map[y][x] == '1')
+		return (true);
+	return (false);
 }

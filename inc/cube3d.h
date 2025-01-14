@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/14 11:40:44 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:40:37 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_game
 	int			flag;
 	double		ray_distance;
 	double		ray_angle;
+	double		wall_h;
 	char		**map;
 	t_img		img;
 	t_texture	texture_n;
@@ -184,7 +185,7 @@ int		key_release(int keycode, t_player *player);
 int		exit_hook(t_game *game);
 int		check_collision(t_game *game, int direction);
 int		draw_loop(t_game *game);
-void	draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h);
+void	draw_wall(t_game *game, int ray, int t_pix, int b_pix);
 void	create_textures(t_game *game, t_map *map);
 void	render_background(t_game *game);
 void	img_pix_put(t_game *game, int x, int y, int color);
@@ -204,6 +205,7 @@ void	destroy_image(t_game *game);
 float	get_v_inter(t_player *player, t_map *map, float angl);
 float	get_h_inter(t_player *player, t_map *map, float angl);
 int		wall_hit(float x, float y, t_map *map);
+void	clear_image(t_game *game);
 int		inter_check(float angle, float *inter, float *step, int is_horizon);
 int		unit_circle(float angle, char c);
 int		check_direction_up(t_game *game, int code);

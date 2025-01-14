@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/14 11:39:33 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:51:13 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,23 @@ int	exit_hook(t_game *game)
 	return (0);
 }
 
-int		check_collision(t_game *game, int direction)
+int	check_collision(t_game *game, int direction)
 {
-	int	result = 0;
+	int	result;
+
+	result = 0;
 	if (direction == 1)
 	{
 		if (!result && game->player.angle >= 3.1 && game->player.angle <= 6.5)
 			result = (check_direction_up(game, 0));
-		if (!result && game->player.angle >= 1 && game->player.angle <= 5) // Case for going left in straight line
+		if (!result && game->player.angle >= 1.5
+			&& game->player.angle <= 5) // Case for going left in straight line
 			result = (check_direction_up(game, 1));
-		if (!result && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle > 4.7)) // Case for going right in straight line
+		if (!result && ((game->player.angle >= 0
+			&& game->player.angle <= 1.5) || game->player.angle > 4.7)) // Case for going right in straight line
 			result = (check_direction_up(game, 2));
-		if (!result && game->player.angle >= 0.01 && game->player.angle < 3) // Case for going down in straight line
+		if (!result && game->player.angle >= 0.01
+			&& game->player.angle < 3) // Case for going down in straight line
 			result = (check_direction_up(game, 3));
 	}
 /* ------------------------------------------------------------------------------------------------------------------- */ 
@@ -42,7 +47,8 @@ int		check_collision(t_game *game, int direction)
 	{
 		if (!result && game->player.angle >= 0.0 && game->player.angle <= 3.1) // Case for pressing down and goind upwards
 			result = (check_direction_down(game, 0));
-		if (!result && ((game->player.angle >= 0 && game->player.angle <= 1.5) || game->player.angle >= 4.6)) // Case for pressing down and going left backwards
+		if (!result && ((game->player.angle >= 0 && game->player.angle <= 1.5)
+			|| game->player.angle >= 4.6)) // Case for pressing down and going left backwards
 			result = (check_direction_down(game, 1));
 		if (!result && game->player.angle >= 1.5 && game->player.angle <= 4.7) // Case for pressing down and goind right backwards
 			result = (check_direction_down(game, 2));
