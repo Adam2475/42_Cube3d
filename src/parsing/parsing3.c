@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/10 16:08:14 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/13 18:51:54 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,50 @@ int	loop_colors(t_map *map, char *tmp, char *texture, char *str)
 	}
 	free(tmp);
 	return (0);
+}
+
+
+int	check_other_wall(t_map *map, int i, int j, int end)
+{
+	if (i == 0)
+	{
+		while (map->map[i])
+		{
+			if (map->map[i][j] == '1')
+				return (0);
+			if (i == map->map_lines)
+				return (1);
+			i++;
+		}
+	}
+	else
+	{
+		while (map->map[i])
+		{
+			if (map->map[i][j] == '1')
+				return (0);
+			if (i == 0)
+				return (1);
+			i--;
+		}
+	}
+	return (0);
+}
+
+void	init_map_h_w(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+			j++;
+		if (j > map->w_map)
+			map->w_map = j;
+		i++;
+	}
+	map->h_map = i;
 }

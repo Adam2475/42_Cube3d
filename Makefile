@@ -5,12 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2025/01/13 15:51:48 by adapassa         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2025/01/14 09:09:46 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
+
 CC = cc
+NAME = cub3D
+FLAGS = -g 
+# -Wall -Wextra -Werror
 NAME = cub3d
 FLAGS = -g -Wall -Wextra -Werror
 SRC =	src/main.c src/debug.c \

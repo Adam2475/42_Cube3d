@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/13 15:28:39 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 09:07:52 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ int		key_release(int keycode, t_player *player);
 void	init_struct(t_game *game);
 void	assign_texture_path(t_game *game, t_map *map);
 int		check_wall_char(t_map *map, int start, int end, int i);
+int		check_other_wall(t_map *map, int i, int j, int end);
 char	**check_and_read(char **av);
 int		map_parsing(char **av, t_map *map);
 char	**read_map(char *path);
@@ -143,6 +144,7 @@ int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
 void	pos_or_dir(char c, int i, int j, t_map *map);
 int		check_configuration(t_map *map);
+void	init_map_h_w(t_map *map);
 char	*cub3d_strdup(char *str);
 int		out_map(char *line);
 int		in_map(char *line);
