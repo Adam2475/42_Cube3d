@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/11 19:27:38 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/14 09:18:40 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,22 @@ static void	render_loop(t_game *game, t_player *player)
 	}
 }
 
+static long long current_time_in_ms(void)
+{
+    struct timeval time;
+    gettimeofday(&time, NULL);
+    return (time.tv_sec * 1000LL) + (time.tv_usec / 1000LL);
+}
+
 int draw_loop(t_game *game)
 {
 	t_player *player;
+	static long long last_frame_time = 0;
+	long long current_time = current_time_in_ms();
+	long long elapsed_time = current_time - last_frame_time;
+
+	 if (elapsed_time < FRAME_TIME_MS)
+        usleep((FRAME_TIME_MS - elapsed_time) * 1000);
 
 	player = &game->player;
 	move_player(game);
@@ -114,8 +127,7 @@ int draw_loop(t_game *game)
 	game->ray_angle = player->angle - (player->fov_rd / 2);
 	render_background(game);
 	render_loop(game, player);
-	// draw_map(game);
-	// draw_square(player->p_x / TILE_SIZE * BLOCK, player->p_y / TILE_SIZE * BLOCK, 10, 0x00FF00, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	 last_frame_time = current_time_in_ms();
 	return (0);
 }

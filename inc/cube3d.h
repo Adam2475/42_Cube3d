@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/14 09:07:52 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 09:19:53 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <stdbool.h>
 #include <limits.h>
+#include <sys/time.h>
 #include "../mlx_linux/mlx.h"
 #include "../libft/libft.h"
 
@@ -35,6 +36,9 @@
 #define FOV 60
 #define ROTATION_SPEED 0.045
 #define PLAYER_SPEED 4
+
+#define TARGET_FPS 50
+#define FRAME_TIME_MS (1000 / TARGET_FPS)
 
 typedef struct s_player
 {

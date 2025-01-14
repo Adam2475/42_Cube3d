@@ -6,16 +6,15 @@
 #    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2025/01/14 09:09:55 by adapassa         ###   ########.fr        #
+#    Updated: 2025/01/14 09:10:52 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3D
-FLAGS = -g 
-# -Wall -Wextra -Werror
 NAME = cub3d
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -g 
+#-Wall -Wextra -Werror
 SRC =	src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c \
 		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c \
