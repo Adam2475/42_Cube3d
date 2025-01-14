@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/11 19:40:08 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/14 09:24:31 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	exit_hook(t_game *game)
 	return (0);
 }
 
-int		check_collision(t_game *game, int x, int y, int direction, int speed)
+int		check_collision(t_game *game, int direction)
 {
 	int tmp_x = 0;
 	int tmp_y = 0;
@@ -246,25 +246,23 @@ void	move_player(t_game *game)
 		player->angle = 0;
 	if (player->angle < 0)
 		player->angle = 2 * PI;
-	int x = player->p_x / TILE_SIZE;
-	int y = player->p_y / TILE_SIZE;
 
-	if (player->key_up && !check_collision(game, x, y, 1,  speed))
+	if (player->key_up && !check_collision(game, 1))
 	{
 		player->p_x += cos_angle * speed;
 		player->p_y += sin_angle * speed;
 	}
-	if (player->key_down && !check_collision(game, x, y, 2,  speed))
+	if (player->key_down && !check_collision(game, 2))
 	{
 		player->p_x -= cos_angle * speed;
 		player->p_y -= sin_angle * speed;
 	}
-	if (player->key_left && !check_collision(game, x, y, 3,  speed))
+	if (player->key_left && !check_collision(game, 3))
 	{
 		player->p_x += sin_angle * speed;
 		player->p_y -= cos_angle * speed;
 	}
-	if (player->key_right && !check_collision(game, x, y, 4,  speed))
+	if (player->key_right && !check_collision(game, 4))
 	{
 		player->p_x -= sin_angle * speed;
 		player->p_y += cos_angle * speed;

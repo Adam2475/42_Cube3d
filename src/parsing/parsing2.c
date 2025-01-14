@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:41:38 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/13 18:40:38 by girindi          ###   ########.fr       */
+/*   Updated: 2025/01/14 09:22:32 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	check_wall_char(t_map *map, int start, int end, int i)
 		{
 			if (map->map[i][j] != '1')
 			{
-				if (check_other_wall(map, i, j, end - 1))
+				if (check_other_wall(map, i, j))
 					return (1);
 			}
 		}

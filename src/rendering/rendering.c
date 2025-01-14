@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/14 09:18:40 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 09:25:55 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	clear_image(t_game *game)
 
 void	draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h)
 {
-	int		color;
 	int		tex_x;
 	int		tex_y;
 	double	step;
@@ -46,7 +45,7 @@ void	draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h)
 	tex_pos = (t_pix - (S_H / 2) + wall_h / 2) * step;
 	while (t_pix < b_pix)
 	{
-		tex_y = calc_tex_y(game, texture, tex_pos);
+		tex_y = calc_tex_y(texture, tex_pos);
 		tex_pos += step;
 		img_pix_put(game, ray, t_pix++,
 			get_texture_color(texture, tex_x, tex_y));
@@ -76,7 +75,6 @@ static void	render_loop(t_game *game, t_player *player)
 {
 	double	h_inter;
 	double	v_inter;
-	double	angle;
 	int		i;
 
 	i = 0;

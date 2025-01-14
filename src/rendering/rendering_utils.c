@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:12:58 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/11 19:30:22 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/14 09:25:30 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int	wall_hit(float x, float y, t_map *map)
 
 int	calc_tex_x(t_game *game, t_img *texture, int flag)
 {
-	const t_img		*tex = texture;
-	int				text_x;
 	int				tex_x;
 	double			text_perc_px_hit;
 
@@ -96,7 +94,7 @@ int	calc_tex_x(t_game *game, t_img *texture, int flag)
 	return (tex_x);
 }
 
-int	calc_tex_y(t_game *game, t_img *texture, double tex_pos)
+int	calc_tex_y(t_img *texture, double tex_pos)
 {
 	const t_img	*tex;
 	int			text_y;

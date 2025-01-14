@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/14 09:19:53 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/14 09:25:40 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int		key_release(int keycode, t_player *player);
 void	init_struct(t_game *game);
 void	assign_texture_path(t_game *game, t_map *map);
 int		check_wall_char(t_map *map, int start, int end, int i);
-int		check_other_wall(t_map *map, int i, int j, int end);
+int		check_other_wall(t_map *map, int i, int j);
 char	**check_and_read(char **av);
 int		map_parsing(char **av, t_map *map);
 char	**read_map(char *path);
@@ -182,7 +182,7 @@ int		key_press(int keycode, t_game *game);
 void	move_player(t_game *game);
 int		key_release(int keycode, t_player *player);
 int		exit_hook(t_game *game);
-int		check_collision(t_game *game, int x, int y, int direction, int speed);
+int		check_collision(t_game *game, int direction);
 int		draw_loop(t_game *game);
 void	draw_wall(t_game *game, int ray, int t_pix, int b_pix, double wall_h);
 void	create_textures(t_game *game, t_map *map);
@@ -193,7 +193,7 @@ double	normalize_to_one(double num);
 int		int_imax(int n1, int n2);
 int		get_texture_color(t_img *texture, int x, int y);
 int		calc_tex_x(t_game *game, t_img *texture, int flag);
-int		calc_tex_y(t_game *game, t_img *texture, double tex_pos);
+int		calc_tex_y(t_img *texture, double tex_pos);
 double	calc_wall_px_hit(t_game *game, int flag);
 t_img	*define_side(t_game *game);
 void	print_map(char **map);

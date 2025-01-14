@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/13 18:51:54 by girindi          ###   ########.fr       */
+/*   Updated: 2025/01/14 09:22:08 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	loop_colors(t_map *map, char *tmp, char *texture, char *str)
 }
 
 
-int	check_other_wall(t_map *map, int i, int j, int end)
+int	check_other_wall(t_map *map, int i, int j)
 {
 	if (i == 0)
 	{
