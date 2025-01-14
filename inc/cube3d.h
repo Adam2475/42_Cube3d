@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/11 19:55:31 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/13 15:28:39 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #define LEFT 65361
 #define RIGHT 65363
 #define PI 3.14159265359
-#define TILE_SIZE 64
+#define TILE_SIZE 32
 #define FOV 60
 #define ROTATION_SPEED 0.045
 #define PLAYER_SPEED 4

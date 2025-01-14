@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: giulio <giulio@student.42.fr>              +#+  +:+       +#+         #
+#    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 10:45:45 by adapassa          #+#    #+#              #
-#    Updated: 2025/01/11 19:35:26 by giulio           ###   ########.fr        #
+#    Updated: 2025/01/13 15:51:48 by adapassa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3d
-FLAGS = -g 
-# -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 SRC =	src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c \
 		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c \
