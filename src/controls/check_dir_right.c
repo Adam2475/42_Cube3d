@@ -63,6 +63,7 @@ static	int	check_direction_right3(t_game *game, int code, int tmp_x, int tmp_y)
 				return (1);
 		}
 	}
+	return (0);
 }
 
 int	check_direction_right(t_game *game, int code)

@@ -70,7 +70,6 @@ static	int	check_direction_up2(t_game *game, int code, int tmp_x, int tmp_y)
 	float tmp_wall;
 	if (code == 2)
 	{
-		//printf("diocancaro");
 		if (game->map[tmp_y][tmp_x + 1] && game->map[(int)tmp_y][(int)tmp_x + 1] == '1')
 		{
 			tmp_wall = (float)((tmp_x + 1) * TILE_SIZE);

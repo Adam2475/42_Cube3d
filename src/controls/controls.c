@@ -88,6 +88,7 @@ static	void	handle_player_movement(t_game *game,
 	t_player *player = &game->player;
 	if (player->key_up && !check_collision(game, 1))
 	{
+		//printf("cane\n");
 		player->p_x += cos_angle * speed;
 		player->p_y += sin_angle * speed;
 	}
@@ -98,6 +99,7 @@ static	void	handle_player_movement(t_game *game,
 	}
 	if (player->key_left && !check_collision(game, 3))
 	{
+		//printf("porcamadonna\n");
 		player->p_x += sin_angle * speed;
 		player->p_y -= cos_angle * speed;
 	}
