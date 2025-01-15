@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:42:18 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/14 15:46:52 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/15 12:27:21 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static	int	check_direction_left3(t_game *game, int code, int tmp_x, int tmp_y)
 				return (1);
 		}
 	}
-	// colpevole del misfatto
 	return (0);
 }
 

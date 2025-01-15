@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:48:30 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/10 16:08:58 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:04:38 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ int	check_and_skip_range(char *str, char *tmp, t_map *map, char type)
 			return (-1);
 	}
 	return (0);
+}
+
+char	**check_alloc_path(char *path)
+{
+	int		fd;
+	int		count;
+	char	**temp_map;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	count = count_line(fd);
+	close(fd);
+	temp_map = ft_calloc(count + 1, sizeof(char *));
+	if (!temp_map)
+		return (NULL);
+	return (temp_map);
 }
 
 void	alloc_colors(char type, int num, t_map *map)

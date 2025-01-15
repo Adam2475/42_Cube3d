@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/14 09:22:08 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:04:16 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,6 @@ int	check_configuration(t_map *map)
 	if (check_line_config(map, "F") || check_line_config(map, "C"))
 		return (1);
 	return (0);
-}
-
-char	**check_alloc_path(char *path)
-{
-	int		fd;
-	int		count;
-	char	**temp_map;
-
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	count = count_line(fd);
-	close(fd);
-	temp_map = ft_calloc(count + 1, sizeof(char *));
-	if (!temp_map)
-		return (NULL);
-	return (temp_map);
 }
 
 int	loop_colors(t_map *map, char *tmp, char *texture, char *str)
@@ -94,7 +77,33 @@ int	check_other_wall(t_map *map, int i, int j)
 	return (0);
 }
 
-void	init_map_h_w(t_map *map)
+static int	check_mid_full_walls(t_map *map, int i)
+{
+	int	skip;
+	int	end;
+	int len_before;
+	int	len;
+
+	skip = skip_spaces(map->map[i - 1]);
+	end = trim_spaces(map->map[i - 1]);
+	len_before = ft_strlen(map->map[i - 1]);
+	len_before -= skip + end;
+	len = ft_strlen(map->map[i]);
+	while (len - len_before != 0)
+	{
+		if (map->map[i][len_before] != '1')
+		{
+			if (map->map[i - 1][len_before] != '1'
+			&& (map->map[i + 1][len_before]
+			&& map->map[i + 1][len_before] != '1'))
+				return (1);
+		}	
+		len_before ++;
+	}
+	return (0);
+}
+
+int	check_map_h_w(t_map *map)
 {
 	int	i;
 	int	j;
@@ -106,8 +115,16 @@ void	init_map_h_w(t_map *map)
 		while (map->map[i][j])
 			j++;
 		if (j > map->w_map)
+		{
 			map->w_map = j;
+			if (i != 0 && i != map->map_lines)
+			{
+				if (check_mid_full_walls(map, i))
+					return (1);
+			}
+		}
 		i++;
 	}
 	map->h_map = i;
+	return (0);
 }

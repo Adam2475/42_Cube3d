@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/14 15:40:37 by giulio           ###   ########.fr       */
+/*   Updated: 2025/01/15 12:35:26 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int		get_textures(char **tmp, t_map *map);
 int		check_characters(t_map *map);
 void	pos_or_dir(char c, int i, int j, t_map *map);
 int		check_configuration(t_map *map);
-void	init_map_h_w(t_map *map);
+int		check_map_h_w(t_map *map);
 char	*cub3d_strdup(char *str);
 int		out_map(char *line);
 int		in_map(char *line);
