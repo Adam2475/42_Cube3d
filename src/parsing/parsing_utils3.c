@@ -38,4 +38,5 @@ int	check_fist_and_last_wall(t_map *map, int i, int end)
 		end_check = trim_spaces(map->map[i - 1]);
 	if (ft_strnlen(map->map[i], end) != ft_strnlen(map->map[i + 1], end_check))
 		return (1);
+	return (0);
 }

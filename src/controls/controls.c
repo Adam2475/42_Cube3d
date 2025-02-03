@@ -23,62 +23,89 @@ int	exit_hook(t_game *game)
 	return (0);
 }
 
+int	check_up(t_game *game)
+{
+	int	result;
+
+	result = 0;
+	if (!result && game->player.angle >= 3.1 && game->player.angle <= 6.5)
+		result = (check_direction_up(game, 0));
+	if (!result && game->player.angle >= 1.5
+		&& game->player.angle <= 5) // Case for going left in straight line
+		result = (check_direction_up(game, 1));
+	if (!result && ((game->player.angle >= 0
+		&& game->player.angle <= 1.5) || game->player.angle > 4.7)) // Case for going right in straight line
+		result = (check_direction_up(game, 2));
+	if (!result && game->player.angle >= 0.01
+		&& game->player.angle < 3) // Case for going down in straight line
+		result = (check_direction_up(game, 3));
+	return (result);
+}
+
+
+int	check_down(t_game *game)
+{
+	int	result;
+
+	result = 0;
+	if (!result && game->player.angle >= 0.0 && game->player.angle <= 3.1) // Case for pressing down and goind upwards
+		result = (check_direction_down(game, 0));
+	if (!result && ((game->player.angle >= 0 && game->player.angle <= 1.5)
+		|| game->player.angle >= 4.6)) // Case for pressing down and going left backwards
+		result = (check_direction_down(game, 1));
+	if (!result && game->player.angle >= 1.5 && game->player.angle <= 4.7) // Case for pressing down and goind right backwards
+		result = (check_direction_down(game, 2));
+	if (!result && game->player.angle >= 3 && game->player.angle <= 6.4) // Case for pressing down and going down backwards
+		result = (check_direction_down(game, 3));
+	return (result);
+	
+}
+
+int	check_left(t_game *game)
+{
+	int	result;
+
+	result = 0;
+	if (!result && game->player.angle <= 1.5 || game->player.angle >= 4.5) // Case for going up while pressing the left key
+		result = (check_direction_left(game, 0));
+	if (!result && game->player.angle >= 3 && game->player.angle <= 6.3) // Case for going left while pressing left
+		result = (check_direction_left(game, 1));
+	if (!result && ((game->player.angle >= 0 && game->player.angle <= 3.3) || game->player.angle > 6)) // Case for going right while pressing left
+		result = (check_direction_left(game, 2));
+	if (!result && game->player.angle >= 1.5 && game->player.angle <= 6) // Case for pressing left while going down in straight line
+		result = (check_direction_left(game, 3));
+	return (result);
+}
+
+int	check_right(t_game *game)
+{
+	int	result;
+
+	result = 0;
+	if (!result && game->player.angle > 1.5 && game->player.angle <= 4.8) // Case for going up while pressing right
+		result = (check_direction_right(game, 0));
+	if (!result && game->player.angle >= 0 && game->player.angle <= 4) // Case for going left while pressing right
+		result = (check_direction_right(game, 1));
+	if (!result && ((game->player.angle >= 3.3 && game->player.angle <= 6) || game->player.angle > 6)) // Case for going right while pressing right
+		result = (check_direction_right(game, 2));
+	if (!result && (game->player.angle >= 0 && game->player.angle <= 6) || game->player.angle > 6) // Case for going down while pressing right
+		result = (check_direction_right(game, 3));
+		return (result);
+}
+
 int	check_collision(t_game *game, int direction)
 {
 	int	result;
 
 	result = 0;
 	if (direction == 1)
-	{
-		if (!result && game->player.angle >= 3.1 && game->player.angle <= 6.5)
-			result = (check_direction_up(game, 0));
-		if (!result && game->player.angle >= 1.5
-			&& game->player.angle <= 5) // Case for going left in straight line
-			result = (check_direction_up(game, 1));
-		if (!result && ((game->player.angle >= 0
-			&& game->player.angle <= 1.5) || game->player.angle > 4.7)) // Case for going right in straight line
-			result = (check_direction_up(game, 2));
-		if (!result && game->player.angle >= 0.01
-			&& game->player.angle < 3) // Case for going down in straight line
-			result = (check_direction_up(game, 3));
-	}
-/* ------------------------------------------------------------------------------------------------------------------- */ 
+		result = check_up(game);
 	if (direction == 2)
-	{
-		if (!result && game->player.angle >= 0.0 && game->player.angle <= 3.1) // Case for pressing down and goind upwards
-			result = (check_direction_down(game, 0));
-		if (!result && ((game->player.angle >= 0 && game->player.angle <= 1.5)
-			|| game->player.angle >= 4.6)) // Case for pressing down and going left backwards
-			result = (check_direction_down(game, 1));
-		if (!result && game->player.angle >= 1.5 && game->player.angle <= 4.7) // Case for pressing down and goind right backwards
-			result = (check_direction_down(game, 2));
-		if (!result && game->player.angle >= 3 && game->player.angle <= 6.4) // Case for pressing down and going down backwards
-			result = (check_direction_down(game, 3));
-	}
-/* --------------------------------------------------------------------------------------------------------- */
+		result = check_down(game);
 	if (direction == 3)
-	{
-		if (!result && game->player.angle <= 1.5 || game->player.angle >= 4.5) // Case for going up while pressing the left key
-			result = (check_direction_left(game, 0));
-		if (!result && game->player.angle >= 3 && game->player.angle <= 6.3) // Case for going left while pressing left
-			result = (check_direction_left(game, 1));
-		if (!result && ((game->player.angle >= 0 && game->player.angle <= 3.3) || game->player.angle > 6)) // Case for going right while pressing left
-			result = (check_direction_left(game, 2));
-		if (!result && game->player.angle >= 1.5 && game->player.angle <= 6) // Case for pressing left while going down in straight line
-			result = (check_direction_left(game, 3));
-	}
-/* --------------------------------------------------------------------------------------------------------- */
+		result = check_left(game);
 	if (direction == 4)
-	{
-		if (!result && game->player.angle > 1.5 && game->player.angle <= 4.8) // Case for going up while pressing right
-			result = (check_direction_right(game, 0));
-		if (!result && game->player.angle >= 0 && game->player.angle <= 4) // Case for going left while pressing right
-			result = (check_direction_right(game, 1));
-		if (!result && ((game->player.angle >= 3.3 && game->player.angle <= 6) || game->player.angle > 6)) // Case for going right while pressing right
-			result = (check_direction_right(game, 2));
-		if (!result && (game->player.angle >= 0 && game->player.angle <= 6) || game->player.angle > 6) // Case for going down while pressing right
-			result = (check_direction_right(game, 3));
-	}
+		result = check_right(game);
 	return (result);
 }
 

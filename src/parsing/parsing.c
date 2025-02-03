@@ -130,7 +130,7 @@ int	check_characters(t_map *map)
 			return (1);
 		if (i == 0 || i == map->map_lines)
 		{
-			if (check_first_and_last_wall(map, i, end))
+			if (check_fist_and_last_wall(map, i, end))
 				return (1);
 		}
 	}
