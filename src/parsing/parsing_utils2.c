@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:48:30 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/15 13:04:38 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:25:13 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,22 +102,6 @@ int	check_len_color(char *str)
 	}
 	if (check == 3)
 		return (0);
-	return (1);
-}
-
-int	line_is_empty(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (1);
-	while (str[i])
-	{
-		if (str[i] != '\n' && str[i] != ' ')
-			return (0);
-		i++;
-	}
 	return (1);
 }
 

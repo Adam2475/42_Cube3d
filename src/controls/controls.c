@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:48 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/14 15:51:13 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:38:54 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static	void	handle_player_movement(t_game *game,
 	t_player *player = &game->player;
 	if (player->key_up && !check_collision(game, 1))
 	{
-		//printf("cane\n");
 		player->p_x += cos_angle * speed;
 		player->p_y += sin_angle * speed;
 	}
@@ -99,7 +98,6 @@ static	void	handle_player_movement(t_game *game,
 	}
 	if (player->key_left && !check_collision(game, 3))
 	{
-		//printf("porcamadonna\n");
 		player->p_x += sin_angle * speed;
 		player->p_y -= cos_angle * speed;
 	}

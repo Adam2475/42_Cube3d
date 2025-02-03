@@ -6,7 +6,7 @@
 #    By: giulio <giulio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2025/01/14 15:45:24 by giulio           ###   ########.fr        #
+#    Updated: 2025/02/03 12:26:30 by giulio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS = -g
 #-Wall -Wextra -Werror
 SRC =	src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c \
-		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c \
+		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c src/parsing/parsing_utils3.c\
 		src/utils/utils.c src/utils/utils2.c src/utils/utils3.c src/utils/gnl.c \
 		src/init/init.c src/init/init2.c \
 		src/controls/controls.c src/controls/collisions.c src/controls/check_dir_left.c src/controls/check_dir_right.c \

@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/15 13:04:16 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:27:27 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	loop_colors(t_map *map, char *tmp, char *texture, char *str)
 	return (0);
 }
 
-
 int	check_other_wall(t_map *map, int i, int j)
 {
 	if (i == 0)
@@ -81,7 +80,7 @@ static int	check_mid_full_walls(t_map *map, int i)
 {
 	int	skip;
 	int	end;
-	int len_before;
+	int	len_before;
 	int	len;
 
 	skip = skip_spaces(map->map[i - 1]);
@@ -97,7 +96,7 @@ static int	check_mid_full_walls(t_map *map, int i)
 			&& (map->map[i + 1][len_before]
 			&& map->map[i + 1][len_before] != '1'))
 				return (1);
-		}	
+		}
 		len_before ++;
 	}
 	return (0);

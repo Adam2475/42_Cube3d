@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/14 15:32:10 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:30:48 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int	draw_loop(t_game *game)
 		// float ray_y = player->p_y;
 		// float cos_angle = cos(player->angle);
 		// float sin_angle = sin(player->angle);
-
 		// while (!touch(ray_x, ray_y, game))
 		// {
 		// 	put_pixel(ray_x, ray_y, 0xFF0000, game);
@@ -121,7 +120,6 @@ int	draw_loop(t_game *game)
 		// 	ray_y += sin_angle;
 		// }
 	//////////////////////////////////////////////////////////////
-	
 	render_loop(game, player);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	last_frame_time = current_time_in_ms();

@@ -6,12 +6,11 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/15 13:07:07 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:37:01 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cube3d.h"
-
 
 int	map_parsing(char **av, t_map *map)
 {
@@ -118,10 +117,9 @@ int	get_textures(char **tmp, t_map *map)
 
 int	check_characters(t_map *map)
 {
-	int		i;
-	int		start;
-	int		end;
-	int		end_check;
+	int	i;
+	int	start;
+	int	end;
 
 	i = -1;
 	while (map->map[++i])
@@ -132,11 +130,7 @@ int	check_characters(t_map *map)
 			return (1);
 		if (i == 0 || i == map->map_lines)
 		{
-			if (i == 0)
-				end_check = trim_spaces(map->map[i + 1]);
-			else
-				end_check = trim_spaces(map->map[i - 1]);
-			if (ft_strnlen(map->map[i], end) != ft_strnlen(map->map[i + 1], end_check))
+			if (check_first_and_last_wall(map, i, end))
 				return (1);
 		}
 	}

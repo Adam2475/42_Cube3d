@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/15 12:35:26 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:35:22 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 #define PLAYER_SPEED 4
 
 #define TARGET_FPS 100
-#define FRAME_TIME_MS (1000 / TARGET_FPS)
+#define FRAME_TIME_MS 10
 
 typedef struct s_player
 {
@@ -91,7 +91,7 @@ typedef struct s_data
 	int		h_map;
 }	t_data;
 
-typedef	struct s_map
+typedef struct s_map
 {
 	int		p_init_pos[2];
 	char	dir;
@@ -139,6 +139,7 @@ void	init_dir(t_map *map, t_player *player);
 int		key_release(int keycode, t_player *player);
 void	init_struct(t_game *game);
 void	assign_texture_path(t_game *game, t_map *map);
+int		check_fist_and_last_wall(t_map *map, int i, int end);
 int		check_wall_char(t_map *map, int start, int end, int i);
 int		check_other_wall(t_map *map, int i, int j);
 char	**check_and_read(char **av);
