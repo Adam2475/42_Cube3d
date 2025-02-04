@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:40:26 by adapassa          #+#    #+#             */
-/*   Updated: 2025/02/04 13:04:16 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:42:58 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ int	check_direction_up(t_game *game, int code)
 			&& game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
 		{
 			tmp_wall = (float)((tmp_y) * TILE_SIZE);
-			// if (get_wall_posgame->player.p_y <= (tmp_wall + 10))
-			// 	return (1);
+			if (game->player.p_y <= (tmp_wall + 10))
+				return (1);
 		}
 	}
 	else if (code == 1)

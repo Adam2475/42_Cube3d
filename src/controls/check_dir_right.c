@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:33:38 by adapassa          #+#    #+#             */
-/*   Updated: 2025/02/04 13:02:56 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:43:15 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_direction_right(t_game *game, int code)
 	return (ret);
 }
 
-int	mini_helper2(t_game *game, tmp_x, tmp_y)
+int	mini_helper2(t_game *game, int tmp_x, int tmp_y)
 {
 	float	tmp_wall;
 
