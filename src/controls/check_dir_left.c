@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_dir_left.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:42:18 by giulio            #+#    #+#             */
-/*   Updated: 2025/01/15 12:27:21 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/04 12:35:59 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	check_direction_left(t_game *game, int code)
 {
 	int		tmp_x;
 	int		tmp_y;
-	float	tmp_wall;
 	int		res;
 
 	tmp_x = (int)(game->player.p_x) / TILE_SIZE;

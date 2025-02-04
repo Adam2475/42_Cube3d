@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/03 12:35:22 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/04 13:07:44 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,6 @@ int		skip_spaces(char *str);
 int		trim_spaces(char *str);
 int		num_len(int n);
 void	put_pixel(int x, int y, int color, t_game *game);
-void	draw_square(int x, int y, int size, int color, t_game *game);
 char	**duplicate_double_pointer(char **original);
 void	put_pixel2(int x, int y, int *color, t_game *game);
 int		ft_strnlen(char *str, int n);
@@ -213,3 +212,4 @@ int		check_direction_up(t_game *game, int code);
 int		check_direction_down(t_game *game, int code);
 int		check_direction_left(t_game *game, int code);
 int		check_direction_right(t_game *game, int code);
+int		mini_helper2(t_game *game, int tmp_x, int tmp_y);

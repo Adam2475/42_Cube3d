@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:10:00 by adapassa          #+#    #+#             */
-/*   Updated: 2025/02/03 12:30:48 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/04 12:37:26 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,23 +103,8 @@ int	draw_loop(t_game *game)
 	move_player(game);
 	clear_image(game);
 	render_background(game);
-	// draw_square(game->player.p_x, game->player.p_y, 5, 0xFFFF00, game);
-	// draw_map(game);
 	game->ray_angle = nor_angle(game->ray_angle);
 	game->ray_angle = player->angle - (player->fov_rd / 2);
-	//////////////////////////////////////////////////////////////
-		// Debug:
-		// float ray_x = player->p_x;
-		// float ray_y = player->p_y;
-		// float cos_angle = cos(player->angle);
-		// float sin_angle = sin(player->angle);
-		// while (!touch(ray_x, ray_y, game))
-		// {
-		// 	put_pixel(ray_x, ray_y, 0xFF0000, game);
-		// 	ray_x += cos_angle;
-		// 	ray_y += sin_angle;
-		// }
-	//////////////////////////////////////////////////////////////
 	render_loop(game, player);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	last_frame_time = current_time_in_ms();
