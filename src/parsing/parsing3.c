@@ -56,7 +56,12 @@ int	check_other_wall(t_map *map, int i, int j)
 		while (map->map[i])
 		{
 			if (map->map[i][j] == '1')
-				return (0);
+			{
+				if (map->map[i][j - 1] != '1' || map->map[i][j + 1] != '1')
+					return (1);
+				else
+					return (0);
+			}
 			if (i == map->map_lines)
 				return (1);
 			i++;
@@ -67,7 +72,12 @@ int	check_other_wall(t_map *map, int i, int j)
 		while (map->map[i])
 		{
 			if (map->map[i][j] == '1')
-				return (0);
+			{
+				if (map->map[i][j - 1] != '1' || map->map[i][j + 1] != '1')
+					return (1);
+				else
+					return (0);
+			}
 			if (i == 0)
 				return (1);
 			i--;

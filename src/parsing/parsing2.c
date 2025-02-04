@@ -98,11 +98,11 @@ int	check_wall_char(t_map *map, int start, int end, int i)
 					return (1);
 			}
 		}
-		if (j == start || j == end - 1)
-		{
-			if (map->map[i][j] != '1')
-				return (1);
-		}
+		// if (j == start || j == end - 1)
+		// {
+		// 	if (map->map[i][j] != '1')
+		// 		return (1);
+		// }
 		if (!ft_strchr("10NSEW ", map->map[i][j]) && map->map[i][j] != '\n')
 			return (1);
 		if (ft_strchr("NSEW", map->map[i][j]))

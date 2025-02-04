@@ -29,7 +29,7 @@ int	in_map(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	if (line[i] == '1')
 		return (0);

@@ -26,6 +26,7 @@ int	map_parsing(char **av, t_map *map)
 		return (1);
 	}
 	free_matrix(tmp_map);
+	print_map(map->map);
 	if (check_characters(map))
 	{
 		free_map(map);
@@ -128,11 +129,11 @@ int	check_characters(t_map *map)
 		end = trim_spaces(map->map[i]);
 		if (check_wall_char(map, start, end, i))
 			return (1);
-		if (i == 0 || i == map->map_lines)
-		{
-			if (check_fist_and_last_wall(map, i, end, start))
-				return (1);
-		}
+		// if (i == 0 || i == map->map_lines)
+		// {
+		// 	if (check_fist_and_last_wall(map, i, end, start))
+		// 		return (1);
+		// }
 	}
 	if (map->p_init_pos[0] == -1)
 		return (1);
