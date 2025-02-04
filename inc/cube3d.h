@@ -6,7 +6,7 @@
 /*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/04 13:07:44 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:43:47 by adapassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ void	clear_image(t_game *game);
 int		inter_check(float angle, float *inter, float *step, int is_horizon);
 int		unit_circle(float angle, char c);
 void	handle_player_movement(t_game *game,
-		float cos_angle, float sin_angle, int speed);
+			float cos_angle, float sin_angle, int speed);
 int		check_direction_up(t_game *game, int code);
 int		check_direction_down(t_game *game, int code);
 int		check_left(t_game *game);
