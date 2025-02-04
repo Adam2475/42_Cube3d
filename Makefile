@@ -12,7 +12,8 @@
 
 CC = cc
 NAME = cub3D
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -g
+#-Wall -Wextra -Werror -g
 SRC =	src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c \
 		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c src/parsing/parsing_utils3.c\

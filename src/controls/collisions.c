@@ -92,7 +92,7 @@ static int	check_direction_up2(t_game *game, int code, int tmp_x, int tmp_y)
 	return (0);
 }
 
-static	int	mini_helper(t_game *game, tmp_x, tmp_y)
+static	int	mini_helper(t_game *game, int tmp_x, int tmp_y)
 {
 	float	tmp_wall;
 
@@ -121,8 +121,8 @@ int	check_direction_up(t_game *game, int code)
 			&& game->map[(int)tmp_y - 1][(int)tmp_x] == '1')
 		{
 			tmp_wall = (float)((tmp_y) * TILE_SIZE);
-			if (get_wall_posgame->player.p_y <= (tmp_wall + 10))
-				return (1);
+			// if (get_wall_posgame->player.p_y <= (tmp_wall + 10))
+			// 	return (1);
 		}
 	}
 	else if (code == 1)

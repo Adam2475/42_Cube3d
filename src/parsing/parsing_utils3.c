@@ -28,15 +28,24 @@ int	line_is_empty(char *str)
 	return (1);
 }
 
-int	check_fist_and_last_wall(t_map *map, int i, int end)
+int	check_fist_and_last_wall(t_map *map, int i, int end, int start)
 {
 	int	end_check;
+	int	start_check;
 
 	if (i == 0)
+	{
+		start_check = skip_spaces(map->map[i + 1]);
 		end_check = trim_spaces(map->map[i + 1]);
+		if (start > start_check || end < end_check)
+			return (1);
+	}
 	else
-		end_check = trim_spaces(map->map[i - 1]);
-	if (ft_strnlen(map->map[i], end) != ft_strnlen(map->map[i + 1], end_check))
-		return (1);
+	{
+		start_check = skip_spaces(map->map[i + 1]);
+		end_check = trim_spaces(map->map[i + 1]);
+		if (start > start_check || end < end_check)
+			return (1);
+	}
 	return (0);
 }

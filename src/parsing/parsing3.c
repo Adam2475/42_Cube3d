@@ -81,6 +81,7 @@ static int	check_mid_full_walls(t_map *map, int i)
 	int	skip;
 	int	end;
 	int	len_before;
+	int	len_after;
 	int	len;
 
 	skip = skip_spaces(map->map[i - 1]);
@@ -92,9 +93,9 @@ static int	check_mid_full_walls(t_map *map, int i)
 	{
 		if (map->map[i][len_before] != '1')
 		{
-			if (map->map[i - 1][len_before] != '1'
-			&& (map->map[i + 1][len_before]
-			&& map->map[i + 1][len_before] != '1'))
+			if (map->map[i - 1][len_before] == '1'
+			|| (map->map[i + 1][len_before]
+			&& map->map[i + 1][len_before] == '1'))
 				return (1);
 		}
 		len_before ++;

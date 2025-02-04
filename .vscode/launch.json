@@ -7,7 +7,7 @@
 		"program": "${workspaceFolder}/cub3D",
 		"args": ["valid.cub"],
 		"stopAtEntry": false,
-		"cwd": "/home/giulio/Desktop/42_Cube3d",
+		"cwd": "/nfs/homes/girindi/Desktop/42_Cube3d",
 		"environment": [],
 		"externalConsole": false,
 		"MIMode": "gdb",

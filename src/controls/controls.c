@@ -82,7 +82,7 @@ int	check_collision(t_game *game, int direction)
 	return (result);
 }
 
-static	void	handle_player_movement(t_game *game,
+void	handle_player_movement(t_game *game,
 		float cos_angle, float sin_angle, int speed)
 {
 	t_player	*player;
