@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 15:49:53 by girindi          ###   ########.fr       */
+/*   Updated: 2025/02/05 17:47:46 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ int		map_parsing(char **av, t_map *map);
 char	**read_map(char *path);
 int		get_map(char **tmp_map, t_map *map);
 int		get_textures(char **tmp, t_map *map);
+int		check_textures(char **tmp);
 int		check_characters(t_map *map);
 void	pos_or_dir(char c, int i, int j, t_map *map);
 int		check_configuration(t_map *map);

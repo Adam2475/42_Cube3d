@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 15:50:32 by girindi          ###   ########.fr       */
+/*   Updated: 2025/02/05 17:47:27 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,27 @@ int	check_map_h_w(t_map *map)
 	}
 	map->h_map = i;
 	return (0);
+}
+
+int	check_textures(char **tmp)
+{
+	int	check;
+	int	i;
+
+	i = -1;
+	check = 0;
+	while (tmp[++i])
+	{
+		if (*tmp[i] == '\n')
+			continue ;
+		else if (!in_texture(tmp[i]))
+			check++;
+		else if (check == 6)
+			break ;
+		else
+			return (0);
+	}
+	if (check != 6)
+		return (0);
+	return (check);
 }
