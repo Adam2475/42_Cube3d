@@ -6,14 +6,13 @@
 #    By: girindi <girindi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2025/02/05 15:31:55 by girindi          ###   ########.fr        #
+#    Updated: 2025/02/05 15:48:40 by girindi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3D
-FLAGS = -g
-#-Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g
 SRC =	src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c src/parsing/parsing_utils.c \
 		src/parsing/parsing_utils2.c src/parsing/parsing_utils3.c\

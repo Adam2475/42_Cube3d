@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:04:20 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 15:28:09 by girindi          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:49:10 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	first_other_walls(t_map *s_map, char **map, int i, int space)
 	return (0);
 }
 
-int	last_other_walls(t_map *s_map, char **map, int i, int space)
+int	last_other_walls(char **map, int i, int space)
 {
 	while (i != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:25:35 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 15:42:55 by girindi          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:50:51 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	wall_space(t_map *s_map, char **map, int i, int space)
 		}
 		else
 		{
-			if (last_other_walls(s_map, map, i, space))
+			if (last_other_walls(map, i, space))
 				return (1);
 		}
 	}
@@ -87,7 +87,6 @@ int	check_fist_and_last_wall(t_map *s_map, int i, int end, int start)
 	int		ret;
 	int		space;
 	char	**map;
-	int		space_check;
 
 	map = s_map->map;
 	space = 0;

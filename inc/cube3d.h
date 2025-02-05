@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 15:42:16 by girindi          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:49:53 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	init_dir(t_map *map, t_player *player);
 int		check_fist_and_last_wall(t_map *s_map, int i, int end, int start);
 int		first_other_walls(t_map *s_map, char **map, int i, int space);
 int		first_check_wall(char **map, int i, int end, int start);
-int		last_other_walls(t_map *s_map, char **map, int i, int space);
+int		last_other_walls(char **map, int i, int space);
 int		last_check_wall(char **map, int i, int end, int start);
 int		key_release(int keycode, t_player *player);
 void	init_struct(t_game *game);

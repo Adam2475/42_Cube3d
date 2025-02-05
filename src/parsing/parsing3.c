@@ -6,7 +6,7 @@
 /*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 15:46:33 by girindi          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:50:32 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,6 @@ int	loop_colors(t_map *map, char *tmp, char *texture, char *str)
 			return (free(tmp), 1);
 	}
 	free(tmp);
-	return (0);
-}
-
-static int	check_mid_full_walls(t_map *map, int i)
-{
-	int	skip;
-	int	end;
-	int	len_before;
-	int	len_after;
-	int	len;
-
-	skip = skip_spaces(map->map[i - 1]);
-	end = trim_spaces(map->map[i - 1]);
-	len_before = ft_strlen(map->map[i - 1]);
-	len_before -= skip + end;
-	len = ft_strlen(map->map[i]);
-	while (len - len_before != 0)
-	{
-		if (map->map[i][len_before] != '1')
-		{
-			if (map->map[i - 1][len_before] != '1'
-			|| (map->map[i + 1][len_before]
-			&& map->map[i + 1][len_before] != '1'))
-				return (1);
-		}
-		len_before ++;
-	}
 	return (0);
 }
 
