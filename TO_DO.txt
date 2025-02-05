@@ -1,8 +1,0 @@
-
------------------------------------------------------------------------------------
-
-TODO: correggere nome eseguibile in: cub3D
-
-TODO: correggere controlli sulla mappa
-toDO: correggere funzione mpm esistente check_direction_up(t_game *game, int code)
-
