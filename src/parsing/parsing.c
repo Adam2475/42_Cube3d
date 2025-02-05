@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:15:31 by adapassa          #+#    #+#             */
-/*   Updated: 2025/02/03 12:37:01 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/05 11:18:29 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,42 @@ int	get_textures(char **tmp, t_map *map)
 	return (0);
 }
 
+
+int check_surrounded_wall(char **map, int i, int start, int end)
+{
+	int	end_before;
+	int	start_before;
+	
+	if (map[i][start] != '1' || map[i][end] != '1')
+		return (1);
+	start_before = skip_spaces(map[i - 1]);
+	end_before = trim_spaces(map[i - 1]);
+	while (end < end_before)
+	{
+		if (map[i - 1][end_before] != '1')
+			return (1);
+		end_before--;
+	}
+	while (end > end_before)
+	{
+		if (map[i][end] != '1')
+			return (1);
+		end--;
+	}
+	while (start > start_before)
+	{
+		if (map[i - 1][start_before] != '1')
+			return (1);
+		start_before++;
+	}
+	while (start < start_before)
+	{
+		if (map[i][start] != '1')
+			return (1);
+		start++;
+	}
+	return (0);
+}
 int	check_characters(t_map *map)
 {
 	int	i;
@@ -127,13 +163,17 @@ int	check_characters(t_map *map)
 	{
 		start = skip_spaces(map->map[i]);
 		end = trim_spaces(map->map[i]);
-		if (check_wall_char(map, start, end, i))
+		if (i == 0 || i == map->map_lines - 1)
+		{
+			if (check_fist_and_last_wall(map, i, end, start))
+				return (1);
+		}
+		else if (check_surrounded_wall(map->map, i, start, end))
+		{
 			return (1);
-		// if (i == 0 || i == map->map_lines)
-		// {
-		// 	if (check_fist_and_last_wall(map, i, end, start))
-		// 		return (1);
-		// }
+		}
+		if (check_char(map, start, end, i))
+			return (1);
 	}
 	if (map->p_init_pos[0] == -1)
 		return (1);

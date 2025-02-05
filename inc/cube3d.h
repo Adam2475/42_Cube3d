@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/04 16:43:47 by adapassa         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:09:11 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,15 @@ void	init_map(t_map *map);
 int		game_init(char **av, t_map *map, t_game *game);
 void	init_player(t_player *player, t_map *map);
 void	init_dir(t_map *map, t_player *player);
-int		check_fist_and_last_wall(t_map *map, int i, int end, int start);
+int		check_fist_and_last_wall(t_map *s_map, int i, int end, int start);
+int		first_other_walls(t_map *s_map, char **map, int i, int space);
+int		first_check_wall(char **map, int i, int end, int start);
+int		last_other_walls(t_map *s_map, char **map, int i, int space);
+int		last_check_wall(char **map, int i, int end, int start);
 int		key_release(int keycode, t_player *player);
 void	init_struct(t_game *game);
 void	assign_texture_path(t_game *game, t_map *map);
-int		check_wall_char(t_map *map, int start, int end, int i);
+int		check_char(t_map *map, int start, int end, int i);
 int		check_other_wall(t_map *map, int i, int j);
 char	**check_and_read(char **av);
 int		map_parsing(char **av, t_map *map);

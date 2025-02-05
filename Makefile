@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adapassa <adapassa@student.42.fr>          +#+  +:+       +#+         #
+#    By: giulio <giulio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2025/02/04 12:48:20 by adapassa         ###   ########.fr        #
+#    Updated: 2025/02/05 12:18:43 by giulio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS = -g
 #-Wall -Wextra -Werror -g
 SRC =	src/main.c src/debug.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/parsing3.c \
-		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c src/parsing/parsing_utils3.c\
+		src/parsing/parsing_utils.c src/parsing/parsing_utils2.c src/parsing/parsing_utils3.c src/parsing/parsing_walls.c \
 		src/utils/utils.c src/utils/utils2.c src/utils/utils3.c src/utils/gnl.c \
 		src/init/init.c src/init/init2.c \
 		src/controls/controls.c src/controls/control_helpers.c src/controls/collisions.c src/controls/check_dir_left.c src/controls/check_dir_right.c \

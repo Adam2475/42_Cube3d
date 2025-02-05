@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/03 12:27:27 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/04 23:38:48 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_other_wall(t_map *map, int i, int j)
 		{
 			if (map->map[i][j] == '1')
 			{
-				if (map->map[i][j - 1] != '1' || map->map[i][j + 1] != '1')
+				if (map->map[i][j + 1] != '1')
 					return (1);
 				else
 					return (0);
@@ -73,7 +73,7 @@ int	check_other_wall(t_map *map, int i, int j)
 		{
 			if (map->map[i][j] == '1')
 			{
-				if (map->map[i][j - 1] != '1' || map->map[i][j + 1] != '1')
+				if (map->map[i][j - 1] != '1')
 					return (1);
 				else
 					return (0);
@@ -103,9 +103,9 @@ static int	check_mid_full_walls(t_map *map, int i)
 	{
 		if (map->map[i][len_before] != '1')
 		{
-			if (map->map[i - 1][len_before] == '1'
+			if (map->map[i - 1][len_before] != '1'
 			|| (map->map[i + 1][len_before]
-			&& map->map[i + 1][len_before] == '1'))
+			&& map->map[i + 1][len_before] != '1'))
 				return (1);
 		}
 		len_before ++;
@@ -127,11 +127,11 @@ int	check_map_h_w(t_map *map)
 		if (j > map->w_map)
 		{
 			map->w_map = j;
-			if (i != 0 && i != map->map_lines)
-			{
-				if (check_mid_full_walls(map, i))
-					return (1);
-			}
+			// if (i != 0 && i != map->map_lines)
+			// {
+			// 	if (check_mid_full_walls(map, i))
+			// 		return (1);
+			// }
 		}
 		i++;
 	}

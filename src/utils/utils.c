@@ -6,7 +6,7 @@
 /*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:42:10 by adapassa          #+#    #+#             */
-/*   Updated: 2025/01/10 18:23:41 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/05 13:06:22 by giulio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	skip_spaces(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] != ' ' && str[i] != '	')
@@ -76,11 +78,15 @@ int	trim_spaces(char *str)
 	i = 0;
 	i = ft_strlen(str);
 	if (str[i - 1] == '\n')
-		i--;
+		i -= 2;
 	while (i != 0)
 	{
 		if (str[i] != ' ' && str[i] != '	')
+		{
+			if (str[i] == '\n' || str[i] == '\0')
+				i--;
 			return (i);
+		}
 		i--;
 	}
 	return (0);
