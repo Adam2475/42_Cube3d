@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 12:25:35 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 13:45:35 by giulio           ###   ########.fr       */
+/*   Created: 2025/02/05 15:30:59 by girindi           #+#    #+#             */
+/*   Updated: 2025/02/05 15:46:46 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	line_is_empty(char *str)
 	}
 	return (1);
 }
+
 static int	check_space(char *str)
 {
 	int	i;
@@ -41,106 +42,59 @@ static int	check_space(char *str)
 	return (0);
 }
 
-static int	first_wall(char **map, int i, int end, int start)
+int	space_checker(char *map_line, int space, int *space_check)
 {
-	int	start_after;
-	int	end_after;
-	
-	start_after = skip_spaces(map[i + 1]);
-	end_after = trim_spaces(map[i + 1]);
-	while (start_after < start)
+	if (!space)
+		space = check_space(map_line);
+	else
 	{
-		if (map[i + 1][start_after] != '1')
-			return (1);
-		start_after++;
+		*space_check = space;
+		space += check_space(&map_line[space]);
 	}
-	while (end_after > end)
-	{
-		if (map[i + 1][end_after] != '1')
-			return (1);
-		end_after--;
-	}
-	return (0);
+	return (space);
 }
 
-int last_wall(char **map, int i, int end, int start)
+static int	check_other_first(t_map *map, int i, int j)
 {
-	int	start_before;
-	int	end_before;
-
-	start_before = skip_spaces(map[i - 1]);
-	end_before = trim_spaces(map[i - 1]);
-	while (start_before < start)
+	while (map->map[i])
 	{
-		if (map[i - 1][start_before] != '1')
-			return (1);
-		start_before++;
-	}
-	while (end_before > end)
-	{
-		if (map[i - 1][end_before] != '1')
-			return (1);
-		end_before--;
-	}
-	return (0);
-}
-
-int wall_space(t_map *s_map, char **map, int i, int space)
-{
-	int	space_check;
-	int last_char;
-
-	space_check = 0;
-	last_char = trim_spaces(map[i]);
-	while (1)
-	{
-		if (!space)
-			space = check_space(map[i]);
-		else
+		if (map->map[i][j] == '1')
 		{
-			space_check = space;
-			space += check_space(&map[i][space]);
-		}
-		if (space_check == space || space == last_char)
-			return (0);
-		if (!i)
-		{
-			if (first_other_walls(s_map, map, i, space))
+			if (map->map[i][j + 1] != '1')
 				return (1);
+			else
+				return (0);
 		}
-		else
-		{
-			if (last_other_walls(s_map, map, i, space))
-				return (1);
-		}
+		if (i == map->map_lines)
+			return (1);
+		i++;
 	}
 	return (0);
 }
 
-int	check_fist_and_last_wall(t_map *s_map, int i, int end, int start)
+int	check_other_wall(t_map *map, int i, int j)
 {
-	int	ret;
-	int	space;
-	char	**map;
-	int	space_check;
-
-	map = s_map->map;
-	space = 0;
-	ret = 0;
 	if (i == 0)
 	{
-		if (first_wall(map, i, end, start))
-			ret++;
+		if (check_other_first(map, i, j))
+			return (1);
+		return (0);
 	}
 	else
 	{
-		if (last_wall(map, i, end, start))
-			ret++;
+		while (map->map[i])
+		{
+			if (map->map[i][j] == '1')
+			{
+				if (map->map[i][j - 1] != '1')
+					return (1);
+				else
+					return (0);
+			}
+			if (i == 0)
+				return (1);
+			i--;
+		}
 	}
-	if (ret)
-		return (1);
-	int last_char;
-	if (wall_space(s_map, map, i, space))
-		ret++;
-	return (ret);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:53:53 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/05 12:09:11 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/05 15:42:16 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ void	init_struct(t_game *game);
 void	assign_texture_path(t_game *game, t_map *map);
 int		check_char(t_map *map, int start, int end, int i);
 int		check_other_wall(t_map *map, int i, int j);
+int		check_surrounded_wall(char **map, int i, int start, int end);
+int		space_checker(char *map_line, int space, int *space_check);
 char	**check_and_read(char **av);
 int		map_parsing(char **av, t_map *map);
 char	**read_map(char *path);

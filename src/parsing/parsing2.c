@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:41:38 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/04 23:41:09 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/05 15:27:08 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,19 +90,6 @@ int	check_char(t_map *map, int start, int end, int i)
 	j = start;
 	while (map->map[i][j] && j != end - 1)
 	{
-		// if (i == 0 || i == map->map_lines)
-		// {
-		// 	if (map->map[i][j] != '1')
-		// 	{
-		// 		if (check_other_wall(map, i, j))
-		// 			return (1);
-		// 	}
-		// }
-		// // if (j == start || j == end - 1)
-		// // {
-		// // 	if (map->map[i][j] != '1')
-		// // 		return (1);
-		// // }
 		if (!ft_strchr("10NSEW ", map->map[i][j]) && map->map[i][j] != '\n')
 			return (1);
 		if (ft_strchr("NSEW", map->map[i][j]))

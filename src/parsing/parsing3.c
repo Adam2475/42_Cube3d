@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giulio <giulio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: girindi <girindi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:50:44 by giulio            #+#    #+#             */
-/*   Updated: 2025/02/04 23:38:48 by giulio           ###   ########.fr       */
+/*   Updated: 2025/02/05 15:46:33 by girindi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,43 +49,6 @@ int	loop_colors(t_map *map, char *tmp, char *texture, char *str)
 	return (0);
 }
 
-int	check_other_wall(t_map *map, int i, int j)
-{
-	if (i == 0)
-	{
-		while (map->map[i])
-		{
-			if (map->map[i][j] == '1')
-			{
-				if (map->map[i][j + 1] != '1')
-					return (1);
-				else
-					return (0);
-			}
-			if (i == map->map_lines)
-				return (1);
-			i++;
-		}
-	}
-	else
-	{
-		while (map->map[i])
-		{
-			if (map->map[i][j] == '1')
-			{
-				if (map->map[i][j - 1] != '1')
-					return (1);
-				else
-					return (0);
-			}
-			if (i == 0)
-				return (1);
-			i--;
-		}
-	}
-	return (0);
-}
-
 static int	check_mid_full_walls(t_map *map, int i)
 {
 	int	skip;
@@ -125,14 +88,7 @@ int	check_map_h_w(t_map *map)
 		while (map->map[i][j])
 			j++;
 		if (j > map->w_map)
-		{
 			map->w_map = j;
-			// if (i != 0 && i != map->map_lines)
-			// {
-			// 	if (check_mid_full_walls(map, i))
-			// 		return (1);
-			// }
-		}
 		i++;
 	}
 	map->h_map = i;
